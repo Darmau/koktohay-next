@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import getLabel from "@/pages/api/translation";
 import { Labels } from "@/types/default";
@@ -13,6 +13,126 @@ import twitterIcon from '@/public/img/twitter.svg';
 import wechatIcon from '@/public/img/wechat.svg';
 import youtubeIcon from '@/public/img/youtube.svg';
 
+interface navItem {
+  name: string;
+  href: string;
+}
+
+interface IconProps {
+  className?: string;
+  htmlAttributes?: string;
+}
+
+const currentYear = new Date().getFullYear()
+
+const Footer = ({ id }: { id: string }) => {
+  const { locale } = useRouter()
+  const label = getLabel(labels, locale)
+
+  const [email, setEmail] = useState('')
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    window.open(
+      'https://tinyletter.com/darmau', 
+      'popupwindow', 
+      'scrollbars=yes,width=800,height=600'); 
+    return true
+  }
+
+  return (
+    <footer className="bg-white" aria-labelledby="footer-heading" id={id}>
+      <h2 id="footer-heading" className="sr-only">
+        Footer
+      </h2>
+      <div className="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-8">
+          {/* 站内链接 */}
+          <div className="md:flex md:gap-24">
+            <div>
+              <h3 className="text-sm font-semibold leading-6 text-gray-900">{label.blog.title}</h3>
+              <ul role="list" className="mt-6 space-y-4">
+                {label.blog.items.map((item: navItem) => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-10 md:mt-0">
+              <h3 className="text-sm font-semibold leading-6 text-gray-900">{label.about.title}</h3>
+              <ul role="list" className="mt-6 space-y-4">
+                {label.about.items.map((item: navItem) => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* 订阅 */}
+          <div className="mt-10 xl:mt-0">
+            <h3 className="text-sm font-semibold leading-6 text-gray-900">{label.subscription.title}</h3>
+            <p className="mt-2 text-sm leading-6 text-gray-600">
+              {label.subscription.description}
+            </p>
+            <form
+              className="mt-6 sm:flex sm:max-w-md"
+              action="https://tinyletter.com/darmau"
+              method="post"
+              onSubmit={handleSubmit}
+            >
+              <label htmlFor="tlemail" className="sr-only">
+                Email address
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="tlemail"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full min-w-0 appearance-none rounded-md border-0 bg-white px-3 py-1.5 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:w-64 sm:text-sm sm:leading-6 xl:w-full"
+                placeholder={label.subscription.placeholder}
+              />
+              <div className="mt-4 sm:mt-0 sm:ml-4 sm:flex-shrink-0">
+                <button
+                  type="submit"
+                  className="flex w-full items-center justify-center rounded-md bg-indigo-600 py-2 px-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  {label.subscription.button}
+                </button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
+          <div className="flex space-x-6 md:order-2">
+            {social.map((item) => (
+              <a target={'_blank'} title={item.name} key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
+                <span className="sr-only">{item.name}</span>
+                <item.icon className="h-6 w-6" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+          <p className="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">
+            &copy; 2019 - {currentYear} All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+export default Footer;
+
+// 文案信息
 const social = [
   {
     name: 'RSS',
@@ -157,7 +277,7 @@ const labels: Labels = {
     about: {
       title: 'About',
       items: [
-        { name: 'Website', href: '/about' },
+        { name: 'This Site', href: '/about' },
         { name: 'Contact Me', href: '/contact' },
         { name: 'Changelog', href: '/changelog' },
       ]
@@ -170,122 +290,3 @@ const labels: Labels = {
     }
   }
 }
-
-interface navItem {
-  name: string;
-  href: string;
-}
-
-interface IconProps {
-  className?: string;
-  htmlAttributes?: string;
-}
-
-const currentYear = new Date().getFullYear()
-
-const Footer = () => {
-  const { locale } = useRouter()
-  const label = getLabel(labels, locale)
-
-  const [email, setEmail] = useState('')
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    window.open(
-      'https://tinyletter.com/darmau', 
-      'popupwindow', 
-      'scrollbars=yes,width=800,height=600'); 
-    return true
-  }
-
-  return (
-    <footer className="bg-white" aria-labelledby="footer-heading">
-      <h2 id="footer-heading" className="sr-only">
-        Footer
-      </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-8">
-          {/* 站内链接 */}
-          <div className="md:flex md:gap-24">
-            <div>
-              <h3 className="text-sm font-semibold leading-6 text-gray-900">{label.blog.title}</h3>
-              <ul role="list" className="mt-6 space-y-4">
-                {label.blog.items.map((item: navItem) => (
-                  <li key={item.name}>
-                    <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="mt-10 md:mt-0">
-              <h3 className="text-sm font-semibold leading-6 text-gray-900">{label.about.title}</h3>
-              <ul role="list" className="mt-6 space-y-4">
-                {label.about.items.map((item: navItem) => (
-                  <li key={item.name}>
-                    <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* 订阅 */}
-          <div className="mt-10 xl:mt-0">
-            <h3 className="text-sm font-semibold leading-6 text-gray-900">{label.subscription.title}</h3>
-            <p className="mt-2 text-sm leading-6 text-gray-600">
-              {label.subscription.description}
-            </p>
-            <form
-              className="mt-6 sm:flex sm:max-w-md"
-              action="https://tinyletter.com/darmau"
-              method="post"
-              onSubmit={handleSubmit}
-            >
-              <label htmlFor="tlemail" className="sr-only">
-                Email address
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="tlemail"
-                autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full min-w-0 appearance-none rounded-md border-0 bg-white px-3 py-1.5 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:w-64 sm:text-sm sm:leading-6 xl:w-full"
-                placeholder={label.subscription.placeholder}
-              />
-              <div className="mt-4 sm:mt-0 sm:ml-4 sm:flex-shrink-0">
-                <button
-                  type="submit"
-                  className="flex w-full items-center justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  {label.subscription.button}
-                </button>
-              </div>
-            </form>
-          </div>
-
-        </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
-          <div className="flex space-x-6 md:order-2">
-            {social.map((item) => (
-              <a target={'_blank'} title={item.name} key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6" aria-hidden="true" />
-              </a>
-            ))}
-          </div>
-          <p className="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">
-            `&copy; 2019 - ${currentYear} All rights reserved.`
-          </p>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
-export default Footer;

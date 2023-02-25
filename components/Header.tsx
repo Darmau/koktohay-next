@@ -1,36 +1,44 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
+import { Fragment, useState } from "react";
+import { Labels } from "@/types/default";
+import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import DropArticle from './DropArticle'
-import SwitchLanguage from './DropLanguage'
-import Link from 'next/link'
+} from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import DropArticle from "./DropArticle";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import getLabel from "@/pages/api/translation";
+import SwitchLanguage from "./SwitchLanguage";
+import logo from "../public/img/logo.svg";
 
-const company = [
-  { name: '本站', href: '/about' },
-  { name: '联系我', href: '/contact' },
-  { name: '更新记录', href: '/changelog' },
-]
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+interface navItem {
+  name: string;
+  href: string;
 }
 
-const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
+const Header = ({ id }: { id: string }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { locale } = useRouter();
+  const label = getLabel(labels, locale);
 
   return (
-    <header className="bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <header className="bg-white" id={id}>
+      <nav
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-          </a>
+          <Link href="/" className="-m-1.5 p-1.5">
+            <Image className="h-8 w-auto" src={logo} alt="可可托海没有海logo" />
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -45,17 +53,27 @@ const Header = () => {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <DropArticle />
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            摄影
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            视频
-          </a>
+          <Link
+            href="/albums/1"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            {label.album}
+          </Link>
+          <Link
+            href="/videos/1"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            {label.video}
+          </Link>
 
+          {/* 关于 */}
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              关于
-              <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+              {label.about.name}
+              <ChevronDownIcon
+                className="h-5 w-5 flex-none text-gray-400"
+                aria-hidden="true"
+              />
             </Popover.Button>
 
             <Transition
@@ -68,7 +86,7 @@ const Header = () => {
               leaveTo="opacity-0 translate-y-1"
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-gray-900/5">
-                {company.map((item) => (
+                {label.about.items.map((item: navItem) => (
                   <Link
                     key={item.name}
                     href={item.href}
@@ -81,16 +99,25 @@ const Header = () => {
             </Transition>
           </Popover>
         </Popover.Group>
-        <div className="hidden lg:gap-2 lg:flex lg:flex-1 lg:justify-end">
-          <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+        <div className="hidden lg:gap-4 lg:flex lg:flex-1 lg:justify-end">
+          <button
+            type="button"
+            className="inline-flex items-center rounded-full border border-gray-300 bg-white p-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+          </button>
           <SwitchLanguage />
         </div>
       </nav>
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+
+      <Dialog
+        as="div"
+        className="lg:hidden"
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+      >
         <div className="fixed inset-0 z-10" />
-        <Dialog.Panel
-          className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-        >
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
@@ -112,85 +139,80 @@ const Header = () => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                <a
-                  href="#"
+                <Link
+                  href="/articles/1"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  文章
-                </a>
+                  {label.article}
+                </Link>
 
-                <a
-                  href="#"
+                <Link
+                  href="/albums/1"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  摄影
-                </a>
-                <a
-                  href="#"
+                  {label.album}
+                </Link>
+                <Link
+                  href="/videos/1"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  视频
-                </a>
-
-                <Disclosure as="div" className="-mx-3">
-                  {({ open }) => (
-                    <>
-                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">
-                        关于
-                        <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
-                          aria-hidden="true"
-                        />
-                      </Disclosure.Button>
-                      <Disclosure.Panel className="mt-2 space-y-2">
-                        {company.map((item) => (
-                          <Disclosure.Button
-                            key={item.name}
-                            as="a"
-                            href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          >
-                            {item.name}
-                          </Disclosure.Button>
-                        ))}
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
+                  {label.video}
+                </Link>
+                <div>
+                  <div className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-400">
+                    {label.about.name}
+                  </div>
+                  <ul>
+                    {label.about.items.map((item: navItem) => (
+                      <li
+                        key={item.name}
+                        className="block rounded-lg py-2 pl-4 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      >
+                        <Link href={item.href}>{item.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
               <div className="py-6">
-              <Disclosure as="div" className="-mx-3">
-                  {({ open }) => (
-                    <>
-                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">
-                        关于
-                        <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
-                          aria-hidden="true"
-                        />
-                      </Disclosure.Button>
-                      <Disclosure.Panel className="mt-2 space-y-2">
-                        {company.map((item) => (
-                          <Disclosure.Button
-                            key={item.name}
-                            as="a"
-                            href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          >
-                            {item.name}
-                          </Disclosure.Button>
-                        ))}
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
+                <SwitchLanguage />
               </div>
             </div>
           </div>
         </Dialog.Panel>
       </Dialog>
     </header>
-  )
-}
+  );
+};
 
 export default Header;
+
+// 文案信息
+const labels: Labels = {
+  "zh-CN": {
+    article: "文章",
+    album: "摄影",
+    video: "视频",
+    about: {
+      name: "关于",
+      items: [
+        { name: "本站", href: "/about" },
+        { name: "联系我", href: "/contact" },
+        { name: "更新记录", href: "/changelog" },
+      ],
+    },
+  },
+  en: {
+    article: "Article",
+    album: "Album",
+    video: "Video",
+    about: {
+      name: "About",
+      items: [
+        { name: "This Site", href: "/about" },
+        { name: "Contact Me", href: "/contact" },
+        { name: "Changelog", href: "/changelog" },
+      ],
+    },
+  },
+};
