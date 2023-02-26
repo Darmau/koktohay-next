@@ -1,6 +1,5 @@
 import client from "@/apollo-client";
 import { gql } from "@apollo/client";
-import { useRouter } from "next/router";
 import { ContentList } from "../api/Types";
 
 export default function Article({article}: any) {
