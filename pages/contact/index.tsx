@@ -43,7 +43,7 @@ const Contact = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_EZ_FORM_TOKEN}`
       },
       body: JSON.stringify(submitData),
     }).then(() => { 
