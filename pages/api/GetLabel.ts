@@ -1,4 +1,4 @@
-import { Labels } from "@/types/default";
+import { Labels } from "@/pages/api/Types";
 
 function getLabel(labels: Labels, locale: string | undefined) {
   const lang = locale === undefined ? 'zh-CH' : locale;

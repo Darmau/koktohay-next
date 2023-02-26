@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { Labels } from '@/types/default'
-import getLabel from '../api/translation';
+import { Labels } from '@/pages/api/Types'
+import getLabel from '../api/GetLabel';
 import ModalSingleAction from '@/components/ModalSingleAction';
 
 const labels: Labels = {
@@ -43,6 +43,7 @@ const Contact = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`
       },
       body: JSON.stringify(submitData),
     }).then(() => { 

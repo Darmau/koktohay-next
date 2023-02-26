@@ -9,6 +9,10 @@ const nextConfig = {
 
   env: {
     BASE_URL: process.env.BASE_URL,
+  },
+
+  images: {
+    formats: ['image/avif', 'image/webp'],
   }
 }
 

@@ -1,30 +1,90 @@
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { BookmarkSquareIcon, CalendarDaysIcon, LifebuoyIcon } from '@heroicons/react/24/outline'
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { BookmarkSquareIcon } from "@heroicons/react/24/outline";
+import { Labels, ContentList, ContentsProps } from "@/pages/api/Types";
+import getLabel from "@/pages/api/GetLabel";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import client from "@/apollo-client";
+import { gql } from "@apollo/client";
 
-const resources = [
-  { name: 'Help center', description: 'Get all of your questions answered', href: '#', icon: LifebuoyIcon },
-  { name: 'Guides', description: 'Learn how to maximize our platform', href: '#', icon: BookmarkSquareIcon },
-  { name: 'Events', description: 'See meet-ups and other events near you', href: '#', icon: CalendarDaysIcon },
-]
-const recentPosts = [
-  { id: 1, title: 'Boost your conversion rate', href: '#', date: 'Mar 5, 2023', datetime: '2023-03-05' },
-  {
-    id: 2,
-    title: 'How to use search engine optimization to drive traffic to your site',
-    href: '#',
-    date: 'Feb 25, 2023',
-    datetime: '2023-02-25',
+const labels: Labels = {
+  "zh-CN": {
+    title: "文章",
+    category: [
+      {
+        name: "生活",
+        href: "/category/article/life/1",
+        description: "杂七杂八，乱七八糟，七上八下",
+        icon: BookmarkSquareIcon,
+      },
+      {
+        name: "开发",
+        href: "/category/article/dev/1",
+        description: "前端开发相关文章，专注视觉表现和创意编码",
+        icon: BookmarkSquareIcon,
+      },
+      {
+        name: "设计",
+        href: "/category/article/design/1",
+        description: "一些关于设计的吐槽",
+        icon: BookmarkSquareIcon,
+      },
+    ],
+    recent: "最新文章",
+    all: "全部",
   },
-  { id: 3, title: 'Improve your customer experience', href: '#', date: 'Feb 21, 2023', datetime: '2023-02-21' },
-]
+  en: {
+    title: "Article",
+    category: [
+      {
+        name: "Life",
+        href: "/category/article/life/1",
+        description: "Just some thoughts",
+        icon: BookmarkSquareIcon,
+      },
+      {
+        name: "Development",
+        href: "/category/article/dev/1",
+        description: "Focusing on visual performance and creative development",
+        icon: BookmarkSquareIcon,
+      },
+      {
+        name: "Design",
+        href: "/category/article/design/1",
+        description: "Some complaints about the design",
+        icon: BookmarkSquareIcon,
+      },
+    ],
+    recent: "Recent Article",
+    all: "See All",
+  },
+};
 
-const DropArticle = () => {
+interface Category {
+  name: string;
+  href: string;
+  description: string;
+  icon: React.FC<{ className: string }>;
+}
+
+export default function DropArticle({
+  articles,
+  pagination,
+  pageSize,
+}: ContentsProps) {
+  const router = useRouter();
+  const {
+    query: { page },
+    locale,
+  } = router;
+  const label = getLabel(labels, locale);
+
   return (
     <Popover className="relative">
       <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-        <span>文章</span>
+        <span>{label.title}</span>
         <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
       </Popover.Button>
 
@@ -40,10 +100,16 @@ const DropArticle = () => {
         <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
           <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
             <div className="p-4">
-              {resources.map((item) => (
-                <div key={item.name} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+              {label.category.map((item: Category) => (
+                <div
+                  key={item.name}
+                  className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50"
+                >
                   <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
+                    <item.icon
+                      className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                      aria-hidden="true"
+                    />
                   </div>
                   <div>
                     <a href={item.href} className="font-semibold text-gray-900">
@@ -57,30 +123,37 @@ const DropArticle = () => {
             </div>
             <div className="bg-gray-50 p-8">
               <div className="flex justify-between">
-                <h3 className="text-sm font-semibold leading-6 text-gray-500">Recent posts</h3>
-                <a href="#" className="text-sm font-semibold leading-6 text-indigo-600">
-                  See all <span aria-hidden="true">&rarr;</span>
-                </a>
+                <h3 className="text-sm font-semibold leading-6 text-gray-500">
+                  {label.recent}
+                </h3>
+                <Link
+                  href="/articles/1"
+                  className="text-sm font-semibold leading-6 text-indigo-600"
+                >
+                  {label.all} <span aria-hidden="true">&rarr;</span>
+                </Link>
               </div>
               <ul role="list" className="mt-6 space-y-6">
-                {recentPosts.map((post) => (
-                  <li key={post.id} className="relative">
-                    <time dateTime={post.datetime} className="block text-xs leading-6 text-gray-600">
-                      {post.date}
-                    </time>
-                    <a href={post.href} className="block truncate text-sm font-semibold leading-6 text-gray-900">
-                      {post.title}
-                      <span className="absolute inset-0" />
-                    </a>
-                  </li>
-                ))}
+                <li key={post.id} className="relative">
+                  <time
+                    dateTime={post.attributes.publishDate?.toString()}
+                    className="block text-xs leading-6 text-gray-600"
+                  >
+                    {post.attributes.publishDate.toDateString()}
+                  </time>
+                  <Link
+                    href={`/article/${post.attributes.url}`}
+                    className="block truncate text-sm font-semibold leading-6 text-gray-900"
+                  >
+                    {post.attributes.title}
+                    <span className="absolute inset-0" />
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
         </Popover.Panel>
       </Transition>
     </Popover>
-  )
+  );
 }
-
-export default DropArticle;
