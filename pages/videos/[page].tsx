@@ -26,8 +26,8 @@ export default function AllVideos({
     <div className="h-full">
       本页为{locale}页面，第{page}页
       <ol>
-        {videos.map((item: ContentList) => (
-          <li>{item.attributes.title}</li>
+        {videos.map((item: ContentList, index: number) => (
+          <li key={index}>{item.attributes.title}</li>
         ))}
       </ol>
       <Pagination

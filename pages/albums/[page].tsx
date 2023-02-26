@@ -26,8 +26,8 @@ export default function AllAlbums({
     <div className="h-full">
       本页为{locale}页面，第{page}页
       <ol>
-        {albums.map((item: ContentList) => (
-          <li>{item.attributes.title}</li>
+        {albums.map((item: ContentList, index: number) => (
+          <li key={index}>{item.attributes.title}</li>
         ))}
       </ol>
       <Pagination

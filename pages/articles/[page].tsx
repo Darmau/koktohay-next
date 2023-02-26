@@ -26,8 +26,8 @@ export default function AllArticles({
     <div className="h-full">
       本页为{locale}页面，第{page}页
       <ol>
-        {articles.map((item: ContentList) => (
-          <li>{item.attributes.title}</li>
+        {articles.map((item: ContentList, index: number) => (
+          <li key={index}>{item.attributes.title}</li>
         ))}
       </ol>
       <Pagination
