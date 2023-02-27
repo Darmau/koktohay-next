@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import SectionCover from '@/components/SectionCover'
-import SectionArticle from '@/components/SectionArticle'
-import SectionVideo from '@/components/SectionVideo'
-import SectionStats from '@/components/SectionStats'
 import SectionAlbum from '@/components/SectionAlbum'
+import SectionArticle from '@/components/SectionArticle'
+import SectionCover from '@/components/SectionCover'
+import SectionStats from '@/components/SectionStats'
+import SectionVideo from '@/components/SectionVideo'
+import Head from 'next/head'
 
 export default function Home() {
   return (

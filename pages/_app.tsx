@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router'
-import { useRef, useEffect } from 'react'
+import Layout from '@/components/layout'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
+import { useEffect, useRef } from 'react'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
-import Layout from '@/components/layout'
 
 export default function App({ Component, pageProps }: AppProps) {
   const loadingBarRef = useRef<LoadingBarRef>(null);

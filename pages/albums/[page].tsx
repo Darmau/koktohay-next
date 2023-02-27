@@ -1,10 +1,10 @@
-import { gql } from "@apollo/client";
 import client from "@/apollo-client";
-import { useRouter } from "next/router";
-import Pagination from "@/components/Pagination";
 import PageNotFound from "@/components/404";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import Pagination from "@/components/Pagination";
 import { ContentList, ContentsProps } from "@/pages/api/Types";
+import { gql } from "@apollo/client";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { useRouter } from "next/router";
 
 export default function AllAlbums({
   albums,

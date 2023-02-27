@@ -19,8 +19,9 @@ export interface ContentsProps {
 export interface ContentList {
   id: string;
   attributes: {
+    [x: string]: any;
     title: string;
-    publishDate: Date;
+    publishDate?: Date;
     url: string;
     value: React.ReactNode;
   };

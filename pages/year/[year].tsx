@@ -6,8 +6,8 @@ import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 
-export default function AllVideos({
-  videos,
+export default function AllArticles({
+  articles,
   pagination,
   pageSize,
 }: ContentsProps) {
@@ -26,7 +26,7 @@ export default function AllVideos({
     <div className="h-full">
       本页为{locale}页面，第{page}页
       <ol>
-        {videos.map((item: ContentList, index: number) => (
+        {articles.map((item: ContentList, index: number) => (
           <li key={index}>{item.attributes.title}</li>
         ))}
       </ol>
@@ -39,13 +39,13 @@ export default function AllVideos({
   );
 }
 
-const GET_VIDEOS = gql`
-  query Videos(
+const GET_ARTICLES = gql`
+  query Articles(
     $sort: [String]
     $pagination: PaginationArg
     $locale: I18NLocaleCode
   ) {
-    videos(sort: $sort, pagination: $pagination, locale: $locale) {
+    articles( sort: $sort, pagination: $pagination, locale: $locale) {
       data {
         attributes {
           title
@@ -72,14 +72,18 @@ export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
     page: Number(page),
   };
   const { data } = await client.query({
-    query: GET_VIDEOS,
-    variables: { locale, pagination, sort: ["publishDate:DESC"] },
+    query: GET_ARTICLES,
+    variables: {
+      locale,
+      pagination,
+      sort: ["publishDate:DESC"],
+    },
   });
 
   return {
     props: {
-      videos: data.videos.data,
-      pagination: data.videos.meta.pagination,
+      articles: data.articles.data,
+      pagination: data.articles.meta.pagination,
       pageSize: pagination.pageSize,
     },
   };

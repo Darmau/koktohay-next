@@ -2,14 +2,14 @@ import client from "@/apollo-client";
 import { gql } from "@apollo/client";
 import { ContentList } from "../api/Types";
 
-export default function Article({article}: any) {
+export default function Article({ article }: any) {
   return <div>{article.attributes.title}</div>;
 }
 
 export async function getStaticProps({ params, locale }: any) {
   const filters = {
     url: { eq: params.url },
-  }
+  };
   const { data } = await client.query({
     query: GET_ARTICLE,
     variables: {
@@ -29,10 +29,10 @@ export async function getStaticPaths() {
   const { data } = await client.query({
     query: GET_ALL_ARTICLE,
   });
-  const paths = data.articles.data.flatMap((article: ContentList) => ([
-    { params: { url: article.attributes.url }, locale: "zh-CN"},
-    { params: { url: article.attributes.url }, locale: "en"},
-  ]));
+  const paths = data.articles.data.flatMap((article: ContentList) => [
+    { params: { url: article.attributes.url }, locale: "zh-CN" },
+    { params: { url: article.attributes.url }, locale: "en" },
+  ]);
   return {
     paths,
     fallback: false,
