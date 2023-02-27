@@ -5,7 +5,9 @@ import {
   Bars3Icon,
   MagnifyingGlassIcon,
   XMarkIcon,
-  BookmarkSquareIcon,
+  PaintBrushIcon,
+  CodeBracketIcon,
+  LightBulbIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
@@ -126,7 +128,7 @@ const Header = ({id, recent}: HeaderProps) => {
                           </span>
                           <Link
                             href={`/article/${post.attributes.url}`}
-                            className="block truncate text-sm font-semibold leading-6 text-gray-900"
+                            className="block truncate text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600"
                           >
                             {post.attributes.title}
                             <span className="absolute inset-0" />
@@ -284,19 +286,19 @@ const labels: Labels = {
           name: "生活",
           href: "/category/article/life/1",
           description: "杂七杂八，乱七八糟，七上八下",
-          icon: BookmarkSquareIcon,
+          icon: LightBulbIcon,
         },
         {
           name: "开发",
           href: "/category/article/dev/1",
           description: "前端开发相关文章，专注视觉表现和创意编码",
-          icon: BookmarkSquareIcon,
+          icon: CodeBracketIcon,
         },
         {
           name: "设计",
           href: "/category/article/design/1",
           description: "一些关于设计的吐槽",
-          icon: BookmarkSquareIcon,
+          icon: PaintBrushIcon,
         },
       ],
       recent: "最新文章",
@@ -321,20 +323,20 @@ const labels: Labels = {
           name: "Life",
           href: "/category/article/life/1",
           description: "Just some thoughts",
-          icon: BookmarkSquareIcon,
+          icon: LightBulbIcon,
         },
         {
           name: "Development",
           href: "/category/article/dev/1",
           description:
             "Focusing on visual performance and creative development",
-          icon: BookmarkSquareIcon,
+          icon: CodeBracketIcon,
         },
         {
           name: "Design",
           href: "/category/article/design/1",
           description: "Some complaints about the design",
-          icon: BookmarkSquareIcon,
+          icon: PaintBrushIcon,
         },
       ],
       recent: "Recent Article",
