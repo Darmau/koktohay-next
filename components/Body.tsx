@@ -3,19 +3,21 @@ import {
   LinkIcon,
   RocketLaunchIcon,
 } from "@heroicons/react/20/solid";
-import { domToReact, Element, HTMLReactParserOptions } from "html-react-parser";
+import parse, {
+  domToReact,
+  Element,
+  HTMLReactParserOptions,
+} from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { atomOneDark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 const options: HTMLReactParserOptions = {
   replace: (domNode) => {
     if (domNode instanceof Element) {
       // 开始处理
       switch (domNode.name) {
-        // 标题样式
-
         case "p":
           return (
             <p className="text-base leading-8 text-gray-700 mt-4 mb-6">
@@ -84,28 +86,30 @@ const options: HTMLReactParserOptions = {
             </s>
           );
 
-        // case "pre":
-        //   return (
-        //   domToReact(domNode.children, options)
-        // );
+        case "pre":
+          return <>{domToReact(domNode.children, options)}</>;
 
-        // // 记得处理plainetext
-        // case "code":
-        //   if (domNode.attribs.class) {
-        //     const lang = domNode.attribs.class.split("-")[1];
-        //     const codeString = domNode.children[0].data;
-        //     return (
-        //       <SyntaxHighlighter language={lang} style={docco} showLineNumbers>
-        //         {codeString}
-        //       </SyntaxHighlighter>
-        //     );
-        //   } else {
-        //     return (
-        //       <code className="bg-gray-100 p-1 rounded text-sm font-mono break-words">
-        //         {domToReact(domNode.children, options)}
-        //       </code>
-        //     );
-        //   };
+        case "code":
+          if (domNode.attribs.class) {
+            const lang = domNode.attribs.class.split("-")[1];
+            const codeString = domNode.children[0].data;
+            return (
+              <SyntaxHighlighter
+                language={lang}
+                style={atomOneDark}
+                showLineNumbers
+                className="my-4"
+              >
+                {codeString}
+              </SyntaxHighlighter>
+            );
+          } else {
+            return (
+              <code className="bg-gray-100 p-1 rounded text-sm font-mono break-words">
+                {domToReact(domNode.children, options)}
+              </code>
+            );
+          }
 
         case "strong":
           return (
@@ -116,14 +120,14 @@ const options: HTMLReactParserOptions = {
 
         case "ul":
           return (
-            <ul className="list-disc list-inside">
+            <ul className="list-disc list-inside my-8 space-y-2">
               {domToReact(domNode.children, options)}
             </ul>
           );
 
         case "ol":
           return (
-            <ol className="list-decimal list-inside">
+            <ol className="list-decimal list-inside my-8 space-y-2">
               {domToReact(domNode.children, options)}
             </ol>
           );
@@ -168,18 +172,73 @@ const options: HTMLReactParserOptions = {
         case "img":
           return (
             <Image
-              className="rounded-xl bg-gray-50 object-cover"
+              className="rounded-lg bg-gray-50 object-cover mb-4"
               src={domNode.attribs.src}
               width={1280}
               height={720}
               alt={domNode.attribs.src ?? "image"}
             />
           );
+
+        // 处理表格
+        case "table":
+          return (
+            <div className="mb-4 flow-root">
+              <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                  <div className="overflow-hidden border border-gray-200 rounded-lg">
+                    <table className="min-w-ful">
+                      {domToReact(domNode.children, options)}
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+
+        case "thead":
+          return (
+            <thead className="bg-gray-50 border-b border-gray-300">
+              {domToReact(domNode.children, options)}
+            </thead>
+          );
+
+        case "tbody":
+          return (
+            <tbody className="bg-white divide-y divide-gray-200">
+              {domToReact(domNode.children, options)}
+            </tbody>
+          );
+
+        case "tr":
+          return (
+            <tr className="divide-x divide-gray-200">
+              {domToReact(domNode.children, options)}
+            </tr>
+          );
+
+        case "th":
+          return (
+            <th className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+              {domToReact(domNode.children, options)}
+            </th>
+          );
+
+        case "td":
+          return (
+            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              {domToReact(domNode.children, options)}
+            </td>
+          );
+
+        default:
+          return null;
       }
       // 处理结束
-
     }
-  }
+  },
 };
 
-export default options;
+export default function Body({ main }: { main: string }) {
+  return <article>{parse(main, options)}</article>;
+}
