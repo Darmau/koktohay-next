@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Props } from "@/pages/api/Types";
+import { Props } from "@/pages/function/Types";
 import ScrollToTop from "./ScrollToTop";
 import { gql } from "@apollo/client";
 import client from "@/apollo-client";

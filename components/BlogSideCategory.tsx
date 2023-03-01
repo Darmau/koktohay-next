@@ -1,5 +1,5 @@
-import getLabel from "@/pages/api/GetLabel";
-import { ContentList, ContentsProps, Labels } from "@/pages/api/Types";
+import getLabel from "@/pages/function/GetLabel";
+import { ContentList, ContentsProps, Labels } from "@/pages/function/Types";
 import Link from "next/link";
 import { useRouter } from "next/router";
 

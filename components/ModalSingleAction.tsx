@@ -2,8 +2,8 @@ import { Fragment, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
-import { Labels } from '@/pages/api/Types'
-import getLabel from '@/pages/api/GetLabel'
+import { Labels } from '@/pages/function/Types'
+import getLabel from '@/pages/function/GetLabel'
 
 const labels: Labels = {
   'zh-CN': {

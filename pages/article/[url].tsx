@@ -1,6 +1,6 @@
 import client from "@/apollo-client";
 import { gql } from "@apollo/client";
-import { ContentList } from "../api/Types";
+import { ContentList } from "../function/Types";
 import Body from "@/components/Body";
 
 export default function Article({ article }: any) {

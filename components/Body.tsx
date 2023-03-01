@@ -4,6 +4,7 @@ import {
   RocketLaunchIcon,
 } from "@heroicons/react/20/solid";
 import parse, {
+  attributesToProps,
   domToReact,
   Element,
   HTMLReactParserOptions,
@@ -27,25 +28,33 @@ const options: HTMLReactParserOptions = {
         // 标题样式
         case "h1":
           return (
-            <h2 className="text-2xl font-medium leading-8 text-gray-900 mt-12 mb-4 sm:text-3xl">
+            <h2 
+              id={domNode.attribs.id}
+              className="text-2xl font-medium leading-8 text-gray-900 mt-12 mb-4 sm:text-3xl">
               {domToReact(domNode.children, options)}
             </h2>
           );
         case "h2":
           return (
-            <h3 className="text-xl font-medium leading-7 text-gray-900 mt-10 mb-4 sm:text-2xl">
+            <h3 
+              id={domNode.attribs.id}
+              className="text-xl font-medium leading-7 text-gray-900 mt-10 mb-4 sm:text-2xl">
               {domToReact(domNode.children, options)}
             </h3>
           );
         case "h3":
           return (
-            <h4 className="text-lg leading-8 text-gray-700 my-4 sm:text-xl">
+            <h4 
+              id={domNode.attribs.id}
+              className="text-lg leading-8 text-gray-700 my-4 sm:text-xl">
               {domToReact(domNode.children, options)}
             </h4>
           );
         case "h4":
           return (
-            <h5 className="text-base leading-7 font-medium my-4 text-gray-900">
+            <h5 
+              id={domNode.attribs.id}
+              className="text-base leading-7 font-medium my-4 text-gray-900">
               {domToReact(domNode.children, options)}
             </h5>
           );
@@ -229,6 +238,13 @@ const options: HTMLReactParserOptions = {
             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
               {domToReact(domNode.children, options)}
             </td>
+          );
+
+        case "iframe":
+          const props = attributesToProps(domNode.attribs)
+          props.className = "w-full"
+          return (
+            <iframe {...props} />
           );
 
         default:

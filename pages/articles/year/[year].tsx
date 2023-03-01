@@ -1,5 +1,5 @@
 import client from "@/apollo-client";
-import { ContentList, ContentsProps } from "@/pages/api/Types";
+import { ContentList, ContentsProps } from "@/pages/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";

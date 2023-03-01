@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import getLabel from "@/pages/api/GetLabel";
-import { Labels } from "@/pages/api/Types";
+import getLabel from "@/pages/function/GetLabel";
+import { Labels } from "@/pages/function/Types";
 import Link from 'next/link';
 import Image from 'next/image';
 import bilibiliIcon from '@/public/img/bilibili.svg';

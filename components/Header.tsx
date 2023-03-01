@@ -1,6 +1,6 @@
-import ConvertToDate from "@/pages/api/ConvertDate";
-import getLabel from "@/pages/api/GetLabel";
-import { ContentList, Labels } from "@/pages/api/Types";
+import ConvertToDate from "@/pages/function/ConvertDate";
+import getLabel from "@/pages/function/GetLabel";
+import { ContentList, Labels } from "@/pages/function/Types";
 import { Dialog, Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
