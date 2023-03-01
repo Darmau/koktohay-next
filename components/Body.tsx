@@ -123,7 +123,7 @@ const options: HTMLReactParserOptions = {
                 language={lang}
                 style={atomOneDark}
                 showLineNumbers
-                className="my-4"
+                className="my-4 rounded-md"
               >
                 {codeString}
               </SyntaxHighlighter>

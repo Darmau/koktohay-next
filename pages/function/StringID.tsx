@@ -1,7 +1,9 @@
+import crypto from 'crypto'
+
 function generateId(header: string) {
-  const encoded = Buffer.from(header).toString('base64');
-  const result = encoded.replace(/[^a-zA-Z]/g, '-');
-  return result;
+  const md5 = crypto.createHash('md5');
+  md5.update(header)
+  return md5.digest('hex');
 }
 
 export default generateId;
