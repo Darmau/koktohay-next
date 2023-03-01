@@ -63,10 +63,19 @@ export async function getStaticPaths() {
   const { data } = await client.query({
     query: GET_ALL_ARTICLE,
   });
-  const paths = data.articles.data.flatMap((article: ContentList) => [
-    { params: { url: article.attributes.url }, locale: "zh-CN" },
-    { params: { url: article.attributes.url }, locale: "en" },
-  ]);
+  const paths = data.articles.data.flatMap((article: ContentList) => {
+    const articlePaths = [
+      { params: { url: article.attributes.url }, locale: "zh-CN" }
+    ]
+
+    if (article.attributes.localizations?.data) {
+      articlePaths.push(
+        { params: { url: article.attributes.url }, locale: "en" }
+      )
+    }
+
+    return articlePaths; 
+  });
   return {
     paths,
     fallback: false,
@@ -75,8 +84,8 @@ export async function getStaticPaths() {
 
 // 获取所有文章的url，用于生成静态页面
 const GET_ALL_ARTICLE = gql`
-  query Articles($locale: I18NLocaleCode) {
-    articles(locale: $locale) {
+  query Articles {
+    articles {
       data {
         attributes {
           url

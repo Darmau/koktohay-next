@@ -23,6 +23,9 @@ export interface ContentList {
     title: string;
     publishDate?: Date;
     url: string;
+    localizations?: {
+      data: ContentList;
+    }
     value: React.ReactNode;
   };
 }
