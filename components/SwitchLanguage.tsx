@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Labels } from "@/pages/api/Types";
-import getLabel from "@/pages/api/GetLabel";
+import { Labels } from "@/function/Types";
+import getLabel from "@/function/GetLabel";
 import { LanguageIcon } from "@heroicons/react/24/outline";
 
 const labels: Labels = {

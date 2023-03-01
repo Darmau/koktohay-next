@@ -1,6 +1,6 @@
 import client from "@/apollo-client";
 import { gql } from "@apollo/client";
-import { ContentList } from "../api/Types";
+import { ContentList } from "../../function/Types";
 
 export default function Video({video}: any) {
   return <div>{video.attributes.title}</div>;

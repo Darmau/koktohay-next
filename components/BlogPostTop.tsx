@@ -1,24 +1,29 @@
-import ConvertToDate from "@/pages/api/ConvertDate";
-import { ContentsProps } from "@/pages/api/Types";
+import ConvertToDate from "@/function/ConvertDate";
+import { ContentsProps, Labels } from "@/function/Types";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import getLabel from "@/function/GetLabel";
 
 export default function BlogPostTop({ post }: ContentsProps) {
+  const { locale } = useRouter();
+  const label = getLabel(labels, locale);
+
   return (
-    <article className="relative isolate flex flex-col gap-8 lg:flex-row">
+    <article className="relative isolate grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
       {/* 封面图 */}
-      <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-[4/3] lg:w-64 lg:shrink-0">
+      <div className="relative w-full col-span-1 aspect-[16/9] md:aspect-square lg:aspect-[4/3] lg:shrink-0 lg:col-span-2">
         <Image
           src={post.attributes.cover.data.attributes.url}
           alt="cover"
-          width={300}
-          height={200}
+          width={600}
+          height={400}
           className="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
         />
       </div>
 
       {/* 文字部分 */}
-      <div>
+      <div className="lg:col-span-3">
         <time
           dateTime={post.attributes.publishDate!.toString()}
           className="block text-sm leading-6 text-gray-600"
@@ -41,11 +46,20 @@ export default function BlogPostTop({ post }: ContentsProps) {
               className="text-sm font-semibold leading-6 text-indigo-600"
               aria-describedby="featured-post"
             >
-              Continue reading <span aria-hidden="true">&rarr;</span>
+              {label.button} <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
         </div>
       </div>
     </article>
   );
+}
+
+const labels: Labels = {
+  'zh-CN': {
+    button: '继续阅读',
+  },
+  'en': {
+    button: 'Continue reading',
+  }
 }

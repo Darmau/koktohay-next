@@ -1,5 +1,5 @@
-import getLabel from "@/pages/api/GetLabel";
-import { ContentList, ContentsProps, Labels } from "@/pages/api/Types";
+import getLabel from "@/function/GetLabel";
+import { ContentList, ContentsProps, Labels } from "@/function/Types";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -9,24 +9,27 @@ export default function BlogSideCategory({ category }: ContentsProps) {
 
   return (
     <div>
-      <p className="text-lg font-bold text-gray-900">{label.title}</p>
+      <h2 className="text-lg font-bold text-gray-900">{label.title}</h2>
 
-      <div className="flex flex-wrap mt-5 gap-2.5">
-        {category.map((item: ContentList) => (
-          <Link href="#" className="inline-block" key={item.id}>
-            <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white border border-gray-200 rounded-md hover:bg-gray-50">
-              {item.attributes.title}
-            </span>
+      <ul className="flex flex-col gap-4 mt-5">
+      {category.map((item: ContentList, index: number) => (
+        <li key={index}>
+          <Link 
+          href={`/category/article/${item.attributes.url}/1`}
+          className="text-base font-medium text-gray-500 transition-all duration-200 hover:text-gray-900"
+          >
+            {item.attributes.title}
           </Link>
+        </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
 
 const labels: Labels = {
   "zh-CN": {
-    title: "分类",
+    title: "文章分类",
   },
   en: {
     title: "Category",

@@ -1,22 +1,18 @@
-import { Fragment, useState } from "react";
-import { ContentList, Labels } from "@/pages/api/Types";
+import ConvertToDate from "@/function/ConvertDate";
+import getLabel from "@/function/GetLabel";
+import { ContentList, Labels } from "@/function/Types";
 import { Dialog, Popover, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  MagnifyingGlassIcon,
-  XMarkIcon,
-  PaintBrushIcon,
-  CodeBracketIcon,
-  LightBulbIcon,
-} from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import Link from "next/link";
+import {
+  Bars3Icon, CodeBracketIcon,
+  LightBulbIcon, PaintBrushIcon, XMarkIcon
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import getLabel from "@/pages/api/GetLabel";
-import SwitchLanguage from "./SwitchLanguage";
+import { Fragment, useEffect, useState } from "react";
 import logo from "../public/img/logo.svg";
-import ConvertToDate from "@/pages/api/ConvertDate";
+import SwitchLanguage from "./SwitchLanguage";
 
 interface navItem {
   name: string;
@@ -35,13 +31,33 @@ interface CategoryList {
   icon: React.ComponentType<React.HTMLProps<HTMLElement>>;
 }
 
-const Header = ({id, recent}: HeaderProps) => {
+const Header = ({ id, recent }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+      setPrevScrollPos(currentScrollPos);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
+
   const { locale } = useRouter();
   const label = getLabel(labels, locale);
 
   return (
-    <header className="bg-white" id={id}>
+    <header
+      className={`w-full fixed top-0 z-10 bg-white border-b transition-all duration-300 ${
+        visible
+          ? ""
+          : "transform -translate-y-full"
+      }`}
+      id={id}
+    >
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -115,15 +131,14 @@ const Header = ({id, recent}: HeaderProps) => {
                         href="/articles/1"
                         className="text-sm font-semibold leading-6 text-indigo-600"
                       >
-                        {label.article.all} <span aria-hidden="true">&rarr;</span>
+                        {label.article.all}{" "}
+                        <span aria-hidden="true">&rarr;</span>
                       </Link>
                     </div>
                     <ul role="list" className="mt-6 space-y-6">
                       {recent.map((post) => (
                         <li key={post.id} className="relative">
-                          <span
-                            className="block text-xs leading-6 text-gray-600"
-                          >
+                          <span className="block text-xs leading-6 text-gray-600">
                             {ConvertToDate(post.attributes.publishDate)}
                           </span>
                           <Link
@@ -210,11 +225,7 @@ const Header = ({id, recent}: HeaderProps) => {
           <div className="flex items-center justify-between">
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">可可托海没有海</span>
-              <Image
-                className="h-8 w-auto"
-                src={logo}
-                alt=""
-              />
+              <Image className="h-8 w-auto" src={logo} alt="" />
             </Link>
             <button
               type="button"

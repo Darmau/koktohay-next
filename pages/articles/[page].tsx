@@ -4,8 +4,9 @@ import BlogPostItem from "@/components/BlogPostItem";
 import BlogPostTop from "@/components/BlogPostTop";
 import BlogSideCategory from "@/components/BlogSideCategory";
 import BlogSideTopic from "@/components/BlogSideTopic";
+import BlogSideYear from "@/components/BlogSideYear";
 import Pagination from "@/components/Pagination";
-import { ContentList, ContentsProps } from "@/pages/api/Types";
+import { ContentList, ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
@@ -13,6 +14,7 @@ import { useRouter } from "next/router";
 export default function AllArticles({
   articles,
   categories,
+  topics,
   pagination,
   pageSize,
 }: ContentsProps) {
@@ -30,43 +32,40 @@ export default function AllArticles({
   let theNewest = new Array();
   let articlePosts = articles;
   if (page === "1") {
-    theNewest = articles.slice(0,1);
-    articlePosts = articles.slice(1, articles.length)
+    theNewest = articles.slice(0, 1);
+    articlePosts = articles.slice(1, articles.length);
   }
 
   return (
-    <section className="bg-white py-24 sm:py-32">
-      <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-        <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-6 lg:gap-x-12 xl:gap-x-20">
-          <div className="lg:col-span-4 rounded-xl">
-            <div className="mx-auto max-w-3xl">
-              
-              {/* 如果是第一页，最新文章放大显示 */}
-              {page === "1" ? <BlogPostTop post={theNewest[0]} /> : <p>test</p>}
+    <div className="bg-white py-8 sm:py-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* 封面文章 */}
+        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-full">
+          {page === "1" ? <BlogPostTop post={theNewest[0]} /> : <p>test</p>}
+        </div>
 
-              {/* 文章列表 */}
-              <div className="mt-10 space-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16">
-                {articlePosts.map((item: ContentList) => (
-                  <BlogPostItem post={item} key={item.id} />
-                ))}
-              </div>
-
-              <Pagination
-                currentPage={Number(page)}
-                totalEntries={pagination!.total}
-                itemPerPage={pageSize}
-              />
-            </div>
+        {/* 其他文章和侧边栏 */}
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 border-t border-gray-200 pt-8 mt-8 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-16">
+          {/* 文章列表 */}
+          <div className="space-y-20 lg:col-span-2 lg:space-y-16">
+            {articlePosts.map((item: ContentList) => (
+              <BlogPostItem post={item} key={item.id} />
+            ))}
+            <Pagination
+              currentPage={Number(page)}
+              totalEntries={pagination!.total}
+              itemPerPage={pageSize}
+            />
           </div>
-
           {/* 侧边栏 */}
-          <aside className="lg:col-span-2">
+          <div className="space-y-20 lg:col-span-1 lg:space-y-20">
             <BlogSideCategory category={categories} />
-            <BlogSideTopic category={categories} />
-          </aside>
+            <BlogSideYear />
+            <BlogSideTopic topics={topics} />
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -117,6 +116,22 @@ const GET_ARTICLES = gql`
         id
       }
     }
+    topics(locale: $locale) {
+    data {
+      attributes {
+        title
+        url
+        description
+        cover {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
   }
 `;
 
@@ -126,7 +141,7 @@ export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
   const { locale, query } = context;
   const { page } = query;
   const pagination = {
-    pageSize: 4,
+    pageSize: 10,
     page: Number(page),
   };
   const { data } = await client.query({
@@ -142,6 +157,7 @@ export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
     props: {
       articles: data.articles.data,
       categories: data.articleCategories.data,
+      topics: data.topics.data,
       pagination: data.articles.meta.pagination,
       pageSize: pagination.pageSize,
     },

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Props } from "@/pages/api/Types";
+import { Props } from "@/function/Types";
 import ScrollToTop from "./ScrollToTop";
 import { gql } from "@apollo/client";
 import client from "@/apollo-client";
@@ -50,10 +50,10 @@ const Layout = ({ children }: Props) => {
   return (
     <>
       <Header id="header" recent={recentPosts} />
-      <main style={{ minHeight: minHeight }}>
+      <div style={{ minHeight: minHeight }} className="mt-16">
         <ScrollToTop />
         {children}
-      </main>
+      </div>
       <Footer id="footer" />
     </>
   );

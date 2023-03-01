@@ -1,40 +1,53 @@
-import getLabel from "@/pages/api/GetLabel";
-import { ContentList, ContentsProps, Labels } from "@/pages/api/Types";
+import getLabel from "@/function/GetLabel";
+import { ContentList, ContentsProps, Labels } from "@/function/Types";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function BlogSideTopic({ category }: ContentsProps) {
+export default function BlogSideTopic({ topics }: ContentsProps) {
   const { locale } = useRouter();
   const label = getLabel(labels, locale);
 
   return (
     <div>
-      <p className="text-lg font-bold text-gray-900">{label.title}</p>
+      <h2 className="text-lg font-bold text-gray-900">{label.title}</h2>
 
-      <div className="flex flex-wrap mt-5 gap-2.5">
-        {category.map((item: ContentList) => (
-          <div
-          className="relative overflow-hidden transition-all duration-200 bg-white border border-gray-200 rounded-lg hover:shadow-lg hover:bg-gray-50 hover:-translate-y-1">
-          <div className="p-4">
-            <div className="flex items-start lg:items-center">
-              <img className="object-cover w-20 h-20 rounded-lg shrink-0"
-                src="https://landingfoliocom.imgix.net/store/collection/clarity-blog/images/sidebar-popular-posts/2/thumbnail-3.png" alt="" />
+      <ul className="flex flex-wrap mt-5 gap-2.5">
+        {topics.map((item: ContentList, index: number) => (
+          <li
+            key={index}
+            className="w-full relative overflow-hidden transition-all duration-200 p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50"
+          >
+            <div className="flex items-start lg:items-start">
+              <Image
+                className="object-cover w-20 h-20 rounded-lg shrink-0"
+                src={item.attributes.cover.data.attributes.url}
+                width={80}
+                height={80}
+                alt="cover"
+              />
               <div className="ml-5">
-                <p className="text-sm font-medium text-gray-900">
-                  April 09, 2022
-                </p>
-                <p className="text-lg leading-7 font-bold text-gray-900 mt-2.5">
-                  <a href="#" title="">
-                    How a visual artist redefines success in graphic design
-                    <span className="absolute inset-0" aria-hidden="true"></span>
-                  </a>
-                </p>
+                <h3>
+                  <Link
+                    href={`/articles/topic/${item.attributes.url}`}
+                    title=""
+                    className="text-lg leading-7 font-bold text-gray-900 mt-2.5"
+                  >
+                    {item.attributes.title}
+                    <span
+                      className="absolute inset-0"
+                      aria-hidden="true"
+                    ></span>
+                  </Link>
+                </h3>
+                <small className="text-sm text-gray-600">
+                  {item.attributes.description}
+                </small>
               </div>
             </div>
-          </div>
-        </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
