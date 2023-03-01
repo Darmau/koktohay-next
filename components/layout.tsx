@@ -50,10 +50,10 @@ const Layout = ({ children }: Props) => {
   return (
     <>
       <Header id="header" recent={recentPosts} />
-      <main style={{ minHeight: minHeight }}>
+      <div style={{ minHeight: minHeight }}>
         <ScrollToTop />
         {children}
-      </main>
+      </div>
       <Footer id="footer" />
     </>
   );

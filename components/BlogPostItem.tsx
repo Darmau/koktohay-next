@@ -7,9 +7,9 @@ export default function BlogPostItem({post}: ContentsProps) {
   return (
     <article
       key={post.id}
-      className="relative isolate flex flex-col gap-8 lg:flex-row"
+      className="relative isolate flex flex-col gap-8 md:flex-row"
     >
-      <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-[4/3] lg:w-64 lg:shrink-0">
+      <div className="relative aspect-[16/9] sm:aspect-[2/1] md:aspect-[4/3] md:w-64 lg:shrink-0">
         <Image
           src={post.attributes.cover.data.attributes.url}
           alt="cover"
@@ -32,7 +32,7 @@ export default function BlogPostItem({post}: ContentsProps) {
           </time>
         </div>
         <div className="group relative max-w-xl">
-          <h3 className="mt-3 text-xl font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+          <h3 className="mt-3 text-2xl font-semibold leading-8 text-gray-900 group-hover:text-gray-600">
             <Link href={`/article/${post.attributes.url}`}>
               <span className="absolute inset-0" />
               {post.attributes.title}

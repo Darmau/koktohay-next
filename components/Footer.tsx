@@ -40,14 +40,14 @@ const Footer = ({ id }: { id: string }) => {
   }
 
   return (
-    <footer className="bg-white" aria-labelledby="footer-heading" id={id}>
+    <footer className="bg-white border-t border-gray-900/10" aria-labelledby="footer-heading" id={id}>
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-8">
+      <div className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+        <div className="lg:my-16 lg:grid lg:grid-cols-2 lg:gap-8">
           {/* 站内链接 */}
-          <div className="md:flex md:gap-24">
+          <div className="hidden sm:block md:flex md:gap-24 lg:justify-evenly">
             <div>
               <h3 className="text-sm font-semibold leading-6 text-gray-900">{label.blog.title}</h3>
               <ul role="list" className="mt-6 space-y-4">
@@ -75,7 +75,7 @@ const Footer = ({ id }: { id: string }) => {
           </div>
 
           {/* 订阅 */}
-          <div className="mt-10 xl:mt-0">
+          <div className="mt-10 lg:mt-0">
             <h3 className="text-sm font-semibold leading-6 text-gray-900">{label.subscription.title}</h3>
             <p className="mt-2 text-sm leading-6 text-gray-600">
               {label.subscription.description}
@@ -112,7 +112,7 @@ const Footer = ({ id }: { id: string }) => {
           </div>
 
         </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
+        <div className="mt-8 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
             {social.map((item) => (
               <a target={'_blank'} title={item.name} key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
