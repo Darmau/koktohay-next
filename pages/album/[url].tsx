@@ -1,6 +1,6 @@
 import client from "@/apollo-client";
 import { gql } from "@apollo/client";
-import { ContentList } from "../function/Types";
+import { ContentList } from "../../function/Types";
 
 export default function Album({album}: any) {
   return <div>{album.attributes.title}</div>;

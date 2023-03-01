@@ -1,6 +1,6 @@
-import getLabel from "@/pages/function/GetLabel";
-import generateId from "@/pages/function/StringID";
-import { Labels } from "@/pages/function/Types";
+import getLabel from "@/function/GetLabel";
+import generateId from "@/function/StringID";
+import { Labels } from "@/function/Types";
 import { useQuery } from "@apollo/client";
 import parse, {
   attributesToProps,

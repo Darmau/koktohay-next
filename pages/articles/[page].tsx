@@ -6,7 +6,7 @@ import BlogSideCategory from "@/components/BlogSideCategory";
 import BlogSideTopic from "@/components/BlogSideTopic";
 import BlogSideYear from "@/components/BlogSideYear";
 import Pagination from "@/components/Pagination";
-import { ContentList, ContentsProps } from "@/pages/function/Types";
+import { ContentList, ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";

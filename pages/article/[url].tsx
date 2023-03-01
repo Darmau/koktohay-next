@@ -1,6 +1,6 @@
 import client from "@/apollo-client";
 import { gql } from "@apollo/client";
-import { ContentList } from "../function/Types";
+import { ContentList } from "../../function/Types";
 import Body from "@/components/Body";
 import Catalog from "@/components/Catalog";
 import Image from "next/image";

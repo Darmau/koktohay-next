@@ -1,4 +1,4 @@
-import generateId from "@/pages/function/StringID";
+import generateId from "@/function/StringID";
 import {
   InformationCircleIcon,
   LinkIcon,

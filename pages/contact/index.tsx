@@ -1,8 +1,8 @@
 import ModalSingleAction from '@/components/ModalSingleAction';
-import { Labels } from '@/pages/function/Types';
+import { Labels } from '@/function/Types';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import getLabel from '../function/GetLabel';
+import getLabel from '../../function/GetLabel';
 
 const labels: Labels = {
   'zh-CN': {

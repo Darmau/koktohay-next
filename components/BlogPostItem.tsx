@@ -1,5 +1,5 @@
-import ConvertToDate from "@/pages/function/ConvertDate";
-import { ContentsProps } from "@/pages/function/Types";
+import ConvertToDate from "@/function/ConvertDate";
+import { ContentsProps } from "@/function/Types";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -1,9 +1,9 @@
-import ConvertToDate from "@/pages/function/ConvertDate";
-import { ContentsProps, Labels } from "@/pages/function/Types";
+import ConvertToDate from "@/function/ConvertDate";
+import { ContentsProps, Labels } from "@/function/Types";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import getLabel from "@/pages/function/GetLabel";
+import getLabel from "@/function/GetLabel";
 
 export default function BlogPostTop({ post }: ContentsProps) {
   const { locale } = useRouter();

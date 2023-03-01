@@ -1,7 +1,7 @@
 import client from "@/apollo-client";
 import PageNotFound from "@/components/404";
 import Pagination from "@/components/Pagination";
-import { ContentList, ContentsProps } from "@/pages/function/Types";
+import { ContentList, ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
