@@ -1,18 +1,23 @@
+import generateId from "@/pages/function/StringID";
 import {
   InformationCircleIcon,
   LinkIcon,
-  RocketLaunchIcon,
+  RocketLaunchIcon
 } from "@heroicons/react/20/solid";
 import parse, {
   attributesToProps,
   domToReact,
   Element,
-  HTMLReactParserOptions,
+  HTMLReactParserOptions
 } from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+
+function isTextNode(node: any): node is Text {
+  return node.type === "text";
+}
 
 const options: HTMLReactParserOptions = {
   replace: (domNode) => {
@@ -26,10 +31,13 @@ const options: HTMLReactParserOptions = {
             </p>
           );
         // 标题样式
+        // 将标题内容进行base64编码，去掉符号，返回前8位
         case "h1":
           return (
             <h2 
-              id={domNode.attribs.id}
+              id={generateId(isTextNode(domNode.children[0])
+                ? domNode.children[0].data
+                : "")}
               className="text-2xl font-medium leading-8 text-gray-900 mt-12 mb-4 sm:text-3xl">
               {domToReact(domNode.children, options)}
             </h2>
@@ -37,7 +45,9 @@ const options: HTMLReactParserOptions = {
         case "h2":
           return (
             <h3 
-              id={domNode.attribs.id}
+              id={generateId(isTextNode(domNode.children[0])
+                ? domNode.children[0].data
+                : "")}
               className="text-xl font-medium leading-7 text-gray-900 mt-10 mb-4 sm:text-2xl">
               {domToReact(domNode.children, options)}
             </h3>
@@ -45,7 +55,9 @@ const options: HTMLReactParserOptions = {
         case "h3":
           return (
             <h4 
-              id={domNode.attribs.id}
+              id={generateId(isTextNode(domNode.children[0])
+                ? domNode.children[0].data
+                : "")}
               className="text-lg leading-8 text-gray-700 my-4 sm:text-xl">
               {domToReact(domNode.children, options)}
             </h4>
@@ -53,7 +65,9 @@ const options: HTMLReactParserOptions = {
         case "h4":
           return (
             <h5 
-              id={domNode.attribs.id}
+              id={generateId(isTextNode(domNode.children[0])
+                ? domNode.children[0].data
+                : "")}
               className="text-base leading-7 font-medium my-4 text-gray-900">
               {domToReact(domNode.children, options)}
             </h5>
@@ -101,7 +115,9 @@ const options: HTMLReactParserOptions = {
         case "code":
           if (domNode.attribs.class) {
             const lang = domNode.attribs.class.split("-")[1];
-            const codeString = domNode.children[0].data;
+            const codeString = isTextNode(domNode.children[0])
+            ? domNode.children[0].data
+            : "";
             return (
               <SyntaxHighlighter
                 language={lang}
@@ -256,5 +272,5 @@ const options: HTMLReactParserOptions = {
 };
 
 export default function Body({ main }: { main: string }) {
-  return <article>{parse(main, options)}</article>;
+  return <div>{parse(main, options)}</div>;
 }

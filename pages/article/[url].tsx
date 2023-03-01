@@ -7,13 +7,13 @@ export default function Article({ article }: any) {
 
   return (
     <div className="bg-white py-32 px-6 lg:px-8">
-      <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
+      <main className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
         {/* 正文部分 */}
         <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{article.title}</h1>
         <article className="text-base leading-7 text-gray-700">
           <Body main={article.main} />
         </article>
-      </div>
+      </main>
     </div>
   );
 }
