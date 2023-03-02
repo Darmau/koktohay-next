@@ -11,7 +11,6 @@ specifiers:
   '@types/react-dom': 18.0.11
   '@types/react-syntax-highlighter': ^15.5.6
   autoprefixer: ^10.4.13
-  dotenv: ^16.0.3
   eslint: 8.35.0
   eslint-config-next: 13.2.3
   graphql: ^16.6.0
@@ -22,10 +21,12 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.3
   react: 18.2.0
   react-dom: 18.2.0
+  react-photo-album: ^2.0.2
   react-syntax-highlighter: ^15.5.0
   react-top-loading-bar: ^2.3.1
   tailwindcss: ^3.2.7
   typescript: 4.9.5
+  yet-another-react-lightbox: ^2.4.3
 
 dependencies:
   '@apollo/client': 3.7.9_gdcq4dv6opitr3wbfwyjmanyra
@@ -36,7 +37,6 @@ dependencies:
   '@types/node': 18.14.2
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
-  dotenv: 16.0.3
   eslint: 8.35.0
   eslint-config-next: 13.2.3_ycpbpc6yetojsgtrx3mwntkhsu
   graphql: 16.6.0
@@ -44,9 +44,11 @@ dependencies:
   next: 13.2.3_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-photo-album: 2.0.2_react@18.2.0
   react-syntax-highlighter: 15.5.0_react@18.2.0
   react-top-loading-bar: 2.3.1_react@18.2.0
   typescript: 4.9.5
+  yet-another-react-lightbox: 2.4.3_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
   '@types/react-syntax-highlighter': 15.5.6
@@ -888,11 +890,6 @@ packages:
       dom-serializer: 2.0.0
       domelementtype: 2.3.0
       domhandler: 5.0.3
-    dev: false
-
-  /dotenv/16.0.3:
-    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
-    engines: {node: '>=12'}
     dev: false
 
   /electron-to-chromium/1.4.314:
@@ -2398,6 +2395,15 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
 
+  /react-photo-album/2.0.2_react@18.2.0:
+    resolution: {integrity: sha512-Fg2vbahSAjAm9y2GjlYM1HBG6jFvhUPumwP6oYzF9z4JreCao1Jh9pgzUXenmUtgSvqaIeEMxUaEJHdmcVaE6w==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-property/2.0.0:
     resolution: {integrity: sha512-kzmNjIgU32mO4mmH5+iUyrqlpFQhF8K2k7eZ4fdLSOPFrD1XgEuSBv9LDEgxRXTMBqMd8ppT0x6TIzqE5pdGdw==}
     dev: false
@@ -2885,6 +2891,17 @@ packages:
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
+
+  /yet-another-react-lightbox/2.4.3_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-w7/jnplKot17dkHSUI8VpgNxWfWqEueiut4hVGvy4fs0e+2ubh9JBdgU+JEpEtxj6tbKIaljGXZoZJGqt7ijpg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
