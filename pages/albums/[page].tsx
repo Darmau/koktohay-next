@@ -116,6 +116,5 @@ export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
       pagination: data.albums.meta.pagination,
       pageSize: pagination.pageSize,
     },
-    revalidate: 30,
   };
 };
