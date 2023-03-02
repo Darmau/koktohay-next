@@ -1,10 +1,12 @@
 import client from "@/apollo-client";
 import PageNotFound from "@/components/404";
 import Pagination from "@/components/Pagination";
+import NextJsImage from "@/function/NextJsImage";
 import { ContentList, ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
+import { PhotoAlbum } from "react-photo-album";
 
 export default function AllAlbums({
   albums,
@@ -22,19 +24,41 @@ export default function AllAlbums({
     return <PageNotFound />;
   }
 
+  const coverArray = albums.map((item: ContentList) => {
+    const ratio = item.attributes.cover?.data?.attributes.width / item.attributes.cover?.data?.attributes.height;
+
+    return {
+      src: item.attributes.cover?.data?.attributes.url,
+      width: 960,
+      height: 960 / ratio,
+      alt: item.attributes.title,
+    };
+  });
+
   return (
-    <div className="h-full">
-      本页为{locale}页面，第{page}页
-      <ol>
-        {albums.map((item: ContentList, index: number) => (
-          <li key={index}>{item.attributes.title}</li>
-        ))}
-      </ol>
-      <Pagination
-        currentPage={Number(page)}
-        totalEntries={pagination!.total}
-        itemPerPage={pageSize}
-      />
+    <div className="bg-white py-8 sm:py-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+
+        <PhotoAlbum 
+          layout="rows"
+          photos={coverArray}
+          renderPhoto={NextJsImage}
+          padding={0}
+          spacing={2}
+          columns={(containerWidth) => {
+            if (containerWidth < 400) return 2;
+            if (containerWidth < 800) return 3;
+            return 4;
+        }}
+          defaultContainerWidth={960}
+          />
+
+        <Pagination
+          currentPage={Number(page)}
+          totalEntries={pagination!.total}
+          itemPerPage={pageSize}
+        />
+      </div>
     </div>
   );
 }
@@ -49,6 +73,16 @@ const GET_ALBUMS = gql`
       data {
         attributes {
           title
+          url
+          cover {
+            data {
+              attributes {
+                url
+                width
+                height
+              }
+            }
+          }
         }
       }
       meta {
@@ -68,7 +102,7 @@ export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
   const { locale, query } = context;
   const { page } = query;
   const pagination = {
-    pageSize: 2,
+    pageSize: 16,
     page: Number(page),
   };
   const { data } = await client.query({
