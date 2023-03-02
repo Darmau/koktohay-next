@@ -14,7 +14,7 @@ export default function ArticlesByCategory({
   pageSize,
 }: ContentsProps) {
   const router = useRouter();
-  const { name, page } = router.query;
+  const { page } = router.query;
 
   return (
     <div className="bg-white py-8 sm:py-16">
