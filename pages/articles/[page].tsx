@@ -45,7 +45,7 @@ export default function AllArticles({
         </div>
 
         {/* 其他文章和侧边栏 */}
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 border-t border-gray-200 pt-8 mt-8 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-16">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 border-t border-gray-200 pt-8 mt-8 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-24">
           {/* 文章列表 */}
           <div className="space-y-20 lg:col-span-2 lg:space-y-16">
             {articlePosts.map((item: ContentList) => (
@@ -58,7 +58,7 @@ export default function AllArticles({
             />
           </div>
           {/* 侧边栏 */}
-          <div className="space-y-20 lg:col-span-1 lg:space-y-20">
+          <div className="space-y-12 lg:col-span-1 lg:space-y-20">
             <BlogSideCategory category={categories} />
             <BlogSideYear />
             <BlogSideTopic topics={topics} />

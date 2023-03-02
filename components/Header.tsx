@@ -4,8 +4,11 @@ import { ContentList, Labels } from "@/function/Types";
 import { Dialog, Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
-  Bars3Icon, CodeBracketIcon,
-  LightBulbIcon, PaintBrushIcon, XMarkIcon
+  Bars3Icon,
+  CodeBracketIcon,
+  LightBulbIcon,
+  PaintBrushIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,10 +54,8 @@ const Header = ({ id, recent }: HeaderProps) => {
 
   return (
     <header
-      className={`w-full fixed top-0 z-10 bg-white border-b transition-all duration-300 ${
-        visible
-          ? ""
-          : "transform -translate-y-full"
+      className={`w-full fixed top-0 z-10 bg-white/60 border-b transition-all duration-300 backdrop-blur-lg  ${
+        visible ? "" : "transform -translate-y-full"
       }`}
       id={id}
     >
