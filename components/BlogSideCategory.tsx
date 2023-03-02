@@ -27,6 +27,8 @@ export default function BlogSideCategory({ category }: ContentsProps) {
   );
 }
 
+const years = ['2023', '2021', '2020', '2019']
+
 const labels: Labels = {
   "zh-CN": {
     title: "文章分类",

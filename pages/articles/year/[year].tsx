@@ -1,25 +1,49 @@
 import client from "@/apollo-client";
-import { ContentList, ContentsProps } from "@/function/Types";
+import BlogPostItem from "@/components/BlogPostItem";
+import Pagination from "@/components/Pagination";
+import getLabel from "@/function/GetLabel";
+import { ContentList, ContentsProps, Labels } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 
-export default function ArticlesByYears({
-  articles,
-}: ContentsProps) {
+export default function ArticlesByYears({ articles }: ContentsProps) {
   const router = useRouter();
   const {
     query: { year },
+    locale,
   } = router;
+  const label = getLabel(labels, locale);
 
   return (
-    <div>
-      以下是{year}年的文章
-      <ol>
-        {articles.map((item: ContentList, index: number) => (
-          <li key={index}>{item.attributes.title}</li>
-        ))}
-      </ol>
+    <div className="bg-white py-8 sm:py-16">
+      <div className="mx-auto max-w-2xl px-6 lg:px-8 lg:max-w-4xl">
+        <div className="bg-white py-12 sm:py-24">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl lg:mx-0">
+              <p className="text-base font-semibold leading-7 text-indigo-600">
+                {label.title}
+              </p>
+              <h2 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                {year}年
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                {label.description}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* 其他文章 */}
+        <div className="mx-auto flex flex-col gap-8 border-t border-gray-200 pt-8 mt-8 sm:mt-16 sm:pt-16  lg:gap-24">
+          {/* 文章列表 */}
+          <div className="space-y-12 lg:space-y-16">
+            {articles.map((item: ContentList) => (
+              <BlogPostItem post={item} key={item.id} />
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -29,9 +53,8 @@ const GET_ARTICLES_BY_YEARS = gql`
   query Articles(
     $filters: ArticleFiltersInput
     $locale: I18NLocaleCode
-    $pagination: PaginationArg
   ) {
-    articles(filters: $filters, locale: $locale, pagination: $pagination) {
+    articles(filters: $filters, locale: $locale) {
       data {
         attributes {
           title
@@ -55,13 +78,7 @@ const GET_ARTICLES_BY_YEARS = gql`
             }
           }
         }
-      }
-      meta {
-        pagination {
-          total
-          pageSize
-          page
-        }
+        id
       }
     }
   }
@@ -74,7 +91,7 @@ export const getServerSideProps = async (
   const { year } = query;
 
   // 检测年份是否合法
-  const yearRegex =  /^\d{4}$/;
+  const yearRegex = /^\d{4}$/;
   let yearNumber = Number(year);
   if (!yearRegex.test(year as string)) {
     yearNumber = 2023;
@@ -98,4 +115,16 @@ export const getServerSideProps = async (
       articles: data.articles.data,
     },
   };
+};
+
+const labels: Labels = {
+  "zh-CN": {
+    title: "以下文章发布于",
+    description: "想了一下每年就那么几篇文章，没必要做分页了",
+  },
+  en: {
+    title: "The following articles were published in",
+    description:
+      "I thought there were only a few articles a year, so there was no need to do pagination",
+  },
 };

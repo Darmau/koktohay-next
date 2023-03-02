@@ -12,18 +12,36 @@ export default function Article({ article }: any) {
         {/* 封面和标题 */}
         <header>
           <p className="text-base font-semibold leading-7 text-indigo-600">
-            {article.article_category.data.attributes.title ?? '无分类'}
+            {article.article_category.data.attributes.title ?? "无分类"}
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             {article.title}
           </h1>
-          <Image
-            src={article.cover.data.attributes.url}
-            alt={article.title}
-            width={1280}
-            height={720}
-            className="rounded-lg bg-gray-50 object-cover my-4"
-          />
+          <p className="my-6 text-xl leading-8">{article.description}</p>
+          {article.cover.data ? (
+            // 如果没有封面图显示分割线
+            <Image
+              src={article.cover.data.attributes.url}
+              alt={article.title}
+              width={1280}
+              height={720}
+              className="rounded-lg bg-gray-50 object-cover my-4"
+            />
+          ) : (
+            <div className="relative my-8">
+              <div
+                className="absolute inset-0 flex items-center"
+                aria-hidden="true"
+              >
+                <div className="w-full border-t border-gray-300" />
+              </div>
+              <div className="relative flex justify-center">
+                <span className="bg-white px-4 text-sm uppercase text-gray-500">
+                  Continue
+                </span>
+              </div>
+            </div>
+          )}
         </header>
 
         {/* 正文 */}
@@ -55,6 +73,7 @@ export async function getStaticProps({ params, locale }: any) {
     props: {
       article: data.articles.data[0].attributes,
     },
+    revalidate: 30,
   };
 }
 
@@ -65,16 +84,17 @@ export async function getStaticPaths() {
   });
   const paths = data.articles.data.flatMap((article: ContentList) => {
     const articlePaths = [
-      { params: { url: article.attributes.url }, locale: "zh-CN" }
-    ]
+      { params: { url: article.attributes.url }, locale: "zh-CN" },
+    ];
 
     if (article.attributes.localizations?.data) {
-      articlePaths.push(
-        { params: { url: article.attributes.url }, locale: "en" }
-      )
+      articlePaths.push({
+        params: { url: article.attributes.url },
+        locale: "en",
+      });
     }
 
-    return articlePaths; 
+    return articlePaths;
   });
   return {
     paths,
