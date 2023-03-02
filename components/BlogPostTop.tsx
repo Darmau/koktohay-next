@@ -63,3 +63,4 @@ const labels: Labels = {
     button: 'Continue reading',
   }
 }
+
