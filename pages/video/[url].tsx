@@ -21,7 +21,6 @@ export async function getStaticProps({ params, locale }: any) {
     props: {
       video: data.videos.data[0],
     },
-    revalidate: 30,
   };
 }
 
