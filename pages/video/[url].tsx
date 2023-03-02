@@ -21,7 +21,6 @@ export async function getStaticProps({ params, locale }: any) {
     props: {
       video: data.videos.data[0],
     },
-    revalidate: 30,
   };
 }
 
@@ -38,7 +37,6 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-  revalidate: 30,
 }
 
 // 获取所有文章的url，用于生成静态页面
