@@ -18,8 +18,8 @@ const Pagination = ({
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
   let pagesToRender: (number | string)[] = [];
 
-  // 总页数只有1个的时候不显示组件。
-  if (totalPages === 1) {
+  // 总页数小于2个的时候不显示组件。
+  if (totalPages < 2) {
     return <div></div>; 
   }
 
