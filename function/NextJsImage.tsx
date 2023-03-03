@@ -1,15 +1,31 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { RenderPhotoProps } from "react-photo-album";
 
 const NextJsImage: React.FC<RenderPhotoProps> = ({
-    imageProps: { src, alt, title, sizes, className, onClick },
-    wrapperStyle,
+  imageProps: { src, alt, title, className, onClick },
+  wrapperStyle,
 }) => (
-    <div style={wrapperStyle}>
-        <div style={{ display: "block", position: "relative", width: "100%", height: "100%" }}>
-            <Image fill src={src} alt={alt} title={title} sizes={sizes} className={className} onClick={onClick} />
-        </div>
-    </div>
+  <div style={wrapperStyle} className="overflow-hidden rounded-lg">
+    <Link href={`/album/${title}`}>
+      <div
+        className="relative h-full w-full transition-all duration-300 hover:scale-105"
+      >
+        <Image
+          fill
+          src={src}
+          alt={alt}
+          title={alt}
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+          className={className}
+          onClick={onClick}
+          priority
+        />
+      </div>
+    </Link>
+  </div>
 );
 
 export default NextJsImage;
