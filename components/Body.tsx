@@ -201,6 +201,7 @@ const options: HTMLReactParserOptions = {
               src={domNode.attribs.src}
               width={1280}
               height={720}
+              priority
               alt={domNode.attribs.src ?? "image"}
             />
           );
