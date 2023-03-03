@@ -108,6 +108,11 @@ const GET_ALL_ARTICLE = gql`
       data {
         attributes {
           url
+          localizations {
+            data {
+              id
+            }
+          }
         }
       }
     }
