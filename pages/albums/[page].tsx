@@ -16,7 +16,6 @@ export default function AllAlbums({
   const router = useRouter();
   const {
     query: { page },
-    locale,
   } = router;
 
   // 若页码超出范围，则返回404页面
@@ -25,33 +24,35 @@ export default function AllAlbums({
   }
 
   const coverArray = albums.map((item: ContentList) => {
-    const ratio = item.attributes.cover?.data?.attributes.width / item.attributes.cover?.data?.attributes.height;
+    const ratio =
+      item.attributes.cover?.data?.attributes.width /
+      item.attributes.cover?.data?.attributes.height;
 
     return {
       src: item.attributes.cover?.data?.attributes.url,
       width: 960,
       height: 960 / ratio,
       alt: item.attributes.title,
+      title: item.attributes.url,
     };
   });
 
   return (
     <div className="bg-white py-8 sm:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-        <PhotoAlbum 
+        <PhotoAlbum
           layout="rows"
           photos={coverArray}
           renderPhoto={NextJsImage}
           padding={0}
-          spacing={2}
+          spacing={8}
           columns={(containerWidth) => {
             if (containerWidth < 400) return 2;
             if (containerWidth < 800) return 3;
             return 4;
-        }}
+          }}
           defaultContainerWidth={960}
-          />
+        />
 
         <Pagination
           currentPage={Number(page)}
