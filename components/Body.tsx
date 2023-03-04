@@ -1,19 +1,23 @@
 import generateId from "@/function/StringID";
 import {
+  ArrowsPointingOutIcon,
   InformationCircleIcon,
   LinkIcon,
-  RocketLaunchIcon
+  RocketLaunchIcon,
 } from "@heroicons/react/20/solid";
 import parse, {
   attributesToProps,
   domToReact,
   Element,
-  HTMLReactParserOptions
+  HTMLReactParserOptions,
 } from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 function isTextNode(node: any): node is Text {
   return node.type === "text";
@@ -34,41 +38,45 @@ const options: HTMLReactParserOptions = {
         // 将标题内容进行base64编码，去掉符号，返回前8位
         case "h1":
           return (
-            <h2 
-              id={generateId(isTextNode(domNode.children[0])
-                ? domNode.children[0].data
-                : "")}
-              className="text-2xl font-medium leading-8 text-gray-900 mt-12 mb-4 sm:text-3xl">
+            <h2
+              id={generateId(
+                isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
+              )}
+              className="text-2xl font-medium leading-8 text-gray-900 mt-12 mb-4 sm:text-3xl"
+            >
               {domToReact(domNode.children, options)}
             </h2>
           );
         case "h2":
           return (
-            <h3 
-              id={generateId(isTextNode(domNode.children[0])
-                ? domNode.children[0].data
-                : "")}
-              className="text-xl font-medium leading-7 text-gray-900 mt-10 mb-4 sm:text-2xl">
+            <h3
+              id={generateId(
+                isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
+              )}
+              className="text-xl font-medium leading-7 text-gray-900 mt-10 mb-4 sm:text-2xl"
+            >
               {domToReact(domNode.children, options)}
             </h3>
           );
         case "h3":
           return (
-            <h4 
-              id={generateId(isTextNode(domNode.children[0])
-                ? domNode.children[0].data
-                : "")}
-              className="text-lg leading-8 text-gray-700 my-4 sm:text-xl">
+            <h4
+              id={generateId(
+                isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
+              )}
+              className="text-lg leading-8 text-gray-700 my-4 sm:text-xl"
+            >
               {domToReact(domNode.children, options)}
             </h4>
           );
         case "h4":
           return (
-            <h5 
-              id={generateId(isTextNode(domNode.children[0])
-                ? domNode.children[0].data
-                : "")}
-              className="text-base leading-7 font-medium my-4 text-gray-900">
+            <h5
+              id={generateId(
+                isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
+              )}
+              className="text-base leading-7 font-medium my-4 text-gray-900"
+            >
               {domToReact(domNode.children, options)}
             </h5>
           );
@@ -116,8 +124,8 @@ const options: HTMLReactParserOptions = {
           if (domNode.attribs.class) {
             const lang = domNode.attribs.class.split("-")[1];
             const codeString = isTextNode(domNode.children[0])
-            ? domNode.children[0].data
-            : "";
+              ? domNode.children[0].data
+              : "";
             return (
               <SyntaxHighlighter
                 language={lang}
@@ -194,16 +202,46 @@ const options: HTMLReactParserOptions = {
             </figcaption>
           );
 
+        // 图片会将src传入lightbox组件，然后在lightbox组件中使用react-image-lightbox组件
         case "img":
+          const picture = [
+            {
+              src: domNode.attribs.src,
+              alt: domNode.attribs.alt ?? "image",
+            },
+          ];
+          const [lightboxOpen, setLightboxOpen] = useState(false);
+
+          const openLightbox = () => {
+            setLightboxOpen(true);
+          };
+
+          const closeLightbox = () => {
+            setLightboxOpen(false);
+          };
+
           return (
-            <Image
-              className="rounded-lg bg-gray-50 object-cover mb-4"
-              src={domNode.attribs.src}
-              width={1280}
-              height={720}
-              priority
-              alt={domNode.attribs.src ?? "image"}
-            />
+            <div className="relative group">
+              <Lightbox
+                open={lightboxOpen}
+                close={closeLightbox}
+                slides={picture}
+              />
+              <button
+                type="button"
+                className="absolute hidden top-8 right-4 z-10 transform -translate-y-1/2 text-white cursor-pointer bg-gray-900/20 backdrop-blur group-hover:block group-hover:bg-gray-900/60 rounded-full p-2"
+                onClick={openLightbox}
+              >
+                <ArrowsPointingOutIcon className="h-5 w-5" aria-hidden="true" />
+              </button>
+              <Image
+                className="rounded-lg bg-gray-50 object-cover mb-4"
+                src={domNode.attribs.src}
+                width={1280}
+                height={720}
+                alt={domNode.attribs.src ?? "image"}
+              />
+            </div>
           );
 
         // 处理表格
@@ -258,11 +296,9 @@ const options: HTMLReactParserOptions = {
           );
 
         case "iframe":
-          const props = attributesToProps(domNode.attribs)
-          props.className = "w-full"
-          return (
-            <iframe {...props} />
-          );
+          const props = attributesToProps(domNode.attribs);
+          props.className = "w-full";
+          return <iframe {...props} />;
 
         default:
           return null;

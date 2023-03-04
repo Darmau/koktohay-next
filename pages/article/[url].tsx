@@ -4,20 +4,32 @@ import { ContentList } from "../../function/Types";
 import Body from "@/components/Body";
 import Catalog from "@/components/Catalog";
 import Image from "next/image";
+import WordCount from "@/components/WordCount";
+import ConvertToDate from "@/function/ConvertDate";
+import { CalendarIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 
 export default function Article({ article }: any) {
   return (
-    <div className="bg-white py-32 px-6 max-w-5xl mx-auto  lg:grid lg:grid-cols-article lg:px-8 lg:gap-12">
+    <div className="bg-white py-16 px-6 max-w-5xl mx-auto lg:py-32 lg:grid lg:grid-cols-article lg:px-8 lg:gap-12">
       <main className="w-full text-base leading-7 text-gray-700 lg:col-span-1">
         {/* 封面和标题 */}
         <header>
-          <p className="text-base font-semibold leading-7 text-indigo-600">
+          <Link className="mb-6 text-base font-semibold leading-7 text-indigo-600 hover:font-bold cursor-pointer"
+          href={article.article_category.data.attributes.url}>
             {article.article_category.data.attributes.title ?? "无分类"}
-          </p>
+          </Link>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             {article.title}
           </h1>
           <p className="my-6 text-xl leading-8">{article.description}</p>
+          {/* 发布日期和字数统计 */}
+
+          <p className="flex gap-1 items-center text-sm">
+            <CalendarIcon className="h-4 w-4" />
+            {ConvertToDate(article.publishDate)}
+          </p>
+
           {article.cover.data ? (
             // 如果没有封面图显示分割线
             <Image
@@ -25,7 +37,7 @@ export default function Article({ article }: any) {
               alt={article.title}
               width={1280}
               height={720}
-              className="rounded-lg bg-gray-50 object-cover my-4"
+              className="rounded-lg bg-gray-50 object-cover my-6"
             />
           ) : (
             <div className="relative my-8">
@@ -42,6 +54,7 @@ export default function Article({ article }: any) {
               </div>
             </div>
           )}
+          <WordCount main={article.main} />
         </header>
 
         {/* 正文 */}
@@ -69,6 +82,7 @@ export async function getStaticProps({ params, locale }: any) {
       locale: locale,
     },
   });
+
   return {
     props: {
       article: data.articles.data[0].attributes,
