@@ -20,6 +20,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "darmau-design.hks3.layerstackobjects.com",
       },
+      {
+        protocol: "https",
+        hostname: "img.darmau.design",
+      },
     ],
   },
 };

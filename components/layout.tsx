@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import { Props } from "@/function/Types";
-import ScrollToTop from "./ScrollToTop";
-import { gql } from "@apollo/client";
 import client from "@/apollo-client";
+import { Props } from "@/function/Types";
+import { gql } from "@apollo/client";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import Footer from "./Footer";
+import Header from "./Header";
+import ScrollToTop from "./ScrollToTop";
 
 const Layout = ({ children }: Props) => {
   const [minHeight, setMinHeight] = useState(0);

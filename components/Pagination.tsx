@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 
 // 接收三个参数：当前页、总条目、一页的条目数

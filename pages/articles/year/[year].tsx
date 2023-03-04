@@ -1,6 +1,5 @@
 import client from "@/apollo-client";
 import BlogPostItem from "@/components/BlogPostItem";
-import Pagination from "@/components/Pagination";
 import getLabel from "@/function/GetLabel";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
 import { gql } from "@apollo/client";

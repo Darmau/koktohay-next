@@ -1,12 +1,9 @@
 import getLabel from "@/function/GetLabel";
 import generateId from "@/function/StringID";
 import { Labels } from "@/function/Types";
-import { useQuery } from "@apollo/client";
 import parse, {
-  attributesToProps,
-  domToReact,
   Element,
-  HTMLReactParserOptions,
+  HTMLReactParserOptions
 } from "html-react-parser";
 import Link from "next/link";
 import { useRouter } from "next/router";

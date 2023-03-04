@@ -24,8 +24,17 @@ export interface ContentList {
     publishDate?: Date;
     url: string;
     localizations?: {
-      data: ContentList;
+      data: ContentList[];
     }
     value: React.ReactNode;
   };
 }
+
+export type Photo = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+}
+
+export type PhotoArray = Photo[];

@@ -1,31 +1,44 @@
 import client from "@/apollo-client";
-import { gql } from "@apollo/client";
-import { ContentList } from "../../function/Types";
 import Body from "@/components/Body";
 import Catalog from "@/components/Catalog";
+import WordCount from "@/components/WordCount";
+import CDN from "@/function/CDN";
+import ConvertToDate from "@/function/ConvertDate";
+import { gql } from "@apollo/client";
+import { CalendarIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
+import Link from "next/link";
+import { ContentList } from "../../function/Types";
 
 export default function Article({ article }: any) {
   return (
-    <div className="bg-white py-32 px-6 max-w-5xl mx-auto  lg:grid lg:grid-cols-article lg:px-8 lg:gap-12">
+    <div className="bg-white py-16 px-6 max-w-5xl mx-auto lg:py-32 lg:grid lg:grid-cols-article lg:px-8 lg:gap-12">
       <main className="w-full text-base leading-7 text-gray-700 lg:col-span-1">
         {/* 封面和标题 */}
         <header>
-          <p className="text-base font-semibold leading-7 text-indigo-600">
+          <Link className="mb-6 text-base font-semibold leading-7 text-indigo-600 hover:font-bold cursor-pointer"
+          href={article.article_category.data.attributes.url}>
             {article.article_category.data.attributes.title ?? "无分类"}
-          </p>
+          </Link>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             {article.title}
           </h1>
           <p className="my-6 text-xl leading-8">{article.description}</p>
+          {/* 发布日期和字数统计 */}
+          <div className="flex gap-1 items-center text-sm mb-4">
+            <CalendarIcon className="h-4 w-4" />
+            {ConvertToDate(article.publishDate)}
+          </div>
+
           {article.cover.data ? (
             // 如果没有封面图显示分割线
             <Image
-              src={article.cover.data.attributes.url}
+              src={CDN(article.cover.data.attributes.url)}
               alt={article.title}
               width={1280}
               height={720}
-              className="rounded-lg bg-gray-50 object-cover my-4"
+              priority
+              className="rounded-lg bg-gray-50 object-cover my-6"
             />
           ) : (
             <div className="relative my-8">
@@ -42,11 +55,12 @@ export default function Article({ article }: any) {
               </div>
             </div>
           )}
+          <WordCount main={article.main} />
         </header>
 
         {/* 正文 */}
         <div className="text-base leading-7 text-gray-700">
-          <Body main={article.main} />
+          <Body html={article.main} />
         </div>
       </main>
 
@@ -69,6 +83,7 @@ export async function getStaticProps({ params, locale }: any) {
       locale: locale,
     },
   });
+
   return {
     props: {
       article: data.articles.data[0].attributes,
@@ -86,7 +101,7 @@ export async function getStaticPaths() {
       { params: { url: article.attributes.url }, locale: "zh-CN" },
     ];
 
-    if (article.attributes.localizations?.data) {
+    if (article.attributes.localizations?.data.length! > 0) {
       articlePaths.push({
         params: { url: article.attributes.url },
         locale: "en",
@@ -108,6 +123,11 @@ const GET_ALL_ARTICLE = gql`
       data {
         attributes {
           url
+          localizations {
+            data {
+              id
+            }
+          }
         }
       }
     }
