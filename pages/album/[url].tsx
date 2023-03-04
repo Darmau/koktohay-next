@@ -9,7 +9,6 @@ import {
   ArrowSmallRightIcon,
   ArrowsPointingOutIcon
 } from "@heroicons/react/20/solid";
-import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
@@ -40,12 +39,6 @@ export default function Album({ album }: any) {
 
   return (
     <>
-      <Head>
-        <link
-          href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css"
-          rel="stylesheet"
-        />
-      </Head>
       <Lightbox
         open={open}
         close={() => setOpen(false)}

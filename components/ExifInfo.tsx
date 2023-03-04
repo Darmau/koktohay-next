@@ -1,11 +1,11 @@
-import exifr from "exifr";
-import { FC, useEffect, useState } from "react";
 import aperture from "@/public/img/aperture.svg";
 import focalLength from "@/public/img/focal-length.svg";
 import iso from "@/public/img/iso.svg";
 import shutterSpeed from "@/public/img/shutter.svg";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
+import exifr from "exifr";
 import Image from "next/image";
+import { FC, useEffect, useState } from "react";
 
 interface Props {
   url: string;

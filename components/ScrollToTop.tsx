@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import { ArrowLongUpIcon } from '@heroicons/react/24/outline';
+import { useEffect, useState } from 'react';
 
 function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);

@@ -1,9 +1,5 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
 import getLabel from "@/function/GetLabel";
 import { Labels } from "@/function/Types";
-import Link from 'next/link';
-import Image from 'next/image';
 import bilibiliIcon from '@/public/img/bilibili.svg';
 import dribbbleIcon from '@/public/img/dribbble.svg';
 import githubIcon from '@/public/img/github.svg';
@@ -12,6 +8,10 @@ import rssIcon from '@/public/img/rss.svg';
 import twitterIcon from '@/public/img/twitter.svg';
 import wechatIcon from '@/public/img/wechat.svg';
 import youtubeIcon from '@/public/img/youtube.svg';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 interface navItem {
   name: string;

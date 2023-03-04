@@ -1,13 +1,11 @@
 import { MapPinIcon } from "@heroicons/react/20/solid";
-import MapboxLanguage from "@mapbox/mapbox-gl-language";
 import exifr from "exifr";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useEffect, useState } from "react";
 import Map, {
   AttributionControl,
   Marker,
-  NavigationControl,
-  useControl
+  NavigationControl
 } from "react-map-gl";
 import NearestPlace from "./MapPlace";
 
