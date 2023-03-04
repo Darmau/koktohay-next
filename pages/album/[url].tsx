@@ -1,13 +1,12 @@
 import client from "@/apollo-client";
 import ExifInfo from "@/components/ExifInfo";
 import MapWithExif from "@/components/Map";
-import MapboxMap from "@/components/Map";
 import { gql } from "@apollo/client";
 import { Tab } from "@headlessui/react";
 import {
   ArrowSmallLeftIcon,
   ArrowSmallRightIcon,
-  ArrowsPointingOutIcon,
+  ArrowsPointingOutIcon
 } from "@heroicons/react/20/solid";
 import Head from "next/head";
 import Image from "next/image";
@@ -58,9 +57,9 @@ export default function Album({ album }: any) {
           <div className="lg:grid lg:grid-cols-3 lg:items-start lg:gap-x-8">
             <Tab.Group
               as="div"
-              className="flex flex-col-reverse col-span-2"
+              className="flex flex-col-reverse col-span-2 px-4"
               selectedIndex={selectedIndex}
-              onChange={setSelectedIndex}
+              onChange={index => setSelectedIndex(index as number)}
             >
               {/* Image selector */}
               <div className="mx-auto mt-6 block py-4 w-full max-w-2xl lg:max-w-none">
@@ -145,7 +144,7 @@ export default function Album({ album }: any) {
                         width={1280}
                         height={720}
                         priority
-                        className="h-full w-full object-contain object-center sm:rounded-lg"
+                        className="w-full h-auto object-contain object-center sm:rounded-lg"
                       />
 
                       <ExifInfo url={image.src} />
@@ -227,6 +226,11 @@ const GET_ALL_ALBUM = gql`
       data {
         attributes {
           url
+          localizations {
+            data {
+              id
+            }
+          }
         }
       }
     }

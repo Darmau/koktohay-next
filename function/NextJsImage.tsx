@@ -21,7 +21,6 @@ const NextJsImage: React.FC<RenderPhotoProps> = ({
               33vw"
           className={className}
           onClick={onClick}
-          priority
         />
       </div>
     </Link>

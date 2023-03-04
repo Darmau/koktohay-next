@@ -1,8 +1,15 @@
 import { MapPinIcon } from "@heroicons/react/20/solid";
+import MapboxLanguage from "@mapbox/mapbox-gl-language";
 import exifr from "exifr";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 import { useEffect, useState } from "react";
-import Map, { AttributionControl, Marker, NavigationControl } from "react-map-gl";
+import Map, {
+  AttributionControl,
+  Marker,
+  NavigationControl,
+  useControl
+} from "react-map-gl";
+import NearestPlace from "./MapPlace";
 
 type Props = {
   src: string;
@@ -14,7 +21,7 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
     longitude: 0,
     zoom: 6,
   });
-  const [location, setLocation] = useState({ lat: 0, lng: 0 })
+  const [location, setLocation] = useState({ lat: 0, lng: 0 });
   const [loading, setLoading] = useState(true);
 
   // 获取图片GPS信息
@@ -29,7 +36,7 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
           latitude,
           longitude,
         }));
-        setLocation({ lat: latitude, lng: longitude })
+        setLocation({ lat: latitude, lng: longitude });
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -43,20 +50,23 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
   }
 
   return (
-    <Map
-      {...viewport}
-      style={{ width: "100%", height: "300px" }}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
-      mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-      onMove={evt => setViewport(evt.viewState)}
-      attributionControl={false}
-    >
-      <Marker latitude={location.lat} longitude={location.lng}>
-        <MapPinIcon className="h-5 w-5 text-indigo-500" />
-      </Marker>
-      <NavigationControl />
-      <AttributionControl customAttribution="可可托海没有海" />
-    </Map>
+    <>
+      <NearestPlace latitude={location.lat} longitude={location.lng} />
+      <Map
+        {...viewport}
+        style={{ width: "100%", height: "300px" }}
+        mapStyle="mapbox://styles/mapbox/light-v10"
+        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+        onMove={(evt) => setViewport(evt.viewState)}
+        attributionControl={false}
+      >
+        <Marker latitude={location.lat} longitude={location.lng}>
+          <MapPinIcon className="h-5 w-5 text-indigo-500" />
+        </Marker>
+        <NavigationControl />
+        <AttributionControl customAttribution="可可托海没有海" />
+      </Map>
+    </>
   );
 };
 
