@@ -1,5 +1,6 @@
 import CDN from "@/function/CDN";
 import generateId from "@/function/StringID";
+import useLightbox from "@/function/useLightbox";
 import {
   ArrowsPointingOutIcon,
   InformationCircleIcon,
@@ -207,43 +208,13 @@ const options: HTMLReactParserOptions = {
         case "img":
           const picture = [
             {
-              src: domNode.attribs.src,
+              src: CDN(domNode.attribs.src),
               alt: domNode.attribs.alt ?? "image",
             },
           ];
-          const [lightboxOpen, setLightboxOpen] = useState(false);
+          const [lightbox, openLightbox, closeLightbox] = useLightbox(picture);
 
-          const openLightbox = () => {
-            setLightboxOpen(true);
-          };
-
-          const closeLightbox = () => {
-            setLightboxOpen(false);
-          };
-
-          return (
-            <div className="relative group">
-              <Lightbox
-                open={lightboxOpen}
-                close={closeLightbox}
-                slides={picture}
-              />
-              <button
-                type="button"
-                className="absolute hidden top-8 right-4 z-10 transform -translate-y-1/2 text-white cursor-pointer bg-gray-900/20 backdrop-blur group-hover:block group-hover:bg-gray-900/60 rounded-full p-2"
-                onClick={openLightbox}
-              >
-                <ArrowsPointingOutIcon className="h-5 w-5" aria-hidden="true" />
-              </button>
-              <Image
-                className="rounded-lg bg-gray-50 object-cover mb-4"
-                src={CDN(domNode.attribs.src)}
-                width={1280}
-                height={720}
-                alt={domNode.attribs.src ?? "image"}
-              />
-            </div>
-          );
+          return lightbox;
 
         // 处理表格
         case "table":
