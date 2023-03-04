@@ -1,5 +1,7 @@
 import client from "@/apollo-client";
 import ExifInfo from "@/components/ExifInfo";
+import MapWithExif from "@/components/Map";
+import MapboxMap from "@/components/Map";
 import { gql } from "@apollo/client";
 import { Tab } from "@headlessui/react";
 import {
@@ -7,6 +9,7 @@ import {
   ArrowSmallRightIcon,
   ArrowsPointingOutIcon,
 } from "@heroicons/react/20/solid";
+import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
@@ -37,6 +40,12 @@ export default function Album({ album }: any) {
 
   return (
     <>
+      <Head>
+        <link
+          href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css"
+          rel="stylesheet"
+        />
+      </Head>
       <Lightbox
         open={open}
         close={() => setOpen(false)}
@@ -92,7 +101,7 @@ export default function Album({ album }: any) {
                 </Tab.List>
               </div>
 
-              <Tab.Panels className="h-auto w-full relative">
+              <Tab.Panels className="w-full relative">
                 {photoArray.map((image, index: number) => {
                   return (
                     <Tab.Panel key={index}>
@@ -158,6 +167,8 @@ export default function Album({ album }: any) {
                   </div>
                 </div>
               </div>
+              {/* 放置地图 */}
+              <MapWithExif src={photoArray[0].src} />
             </div>
           </div>
         </div>
