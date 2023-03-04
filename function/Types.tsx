@@ -24,7 +24,7 @@ export interface ContentList {
     publishDate?: Date;
     url: string;
     localizations?: {
-      data: ContentList;
+      data: ContentList[];
     }
     value: React.ReactNode;
   };

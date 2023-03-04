@@ -101,7 +101,7 @@ export async function getStaticPaths() {
       { params: { url: article.attributes.url }, locale: "zh-CN" },
     ];
 
-    if (article.attributes.localizations?.data) {
+    if (article.attributes.localizations?.data.length! > 0) {
       articlePaths.push({
         params: { url: article.attributes.url },
         locale: "en",
