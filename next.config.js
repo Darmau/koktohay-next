@@ -22,7 +22,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "hks3.layerstackobjects.com",
+        hostname: "img.darmau.design",
       },
     ],
   },

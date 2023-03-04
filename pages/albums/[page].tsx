@@ -1,6 +1,7 @@
 import client from "@/apollo-client";
 import PageNotFound from "@/components/404";
 import Pagination from "@/components/Pagination";
+import CDN from "@/function/CDN";
 import NextJsImage from "@/function/NextJsImage";
 import { ContentList, ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
@@ -29,7 +30,7 @@ export default function AllAlbums({
       item.attributes.cover?.data?.attributes.height;
 
     return {
-      src: item.attributes.cover?.data?.attributes.url,
+      src: CDN(item.attributes.cover?.data?.attributes.url),
       width: 960,
       height: 960 / ratio,
       alt: item.attributes.title,

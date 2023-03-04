@@ -1,13 +1,14 @@
 import client from "@/apollo-client";
-import { gql } from "@apollo/client";
-import { ContentList } from "../../function/Types";
 import Body from "@/components/Body";
 import Catalog from "@/components/Catalog";
-import Image from "next/image";
 import WordCount from "@/components/WordCount";
+import CDN from "@/function/CDN";
 import ConvertToDate from "@/function/ConvertDate";
+import { gql } from "@apollo/client";
 import { CalendarIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 import Link from "next/link";
+import { ContentList } from "../../function/Types";
 
 export default function Article({ article }: any) {
   return (
@@ -33,10 +34,11 @@ export default function Article({ article }: any) {
           {article.cover.data ? (
             // 如果没有封面图显示分割线
             <Image
-              src={article.cover.data.attributes.url}
+              src={CDN(article.cover.data.attributes.url)}
               alt={article.title}
               width={1280}
               height={720}
+              priority
               className="rounded-lg bg-gray-50 object-cover my-6"
             />
           ) : (

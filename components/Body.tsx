@@ -1,3 +1,4 @@
+import CDN from "@/function/CDN";
 import generateId from "@/function/StringID";
 import {
   ArrowsPointingOutIcon,
@@ -30,9 +31,9 @@ const options: HTMLReactParserOptions = {
       switch (domNode.name) {
         case "p":
           return (
-            <p className="text-base leading-8 text-gray-700 mt-4 mb-6">
+            <section className="text-base leading-8 text-gray-700 mt-4 mb-6">
               {domToReact(domNode.children, options)}
-            </p>
+            </section>
           );
         // 标题样式
         // 将标题内容进行base64编码，去掉符号，返回前8位
@@ -236,7 +237,7 @@ const options: HTMLReactParserOptions = {
               </button>
               <Image
                 className="rounded-lg bg-gray-50 object-cover mb-4"
-                src={domNode.attribs.src}
+                src={CDN(domNode.attribs.src)}
                 width={1280}
                 height={720}
                 alt={domNode.attribs.src ?? "image"}

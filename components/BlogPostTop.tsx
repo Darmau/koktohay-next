@@ -1,10 +1,11 @@
+import CDN from "@/function/CDN";
 import ConvertToDate from "@/function/ConvertDate";
-import { ContentsProps, Labels } from "@/function/Types";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
 import getLabel from "@/function/GetLabel";
+import { ContentsProps, Labels } from "@/function/Types";
 import { ArrowSmallRightIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function BlogPostTop({ post }: ContentsProps) {
   const { locale } = useRouter();
@@ -19,7 +20,7 @@ export default function BlogPostTop({ post }: ContentsProps) {
         {/* 封面图 */}
         <div className="relative w-full col-span-1 aspect-[16/9] md:aspect-square lg:aspect-[4/3] lg:shrink-0 lg:col-span-2">
           <Image
-            src={post.attributes.cover.data.attributes.url}
+            src={CDN(post.attributes.cover.data.attributes.url)}
             alt="cover"
             width={600}
             height={400}
