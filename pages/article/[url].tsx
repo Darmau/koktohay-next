@@ -25,11 +25,10 @@ export default function Article({ article }: any) {
           </h1>
           <p className="my-6 text-xl leading-8">{article.description}</p>
           {/* 发布日期和字数统计 */}
-
-          <p className="flex gap-1 items-center text-sm">
+          <div className="flex gap-1 items-center text-sm mb-4">
             <CalendarIcon className="h-4 w-4" />
             {ConvertToDate(article.publishDate)}
-          </p>
+          </div>
 
           {article.cover.data ? (
             // 如果没有封面图显示分割线
@@ -61,7 +60,7 @@ export default function Article({ article }: any) {
 
         {/* 正文 */}
         <div className="text-base leading-7 text-gray-700">
-          <Body main={article.main} />
+          <Body html={article.main} />
         </div>
       </main>
 
