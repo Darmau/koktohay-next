@@ -185,6 +185,7 @@ export async function getStaticProps({ params, locale }: any) {
     props: {
       album: data.albums.data[0].attributes,
     },
+    revalidate: 60,
   };
 }
 
