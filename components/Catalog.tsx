@@ -1,21 +1,26 @@
 import getLabel from "@/function/GetLabel";
 import generateId from "@/function/StringID";
 import { Labels } from "@/function/Types";
+import { ChevronDoubleRightIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import parse, {
   Element,
   HTMLReactParserOptions
 } from "html-react-parser";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Children } from "react";
 
 function isTextNode(node: any): node is Text {
   return node.type === "text";
 }
 
+let catalogs = 0;
+
 const options: HTMLReactParserOptions = {
   replace: (domNode) => {
     if (domNode instanceof Element) {
       if (domNode.name === "h1") {
+        catalogs++;
         return (
           <li>
             <Link
@@ -29,9 +34,10 @@ const options: HTMLReactParserOptions = {
           </li>
         );
       } else if (domNode.name === "h2") {
+        catalogs++;
         return (
-          <li>
-            -
+          <li className="flex items-center">
+            <ChevronRightIcon className="h-4 w-4" />
             <Link
               className="pl-2 text-sm hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
               href={`#${generateId(
@@ -43,11 +49,12 @@ const options: HTMLReactParserOptions = {
           </li>
         );
       } else if (domNode.name === "h3") {
+        catalogs++;
         return (
-          <li>
-            --
+          <li className="flex items-center">
+            <ChevronDoubleRightIcon className="h-4 w-4" />
             <Link
-              className="pl-2 text-sm hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
+              className="pl-6 text-sm hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
               href={`#${generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
               )}`}
@@ -56,21 +63,7 @@ const options: HTMLReactParserOptions = {
             </Link>
           </li>
         );
-      } else if (domNode.name === "h4") {
-        return (
-          <li>
-            ---
-            <Link
-              className="pl-2 text-sm hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
-              href={`#${generateId(
-                isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
-              )}`}
-            >
-              {isTextNode(domNode.children[0]) ? domNode.children[0].data : ""}
-            </Link>
-          </li>
-        );
-      } else return <></>;
+      } else return undefined;
     }
   },
 };
@@ -78,6 +71,7 @@ const options: HTMLReactParserOptions = {
 export default function Catalog({ main }: { main: string }) {
   const { locale } = useRouter();
   const label = getLabel(labels, locale);
+  const catelogList = parse(main, options);
 
   return (
     <nav className="flex w-full h-fit bg-white border border-gray-200 rounded-md lg:sticky lg:top-16">
@@ -88,7 +82,7 @@ export default function Catalog({ main }: { main: string }) {
         <hr className="mt-5 border-gray-200" />
 
         <ul className="mt-5 text-base text-gray-700 font-medium space-y-4">
-          {parse(main, options)}
+          {catalogs > 0 ? catelogList : <p>{label.noCatalog}</p>}
         </ul>
       </div>
     </nav>
@@ -98,8 +92,10 @@ export default function Catalog({ main }: { main: string }) {
 const labels: Labels = {
   "zh-CN": {
     title: "目录",
+    noCatalog: "本文没有目录",
   },
   en: {
     title: "Catelog",
+    noCatalog: "No catalog in this article",
   },
 };

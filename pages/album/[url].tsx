@@ -1,12 +1,14 @@
 import client from "@/apollo-client";
 import ExifInfo from "@/components/ExifInfo";
 import MapWithExif from "@/components/Map";
+import ConvertToDate from "@/function/ConvertDate";
 import { gql } from "@apollo/client";
 import { Tab } from "@headlessui/react";
 import {
   ArrowSmallLeftIcon,
   ArrowSmallRightIcon,
-  ArrowsPointingOutIcon
+  ArrowsPointingOutIcon,
+  CalendarIcon,
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import { useState } from "react";
@@ -14,13 +16,13 @@ import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
-import { ContentList, PhotoArray } from "../../function/Types";
+import { ContentList, ContentsProps, PhotoArray } from "../../function/Types";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Album({ album }: any) {
+export default function Album({ album }: ContentsProps) {
   // 根据返回的相册数据，生成一个更简洁结构的图片数组
   const photoArray: PhotoArray = album.gallery.data.map(
     (photo: ContentList) => {
@@ -52,7 +54,7 @@ export default function Album({ album }: any) {
               as="div"
               className="flex flex-col-reverse col-span-2 px-4"
               selectedIndex={selectedIndex}
-              onChange={index => setSelectedIndex(index as number)}
+              onChange={(index) => setSelectedIndex(index as number)}
             >
               {/* Image selector */}
               <div className="mx-auto mt-6 block py-4 w-full max-w-2xl lg:max-w-none">
@@ -148,9 +150,14 @@ export default function Album({ album }: any) {
             </Tab.Group>
 
             <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:col-span-1 lg:mt-0">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              <h1 className="text-3xl font-bold mb-4 tracking-tight text-gray-900">
                 {album.title}
               </h1>
+
+              <div className="flex gap-1 items-center text-sm mb-4 text-gray-600">
+                <CalendarIcon className="h-4 w-4" />
+                {ConvertToDate(album.publishDate)}
+              </div>
 
               <div className="mt-3">
                 <div className="mt-6">
