@@ -49,9 +49,9 @@ function useCustomReplace({ html }: { html: string }) {
       switch (domNode.name) {
         case "p":
           return (
-            <section className="text-base leading-8 text-gray-700 mt-4 mb-6">
+            <div className="text-base leading-8 text-gray-700 mt-4 mb-6">
               {domToReact(domNode.children, options)}
-            </section>
+            </div>
           );
 
         // 图片会将src传入lightbox组件，然后在lightbox组件中使用react-image-lightbox组件
@@ -208,11 +208,9 @@ function useCustomReplace({ html }: { html: string }) {
 
         case "blockquote":
           return (
-            <figure className="border-l border-indigo-600 pl-8 py-1">
-              <blockquote className="text-xl font-semibold leading-8 tracking-tight text-gray-900">
+              <blockquote className="text-xl font-semibold leading-8 tracking-tight text-gray-900 border-l border-indigo-600 pl-8">
                 {domToReact(domNode.children, options)}
               </blockquote>
-            </figure>
           );
 
         case "hr":
@@ -314,7 +312,7 @@ function useCustomReplace({ html }: { html: string }) {
       <Lightbox
         slides={pictures}
         open={lightboxOpen}
-        close={() => setLightboxOpen(false)}
+        close={closeLightbox}
         plugins={[Thumbnails]}
         index={pictureIndex}
       />

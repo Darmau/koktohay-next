@@ -8,9 +8,11 @@ const NextJsImage: React.FC<RenderPhotoProps> = ({
 }) => (
   <div style={wrapperStyle} className="overflow-hidden rounded-lg">
     <Link href={`/album/${title}`}>
-      <div
-        className="relative h-full w-full transition-all duration-300 hover:scale-105"
-      >
+      <figure className="group relative h-full w-full transition-all duration-300 hover:scale-105 hover:backdrop-blur-sm">
+        <figcaption className="absolute bottom-0 z-10 p-6 opacity-0 text-white transition-all duration-300 group-hover:opacity-100">
+          {alt}
+        </figcaption>
+
         <Image
           fill
           src={src}
@@ -22,7 +24,7 @@ const NextJsImage: React.FC<RenderPhotoProps> = ({
           className={className}
           onClick={onClick}
         />
-      </div>
+      </figure>
     </Link>
   </div>
 );
