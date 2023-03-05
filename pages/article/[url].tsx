@@ -11,7 +11,7 @@ import { ContentList } from "../../function/Types";
 
 export default function Article({ article }: any) {
   return (
-    <div className="bg-white py-16 px-6 max-w-5xl mx-auto flex flex-col-reverse gap-8 lg:py-32 lg:grid lg:grid-cols-article lg:px-8 lg:gap-12">
+    <div className="bg-white py-16 px-6 max-w-5xl mx-auto lg:py-32 lg:grid lg:grid-cols-article lg:px-8 lg:gap-12">
       <main className="w-full text-base leading-7 text-gray-700 lg:col-span-1">
         {/* 封面和标题 */}
         <header>
@@ -24,7 +24,7 @@ export default function Article({ article }: any) {
           </h1>
           <p className="my-6 text-xl leading-8">{article.description}</p>
           {/* 发布日期和字数统计 */}
-          <div className="flex gap-1 items-center text-sm mb-4 text-gray-600">
+          <div className="flex gap-1 items-center text-sm mb-4">
             <CalendarIcon className="h-4 w-4" />
             {ConvertToDate(article.publishDate)}
           </div>

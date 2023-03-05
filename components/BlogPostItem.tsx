@@ -10,7 +10,7 @@ export default function BlogPostItem({ post }: ContentsProps) {
         className="flex flex-col gap-6 md:gap-8 md:flex-row"
         href={`/article/${post.attributes.url}`}
       >
-        <div className="relative shrink-0 aspect-[16/9] overflow-hidden rounded-lg sm:aspect-[2/1] md:aspect-[4/3] md:w-64">
+        <div className="relative shrink-0 aspect-[16/9] overflow-hidden rounded-2xl sm:aspect-[2/1] md:aspect-[4/3] md:w-64">
           <Image
             src={post.attributes.cover.data.attributes.url}
             alt="cover"

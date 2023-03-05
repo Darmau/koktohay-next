@@ -23,7 +23,7 @@ export default function BlogPostTop({ post }: ContentsProps) {
             alt="cover"
             width={600}
             height={400}
-            className="absolute inset-0 h-full w-full rounded-lg bg-gray-50 object-cover"
+            className="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
           />
         </div>
 
