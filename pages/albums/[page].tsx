@@ -1,8 +1,9 @@
 import client from "@/apollo-client";
 import PageNotFound from "@/components/404";
 import Pagination from "@/components/Pagination";
+import getLabel from "@/function/GetLabel";
 import NextJsImage from "@/function/NextJsImage";
-import { ContentList, ContentsProps } from "@/function/Types";
+import { ContentList, ContentsProps, Labels } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
@@ -16,7 +17,10 @@ export default function AllAlbums({
   const router = useRouter();
   const {
     query: { page },
+    locale,
   } = router;
+
+  const label = getLabel(labels, locale)
 
   // 若页码超出范围，则返回404页面
   if (Number(page) > pagination!.pageCount) {
@@ -40,6 +44,15 @@ export default function AllAlbums({
   return (
     <div className="bg-white py-8 sm:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl pt-4 pb-10 lg:mx-0">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            {label.header}
+          </h2>
+          <p className="mt-2 text-lg leading-8 text-gray-600">
+            {label.slogan}
+          </p>
+        </div>
+
         <PhotoAlbum
           layout="rows"
           photos={coverArray}
@@ -119,3 +132,14 @@ export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
     },
   };
 };
+
+const labels: Labels ={
+  "zh-CN": {
+    header: "摄影",
+    slogan: "只用的起副厂镜头的业余摄影师"
+  },
+  "en": {
+    header: "Photography",
+    slogan: "An amateur photographer who can only use a factory lens"
+  }
+}
