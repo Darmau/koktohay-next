@@ -1,4 +1,3 @@
-import CDN from "@/function/CDN";
 import ConvertToDate from "@/function/ConvertDate";
 import { ContentsProps } from "@/function/Types";
 import Image from "next/image";
@@ -13,7 +12,7 @@ export default function BlogPostItem({ post }: ContentsProps) {
       >
         <div className="relative shrink-0 aspect-[16/9] overflow-hidden rounded-2xl sm:aspect-[2/1] md:aspect-[4/3] md:w-64">
           <Image
-            src={CDN(post.attributes.cover.data.attributes.url)}
+            src={post.attributes.cover.data.attributes.url}
             alt="cover"
             width={300}
             height={200}

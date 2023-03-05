@@ -1,7 +1,6 @@
 import client from "@/apollo-client";
 import ExifInfo from "@/components/ExifInfo";
 import MapWithExif from "@/components/Map";
-import CDN from "@/function/CDN";
 import { gql } from "@apollo/client";
 import { Tab } from "@headlessui/react";
 import {
@@ -26,7 +25,7 @@ export default function Album({ album }: any) {
   const photoArray: PhotoArray = album.gallery.data.map(
     (photo: ContentList) => {
       return {
-        src: CDN(photo.attributes.url),
+        src: photo.attributes.url,
         width: photo.attributes.width,
         height: photo.attributes.height,
         alt: photo.attributes.alternativeText,

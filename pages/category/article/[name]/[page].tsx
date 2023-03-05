@@ -1,7 +1,6 @@
 import client from "@/apollo-client";
 import BlogPostItem from "@/components/BlogPostItem";
 import Pagination from "@/components/Pagination";
-import CDN from "@/function/CDN";
 import { ContentList, ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSidePropsContext } from "next";
@@ -23,7 +22,7 @@ export default function ArticlesByCategory({
         {/* 分类标题区域 */}
         <div className="relative isolate overflow-hidden bg-gray-900 py-24 rounded-2xl sm:py-32">
           <Image
-            src={CDN(category.cover.data.attributes.url)}
+            src={category.cover.data.attributes.url}
             width={1280}
             height={720}
             alt="cover image"

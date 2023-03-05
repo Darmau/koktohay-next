@@ -1,4 +1,3 @@
-import CDN from "@/function/CDN";
 import getLabel from "@/function/GetLabel";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
 import Image from "next/image";
@@ -22,7 +21,7 @@ export default function BlogSideTopic({ topics }: ContentsProps) {
             <div className="flex items-start lg:items-start">
               <Image
                 className="object-cover w-20 h-20 rounded-lg shrink-0"
-                src={CDN(item.attributes.cover.data.attributes.url)}
+                src={item.attributes.cover.data.attributes.url}
                 width={80}
                 height={80}
                 alt="cover"

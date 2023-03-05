@@ -1,4 +1,3 @@
-import CDN from "@/function/CDN";
 import ConvertToDate from "@/function/ConvertDate";
 import getLabel from "@/function/GetLabel";
 import { ContentsProps, Labels } from "@/function/Types";
@@ -20,7 +19,7 @@ export default function BlogPostTop({ post }: ContentsProps) {
         {/* 封面图 */}
         <div className="relative w-full col-span-1 aspect-[16/9] md:aspect-square lg:aspect-[4/3] lg:shrink-0 lg:col-span-2">
           <Image
-            src={CDN(post.attributes.cover.data.attributes.url)}
+            src={post.attributes.cover.data.attributes.url}
             alt="cover"
             width={600}
             height={400}

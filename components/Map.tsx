@@ -1,4 +1,5 @@
 import { MapPinIcon } from "@heroicons/react/20/solid";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import exifr from "exifr";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useEffect, useState } from "react";
@@ -24,10 +25,11 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
 
   // 获取图片GPS信息
   useEffect(() => {
-    const loadExif = async () => {
+    const loadGPS = async () => {
       try {
-        const exifData = await exifr.parse(src);
-        const { latitude, longitude } = exifData;
+        const gpsRes = await fetch(`https://exif.darmau.design/gps?url=${src}`);
+        const gpsData = await gpsRes.json();
+        const { latitude, longitude } = gpsData;
 
         setViewport((viewport) => ({
           ...viewport,
@@ -40,11 +42,13 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
         console.error(error);
       }
     };
-    loadExif();
+    loadGPS();
   }, [src]);
 
   if (loading) {
-    return <div>Loading map...</div>;
+    return <div className="w-full h-80 bg-gray-200 flex items-center justify-center">
+      <ArrowPathIcon className="h-5 w-5 animate-spin text-indigo-600" />
+    </div>;
   }
 
   return (
@@ -52,7 +56,7 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
       <NearestPlace latitude={location.lat} longitude={location.lng} />
       <Map
         {...viewport}
-        style={{ width: "100%", height: "300px" }}
+        style={{ width: "100%", height: "320px" }}
         mapStyle="mapbox://styles/mapbox/light-v10"
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         onMove={(evt) => setViewport(evt.viewState)}
