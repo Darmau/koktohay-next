@@ -120,7 +120,7 @@ const ExifInfo: FC<Props> = ({ url }: Props) => {
             className="mt-0.5 h-5 w-5 flex-none text-gray-300"
             aria-hidden="true"
           />
-          该图片没有获取到 EXIF 信息{url}
+          该图片没有获取到 EXIF 信息
         </div>
       )}
     </>
