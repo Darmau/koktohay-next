@@ -2,7 +2,6 @@ import client from "@/apollo-client";
 import Body from "@/components/Body";
 import Catalog from "@/components/Catalog";
 import WordCount from "@/components/WordCount";
-import CDN from "@/function/CDN";
 import ConvertToDate from "@/function/ConvertDate";
 import { gql } from "@apollo/client";
 import { CalendarIcon } from "@heroicons/react/20/solid";
@@ -33,7 +32,7 @@ export default function Article({ article }: any) {
           {article.cover.data ? (
             // 如果没有封面图显示分割线
             <Image
-              src={CDN(article.cover.data.attributes.url)}
+              src={article.cover.data.attributes.url}
               alt={article.title}
               width={1280}
               height={720}

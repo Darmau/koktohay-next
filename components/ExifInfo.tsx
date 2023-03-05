@@ -3,6 +3,7 @@ import focalLength from "@/public/img/focal-length.svg";
 import iso from "@/public/img/iso.svg";
 import shutterSpeed from "@/public/img/shutter.svg";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import exifr from "exifr";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
@@ -16,7 +17,7 @@ interface ExifData {
   Model?: string;
   ExposureTime?: string;
   FNumber?: string;
-  ISO?: number;
+  iso?: number;
   FocalLength?: string;
   LensModel?: string;
   latitude?: number;
@@ -26,33 +27,14 @@ interface ExifData {
 const ExifInfo: FC<Props> = ({ url }: Props) => {
   const [exif, setExif] = useState<ExifData>({});
   const [isLoading, setIsLoading] = useState(true);
-  const exifData: ExifData = {};
-
-  function formatShutterTime(shutterTime: string | undefined): string {
-    if (!shutterTime) return "0";
-    const time = parseFloat(shutterTime);
-    if (time >= 1) {
-      return time.toFixed(2);
-    }
-    const fraction = Math.round(1 / time);
-    return `1/${fraction}`;
-  }
 
   useEffect(() => {
     async function loadExif() {
       try {
-        const res = await fetch(url);
-        const blob = await res.blob();
-        const rawData = (await exifr.parse(blob)) || {};
-        exifData.Maker = rawData?.Make;
-        exifData.Model = rawData?.Model;
-        exifData.ExposureTime = rawData?.ExposureTime;
-        exifData.FNumber = rawData?.FNumber;
-        exifData.ISO = rawData?.ISO;
-        exifData.FocalLength = rawData?.FocalLength;
-        exifData.LensModel = rawData?.LensModel;
-        exifData.latitude = rawData?.latitude;
-        exifData.longitude = rawData?.longitude;
+        const exifRes = await fetch(
+          `https://exif.darmau.design/exif?url=${url}`
+        );
+        const exifData = await exifRes.json();
         setExif(exifData);
         setIsLoading(false);
       } catch (error) {
@@ -65,7 +47,11 @@ const ExifInfo: FC<Props> = ({ url }: Props) => {
   }, [url]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full h-24 flex items-center justify-center">
+        <ArrowPathIcon className="h-5 w-5 animate-spin text-indigo-600" />
+      </div>
+    );
   }
 
   return (
@@ -84,8 +70,8 @@ const ExifInfo: FC<Props> = ({ url }: Props) => {
           </div>
           <div className="flex flex-col items-center gap-1">
             <header className="text-xs text-gray-500">参数</header>
-            <div className="flex gap-4">
-              <div className="flex items-center gap-1 text-xs text-gray-700">
+            <div className="grid gap-4 grid-cols-2 items-center justify-between md:grid-cols-4">
+              <div className="flex items-center justify-center gap-1 text-xs text-gray-700">
                 <Image
                   src={focalLength}
                   width={20}
@@ -95,7 +81,7 @@ const ExifInfo: FC<Props> = ({ url }: Props) => {
                 />
                 {exif.FocalLength}mm
               </div>
-              <div className="flex items-center gap-1 text-xs text-gray-700">
+              <div className="flex items-center justify-center gap-1 text-xs text-gray-700">
                 <Image
                   src={aperture}
                   width={20}
@@ -105,7 +91,7 @@ const ExifInfo: FC<Props> = ({ url }: Props) => {
                 />
                 ƒ/{exif.FNumber}
               </div>
-              <div className="flex items-center gap-1 text-xs text-gray-700">
+              <div className="flex items-center justify-center gap-1 text-xs text-gray-700">
                 <Image
                   src={shutterSpeed}
                   width={20}
@@ -113,9 +99,9 @@ const ExifInfo: FC<Props> = ({ url }: Props) => {
                   alt="快门"
                   className="opacity-70"
                 />
-                {formatShutterTime(exif.ExposureTime)}s
+                {exif.ExposureTime}s
               </div>
-              <div className="flex items-center gap-1 text-xs text-gray-700">
+              <div className="flex items-center justify-center gap-1 text-xs text-gray-700">
                 <Image
                   src={iso}
                   width={20}
@@ -123,7 +109,7 @@ const ExifInfo: FC<Props> = ({ url }: Props) => {
                   alt="ISO"
                   className="opacity-70"
                 />
-                {exif.ISO}
+                {exif.iso}
               </div>
             </div>
           </div>
@@ -134,7 +120,7 @@ const ExifInfo: FC<Props> = ({ url }: Props) => {
             className="mt-0.5 h-5 w-5 flex-none text-gray-300"
             aria-hidden="true"
           />
-          该图片没有获取到 EXIF 信息
+          该图片没有获取到 EXIF 信息{url}
         </div>
       )}
     </>

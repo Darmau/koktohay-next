@@ -19,7 +19,6 @@ import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
-import CDN from "../function/CDN";
 
 type Picture = {
   src: string;
@@ -59,7 +58,7 @@ function useCustomReplace({ html }: { html: string }) {
         case "img":
           const index = pictures.length;
           const newPicture: Picture = {
-            src: CDN(domNode.attribs.src),
+            src: domNode.attribs.src,
             alt: domNode.attribs.alt ?? "image",
           };
           pictures.push(newPicture)
@@ -68,7 +67,7 @@ function useCustomReplace({ html }: { html: string }) {
             <div className="relative group">
               <Image
                 className="rounded-lg bg-gray-50 object-cover mb-4 cursor-pointer"
-                src={CDN(domNode.attribs.src)}
+                src={domNode.attribs.src}
                 width={1280}
                 height={720}
                 alt={domNode.attribs.src ?? "image"}
