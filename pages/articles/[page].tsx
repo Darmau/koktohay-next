@@ -9,6 +9,7 @@ import Pagination from "@/components/Pagination";
 import { ContentList, ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 
 export default function AllArticles({
@@ -17,6 +18,7 @@ export default function AllArticles({
   topics,
   pagination,
   pageSize,
+  locale,
 }: ContentsProps) {
   const router = useRouter();
   const {
@@ -37,41 +39,67 @@ export default function AllArticles({
   }
 
   return (
-    <div className="bg-white py-8 sm:py-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* 封面文章 */}
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-full">
-          {page === "1" ? <BlogPostTop post={theNewest[0]} /> : <></>}
-        </div>
+    <>
+      <NextSeo
+        title={locale === 'zh-CN' ? '文章 | 可可托海没有海' : 'Articles | Nomadicoder' }
+        description={locale === 'zh-CN' ? '全部文章' : 'All Articles' }
+        canonical="https://darmau.design/articles/1"
+        languageAlternates={[
+          {
+            hrefLang: "en",
+            href: "https://darmau.design/en/articles/1",
+          },
+        ]}
+        openGraph={{
+          url: `https://darmau.design/articles/1`,
+          title: '文章 | 可可托海没有海',
+          description: '全部文章',
+          images: [{
+            url: theNewest[0].attributes.cover?.data?.attributes.url,
+            width: theNewest[0].attributes.cover?.data?.attributes.width,
+            height: theNewest[0].attributes.cover?.data?.attributes.height,
+            alt: theNewest[0].attributes.title,
+            type: 'image/jpeg',
+          }]
+        }}
+      />
 
-        {/* 其他文章和侧边栏 */}
-        <div
-          className={`mx-auto grid max-w-2xl grid-cols-1 gap-8 pt-8 mt-8 ${
-            page === "1"
-              ? "border-t border-gray-200 sm:mt-16 sm:pt-16"
-              : "border-none pt-0"
-          } lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-24`}
-        >
-          {/* 文章列表 */}
-          <div className="space-y-20 lg:col-span-2 lg:space-y-16">
-            {articlePosts.map((item: ContentList) => (
-              <BlogPostItem post={item} key={item.id} />
-            ))}
-            <Pagination
-              currentPage={Number(page)}
-              totalEntries={pagination!.total}
-              itemPerPage={pageSize}
-            />
+      <div className="bg-white py-8 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          {/* 封面文章 */}
+          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-full">
+            {page === "1" ? <BlogPostTop post={theNewest[0]} /> : <></>}
           </div>
-          {/* 侧边栏 */}
-          <div className="space-y-12 lg:col-span-1 lg:space-y-20">
-            <BlogSideCategory category={categories} />
-            <BlogSideYear />
-            <BlogSideTopic topics={topics} />
+
+          {/* 其他文章和侧边栏 */}
+          <div
+            className={`mx-auto grid max-w-2xl grid-cols-1 gap-8 pt-8 mt-8 ${
+              page === "1"
+                ? "border-t border-gray-200 sm:mt-16 sm:pt-16"
+                : "border-none pt-0"
+            } lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-24`}
+          >
+            {/* 文章列表 */}
+            <div className="space-y-20 lg:col-span-2 lg:space-y-16">
+              {articlePosts.map((item: ContentList) => (
+                <BlogPostItem post={item} key={item.id} />
+              ))}
+              <Pagination
+                currentPage={Number(page)}
+                totalEntries={pagination!.total}
+                itemPerPage={pageSize}
+              />
+            </div>
+            {/* 侧边栏 */}
+            <div className="space-y-12 lg:col-span-1 lg:space-y-20">
+              <BlogSideCategory category={categories} />
+              <BlogSideYear />
+              <BlogSideTopic topics={topics} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -92,6 +120,8 @@ const GET_ARTICLES = gql`
             data {
               attributes {
                 url
+                width
+                height
               }
             }
           }
@@ -166,6 +196,7 @@ export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
       topics: data.topics.data,
       pagination: data.articles.meta.pagination,
       pageSize: pagination.pageSize,
+      locale,
     },
   };
 };

@@ -4,6 +4,7 @@ import getLabel from "@/function/GetLabel";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSidePropsContext } from "next";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 
 export default function ArticlesByYears({ articles }: ContentsProps) {
@@ -15,44 +16,55 @@ export default function ArticlesByYears({ articles }: ContentsProps) {
   const label = getLabel(labels, locale);
 
   return (
-    <div className="bg-white py-8 sm:py-16">
-      <div className="mx-auto max-w-2xl px-6 lg:px-8 lg:max-w-4xl">
-        <div className="bg-white py-12 sm:py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mx-auto max-w-2xl lg:mx-0">
-              <p className="text-base font-semibold leading-7 text-indigo-600">
-                {label.title}
-              </p>
-              <h2 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                {year}年
-              </h2>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
-                {label.description}
-              </p>
+    <>
+      <NextSeo
+        title={locale === 'zh-CN' ? `${year}年的所有文章 | 可可托海没有海` : `All Articles in ${year} | Nomadicoder` }
+        description={locale === 'zh-CN' ? `${year}年的所有文章 | 可可托海没有海` : `All Articles in ${year} | Nomadicoder` }
+        canonical={`https://darmau.design/articles/${year}`}
+        languageAlternates={[
+          {
+            hrefLang: "en",
+            href: `https://darmau.design/en/articles/${year}`,
+          },
+        ]}
+      />
+
+      <div className="bg-white py-8 sm:py-16">
+        <div className="mx-auto max-w-2xl px-6 lg:px-8 lg:max-w-4xl">
+          <div className="bg-white py-12 sm:py-24">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+              <div className="mx-auto max-w-2xl lg:mx-0">
+                <p className="text-base font-semibold leading-7 text-indigo-600">
+                  {label.title}
+                </p>
+                <h2 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                  {year}年
+                </h2>
+                <p className="mt-6 text-lg leading-8 text-gray-600">
+                  {label.description}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 其他文章 */}
+          <div className="mx-auto flex flex-col gap-8 border-t border-gray-200 pt-8 mt-8 sm:mt-16 sm:pt-16  lg:gap-24">
+            {/* 文章列表 */}
+            <div className="space-y-12 lg:space-y-16">
+              {articles.map((item: ContentList) => (
+                <BlogPostItem post={item} key={item.id} />
+              ))}
             </div>
           </div>
         </div>
-
-        {/* 其他文章 */}
-        <div className="mx-auto flex flex-col gap-8 border-t border-gray-200 pt-8 mt-8 sm:mt-16 sm:pt-16  lg:gap-24">
-          {/* 文章列表 */}
-          <div className="space-y-12 lg:space-y-16">
-            {articles.map((item: ContentList) => (
-              <BlogPostItem post={item} key={item.id} />
-            ))}
-          </div>
-        </div>
       </div>
-    </div>
+    </>
   );
 }
 
 // 根据年份筛选文章
 const GET_ARTICLES_BY_YEARS = gql`
-  query Articles(
-    $filters: ArticleFiltersInput
-    $locale: I18NLocaleCode
-  ) {
+  query Articles($filters: ArticleFiltersInput, $locale: I18NLocaleCode) {
     articles(filters: $filters, locale: $locale) {
       data {
         attributes {
@@ -65,6 +77,8 @@ const GET_ARTICLES_BY_YEARS = gql`
               attributes {
                 url
                 alternativeText
+                width
+                height
               }
             }
           }

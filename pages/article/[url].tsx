@@ -5,69 +5,96 @@ import WordCount from "@/components/WordCount";
 import ConvertToDate from "@/function/ConvertDate";
 import { gql } from "@apollo/client";
 import { CalendarIcon } from "@heroicons/react/20/solid";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ContentList } from "../../function/Types";
 
 export default function Article({ article }: any) {
   return (
-    <div className="bg-white py-16 px-6 max-w-5xl mx-auto flex flex-col-reverse gap-8 lg:py-32 lg:grid lg:grid-cols-article lg:px-8 lg:gap-12">
-      <main className="w-full text-base leading-7 text-gray-700 lg:col-span-1">
-        {/* 封面和标题 */}
-        <header>
-          <Link className="mb-6 text-base font-semibold leading-7 text-indigo-600 hover:font-bold cursor-pointer"
-          href={article.article_category.data.attributes.url}>
-            {article.article_category.data.attributes.title ?? "无分类"}
-          </Link>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {article.title}
-          </h1>
-          <p className="my-6 text-xl leading-8">{article.description}</p>
-          {/* 发布日期和字数统计 */}
-          <div className="flex gap-1 items-center text-sm mb-4 text-gray-600">
-            <CalendarIcon className="h-4 w-4" />
-            {ConvertToDate(article.publishDate)}
-          </div>
+    <>
+      <NextSeo
+        title={article.title}
+        description={article.description}
+        canonical={`https://darmau.design/article/${article.url}`}
+        languageAlternates={[{
+          hrefLang: 'en',
+          href: `https://darmau.design/en/article/${article.url}`,
+        }]}
+        openGraph={{
+          url: `https://darmau.design/article/${article.url}`,
+          title: article.title,
+          description: article.description,
+          images: [{
+            url: article.cover.data.attributes.url,
+            width: article.cover.data.attributes.width,
+            height: article.cover.data.attributes.height,
+            alt: article.cover.data.attributes.alternativeText,
+            type: 'image/jpeg',
+          }]
+        }}
+      />
 
-          {article.cover.data ? (
-            // 如果没有封面图显示分割线
-            <Image
-              src={article.cover.data.attributes.url}
-              alt={article.title}
-              width={1280}
-              height={720}
-              priority
-              className="rounded-lg bg-gray-50 object-cover my-6"
-            />
-          ) : (
-            <div className="relative my-8">
-              <div
-                className="absolute inset-0 flex items-center"
-                aria-hidden="true"
-              >
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center">
-                <span className="bg-white px-4 text-sm uppercase text-gray-500">
-                  Continue
-                </span>
-              </div>
+      <div className="bg-white py-16 px-6 max-w-5xl mx-auto flex flex-col-reverse gap-8 lg:py-32 lg:grid lg:grid-cols-article lg:px-8 lg:gap-12">
+        <main className="w-full text-base leading-7 text-gray-700 lg:col-span-1">
+          {/* 封面和标题 */}
+          <header>
+            <Link
+              className="mb-6 text-base font-semibold leading-7 text-indigo-600 hover:font-bold cursor-pointer"
+              href={article.article_category.data.attributes.url}
+            >
+              {article.article_category.data.attributes.title ?? "无分类"}
+            </Link>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              {article.title}
+            </h1>
+            <p className="my-6 text-xl leading-8">{article.description}</p>
+            {/* 发布日期和字数统计 */}
+            <div className="flex gap-1 items-center text-sm mb-4 text-gray-600">
+              <CalendarIcon className="h-4 w-4" />
+              {ConvertToDate(article.publishDate)}
             </div>
-          )}
-          <WordCount main={article.main} />
-        </header>
 
-        {/* 正文 */}
-        <div className="text-base leading-7 text-gray-700">
-          <Body html={article.main} />
-        </div>
-      </main>
+            {article.cover.data ? (
+              // 如果没有封面图显示分割线
+              <Image
+                src={article.cover.data.attributes.url}
+                alt={article.title}
+                width={1280}
+                height={720}
+                priority
+                className="rounded-lg bg-gray-50 object-cover my-6"
+              />
+            ) : (
+              <div className="relative my-8">
+                <div
+                  className="absolute inset-0 flex items-center"
+                  aria-hidden="true"
+                >
+                  <div className="w-full border-t border-gray-300" />
+                </div>
+                <div className="relative flex justify-center">
+                  <span className="bg-white px-4 text-sm uppercase text-gray-500">
+                    Continue
+                  </span>
+                </div>
+              </div>
+            )}
+            <WordCount main={article.main} />
+          </header>
 
-      {/* 目录 */}
-      <aside className="h-full lg:col-span-1">
-        <Catalog main={article.main} />
-      </aside>
-    </div>
+          {/* 正文 */}
+          <div className="text-base leading-7 text-gray-700">
+            <Body html={article.main} />
+          </div>
+        </main>
+
+        {/* 目录 */}
+        <aside className="h-full lg:col-span-1">
+          <Catalog main={article.main} />
+        </aside>
+      </div>
+    </>
   );
 }
 
@@ -146,6 +173,8 @@ const GET_ARTICLE = gql`
             data {
               attributes {
                 url
+                width
+                height
               }
             }
           }
@@ -158,6 +187,7 @@ const GET_ARTICLE = gql`
               }
             }
           }
+          url
         }
       }
     }
