@@ -255,7 +255,6 @@ const labels: Labels = {
       items: [
         { name: '网站', href: '/about' },
         { name: '联系我', href: '/contact' },
-        { name: '更新记录', href: '/changelog' },
       ]
     },
     subscription: {
@@ -279,7 +278,6 @@ const labels: Labels = {
       items: [
         { name: 'This Site', href: '/about' },
         { name: 'Contact Me', href: '/contact' },
-        { name: 'Changelog', href: '/changelog' },
       ]
     },
     subscription: {
