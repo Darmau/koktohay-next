@@ -54,7 +54,7 @@ const Header = ({ id, recent }: HeaderProps) => {
 
   return (
     <header
-      className={`w-full fixed top-0 z-10 bg-white/60 border-b transition-all duration-300 backdrop-blur-lg  ${
+      className={`w-full fixed top-0 z-10 bg-white/70 border-b transition-all duration-300 backdrop-blur-lg  ${
         visible ? "" : "transform -translate-y-full"
       }`}
       id={id}
@@ -206,12 +206,6 @@ const Header = ({ id, recent }: HeaderProps) => {
         </Popover.Group>
         <div className="hidden lg:gap-4 lg:flex lg:flex-1 lg:justify-end">
           <SwitchLanguage />
-          {/* <button
-            type="button"
-            className="inline-flex items-center rounded-full border border-gray-300 bg-white p-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-          </button> */}
         </div>
       </nav>
 
@@ -323,7 +317,6 @@ const labels: Labels = {
       items: [
         { name: "本站", href: "/about" },
         { name: "联系我", href: "/contact" },
-        { name: "更新记录", href: "/changelog" },
       ],
     },
   },
@@ -361,7 +354,6 @@ const labels: Labels = {
       items: [
         { name: "This Site", href: "/about" },
         { name: "Contact Me", href: "/contact" },
-        { name: "Changelog", href: "/changelog" },
       ],
     },
   },

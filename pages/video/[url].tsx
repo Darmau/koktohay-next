@@ -2,7 +2,7 @@ import client from "@/apollo-client";
 import ConvertToDate from "@/function/ConvertDate";
 import { gql } from "@apollo/client";
 import { CalendarIcon } from "@heroicons/react/20/solid";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ContentList, ContentsProps } from "../../function/Types";
 import Image from "next/image";
 import xiguaIcon from "@/public/img/video-xigua.svg";
@@ -15,17 +15,41 @@ export default function Video({ video }: ContentsProps) {
     {
       name: "西瓜视频",
       value: xigua,
-      icon: <Image className="h-auto w-auto" src={xiguaIcon} alt="西瓜视频" width={136} height={72} />,
+      icon: (
+        <Image
+          className="h-auto w-auto"
+          src={xiguaIcon}
+          alt="西瓜视频"
+          width={136}
+          height={72}
+        />
+      ),
     },
     {
       name: "YouTube",
       value: youtube,
-      icon: <Image className="h-auto w-auto" src={youtubeIcon} alt="YouTube" width={136} height={72} />,
+      icon: (
+        <Image
+          className="h-auto w-auto"
+          src={youtubeIcon}
+          alt="YouTube"
+          width={136}
+          height={72}
+        />
+      ),
     },
     {
       name: "哔哩哔哩",
       value: bilibili,
-      icon: <Image className="h-auto w-auto" src={bilibiliIcon} alt="哔哩哔哩" width={136} height={72} />,
+      icon: (
+        <Image
+          className="h-auto w-auto"
+          src={bilibiliIcon}
+          alt="哔哩哔哩"
+          width={136}
+          height={72}
+        />
+      ),
     },
   ];
 
@@ -59,7 +83,9 @@ export default function Video({ video }: ContentsProps) {
                     <button
                       key={source.name}
                       className="border rounded-md px-2 py-1 border-gray-200 bg-white drop-shadow-sm transition-all hover:drop-shadow-md"
-                      onClick={() => setActiveIndex(index)}
+                      onClick={() => {
+                        setActiveIndex(index);
+                      }}
                     >
                       {source.icon}
                     </button>
@@ -156,7 +182,7 @@ const GET_ALL_VIDEO = gql`
 `;
 
 const GET_VIDEO = gql`
-  query Attributes($filters: VideoFiltersInput, $locale: I18NLocaleCode) {
+  query Video($filters: VideoFiltersInput, $locale: I18NLocaleCode) {
     videos(filters: $filters, locale: $locale) {
       data {
         attributes {

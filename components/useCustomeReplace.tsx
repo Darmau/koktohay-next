@@ -2,13 +2,13 @@ import generateId from "@/function/StringID";
 import {
   InformationCircleIcon,
   LinkIcon,
-  RocketLaunchIcon,
+  RocketLaunchIcon
 } from "@heroicons/react/20/solid";
 import parse, {
   attributesToProps,
   domToReact,
   Element,
-  HTMLReactParserOptions,
+  HTMLReactParserOptions
 } from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
@@ -49,9 +49,9 @@ function useCustomReplace({ html }: { html: string }) {
       switch (domNode.name) {
         case "p":
           return (
-            <div className="text-base leading-8 text-gray-700 mt-4 mb-6">
+            <p className="text-base leading-8 text-gray-700 mt-4 mb-6">
               {domToReact(domNode.children, options)}
-            </div>
+            </p>
           );
 
         // 图片会将src传入lightbox组件，然后在lightbox组件中使用react-image-lightbox组件
@@ -124,7 +124,7 @@ function useCustomReplace({ html }: { html: string }) {
 
         // 链接样式 对于内部链接使用next/link，对于外部链接使用a标签
         case "a": {
-          const domain = process.env.NEXT_PUBLIC_LOCALHOST;
+          const domain = process.env.NEXT_LOCALHOST;
           const url = new URL(domNode.attribs.href);
           if (url.hostname === domain) {
             return (
@@ -208,7 +208,7 @@ function useCustomReplace({ html }: { html: string }) {
 
         case "blockquote":
           return (
-              <blockquote className="text-xl font-semibold leading-8 tracking-tight text-gray-900 border-l border-indigo-600 pl-8">
+              <blockquote className="pl-8 border-l border-indigo-600 text-xl font-semibold leading-8 tracking-tight text-gray-900">
                 {domToReact(domNode.children, options)}
               </blockquote>
           );
