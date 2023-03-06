@@ -1,87 +1,92 @@
-const posts = [
-  {
-    id: 1,
-    title: 'Boost your conversion rate',
-    href: '#',
-    description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: 'Marketing', href: '#' },
-    author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
-      href: '#',
-      imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-  },
-  // More posts...
-]
+import ConvertToDate from "@/function/ConvertDate";
+import getLabel from "@/function/GetLabel";
+import { ContentList, ContentsProps, Labels } from "@/function/Types";
+import { ArrowSmallRightIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-const SectionArticle = () => {
+const SectionArticle = ({ articles }: ContentsProps) => {
+  const {locale} = useRouter();
+  const label = getLabel(labels, locale)
+
   return (
-    <div className="bg-white py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">From the blog</h2>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
-            Learn how to grow your business with our expert advice.
-          </p>
+    <section className="py-8 lg:py-16">
+      <div className="flex justify-between items-start">
+        <div className="">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            {label.header}
+          </h2>
+          <p className="mt-2 text-lg leading-8 text-gray-600">{label.slogan}</p>
         </div>
-        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-y-20 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {posts.map((post) => (
-            <article key={post.id} className="flex flex-col items-start justify-between">
-              <div className="relative w-full">
-                <img
-                  src={post.imageUrl}
-                  alt=""
-                  className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-                />
-                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-              </div>
-              <div className="max-w-xl">
-                <div className="mt-8 flex items-center gap-x-4 text-xs">
-                  <time dateTime={post.datetime} className="text-gray-500">
-                    {post.date}
-                  </time>
-                  <a
-                    href={post.category.href}
-                    className="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600 hover:bg-gray-100"
-                  >
-                    {post.category.title}
-                  </a>
-                </div>
-                <div className="group relative">
-                  <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                    <a href={post.href}>
-                      <span className="absolute inset-0" />
-                      {post.title}
-                    </a>
-                  </h3>
-                  <p className="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">{post.description}</p>
-                </div>
-                <div className="relative mt-8 flex items-center gap-x-4">
-                  <img src={post.author.imageUrl} alt="" className="h-10 w-10 rounded-full bg-gray-100" />
-                  <div className="text-sm leading-6">
-                    <p className="font-semibold text-gray-900">
-                      <a href={post.author.href}>
-                        <span className="absolute inset-0" />
-                        {post.author.name}
-                      </a>
-                    </p>
-                    <p className="text-gray-600">{post.author.role}</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
+        <div className="group mt-4 flex flex-col justify-between gap-6 cursor-pointer sm:mt-8 sm:flex-row-reverse sm:gap-8 lg:mt-4 lg:flex-col">
+          <Link className="flex items-center text-sm font-semibold leading-6 text-indigo-600"
+          href="/articles/1">
+            MORE
+            <ArrowSmallRightIcon className="h-5 w-5 transition-all group-hover:translate-x-0.5" />
+          </Link>
         </div>
       </div>
-    </div>
-  )
-}
+      <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-y-12 gap-x-8 lg:mt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        {articles.map((item: ContentList) => (
+          <Link
+          key={item.id}
+          href={`/article/${item.attributes.url}`}
+          >
+          <article
+            className="group flex flex-col gap-4"
+          >
+            <div className="relative w-full">
+              <Image
+                src={item.attributes.cover.data.attributes.url}
+                alt="封面图片"
+                width={600}
+                height={400}
+                className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+              />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+            </div>
+            <div className="max-w-xl">
+              <div className="flex items-center gap-x-4 text-xs">
+                <time
+                  dateTime={item.attributes.publishDate!.toString()}
+                  className="text-gray-500"
+                >
+                  {ConvertToDate(item.attributes.publishDate)}
+                </time>
+                <h4
+                  className="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600"
+                >
+                  {item.attributes.article_category.data.attributes.title}
+                </h4>
+              </div>
+              <div className="group relative">
+                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                    <span className="absolute inset-0" />
+                    {item.attributes.title}
+                </h3>
+                <p className="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">
+                  {item.attributes.description}
+                </p>
+              </div>
+            </div>
+          </article>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default SectionArticle;
+
+const labels: Labels= {
+  "zh-CN": {
+    header: "文章",
+    slogan: "写作不只是为了记录，更是为了思考",
+  },
+  "en": {
+    header: "Articles",
+    slogan: "Writing is not only for recording, but also for thinking",
+  },
+}
