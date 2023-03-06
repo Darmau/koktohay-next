@@ -10,7 +10,7 @@ const SectionCover = ({article}: ContentsProps) => {
   const label = getLabel(labels, locale)
 
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900">
+    <div className="relative isolate overflow-hidden h-1/2 bg-gray-900">
       <Image
         priority
         src={article.cover.data.attributes.url}

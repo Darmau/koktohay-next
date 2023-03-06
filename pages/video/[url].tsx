@@ -15,26 +15,51 @@ export default function Video({ video }: ContentsProps) {
     {
       name: "西瓜视频",
       value: xigua,
-      icon: <Image className="h-auto w-auto" src={xiguaIcon} alt="西瓜视频" width={136} height={72} />,
+      icon: (
+        <Image
+          className="h-auto w-auto"
+          src={xiguaIcon}
+          alt="西瓜视频"
+          width={136}
+          height={72}
+        />
+      ),
     },
     {
       name: "YouTube",
       value: youtube,
-      icon: <Image className="h-auto w-auto" src={youtubeIcon} alt="YouTube" width={136} height={72} />,
+      icon: (
+        <Image
+          className="h-auto w-auto"
+          src={youtubeIcon}
+          alt="YouTube"
+          width={136}
+          height={72}
+        />
+      ),
     },
     {
       name: "哔哩哔哩",
       value: bilibili,
-      icon: <Image className="h-auto w-auto" src={bilibiliIcon} alt="哔哩哔哩" width={136} height={72} />,
+      icon: (
+        <Image
+          className="h-auto w-auto"
+          src={bilibiliIcon}
+          alt="哔哩哔哩"
+          width={136}
+          height={72}
+        />
+      ),
     },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const [frameKey, setFrameKey] = useState(0);
+  let frameKey = 0;
 
   useEffect(() => {
     const iframe = document.querySelector("#video-frame");
     iframe!.setAttribute("src", videoSources[activeIndex].value);
+    frameKey++;
   }, [activeIndex, videoSources]);
 
   return (
@@ -58,7 +83,9 @@ export default function Video({ video }: ContentsProps) {
                     <button
                       key={source.name}
                       className="border rounded-md px-2 py-1 border-gray-200 bg-white drop-shadow-sm transition-all hover:drop-shadow-md"
-                      onClick={() => {setActiveIndex(index) ;setFrameKey(frameKey + 1)}}
+                      onClick={() => {
+                        setActiveIndex(index);
+                      }}
                     >
                       {source.icon}
                     </button>

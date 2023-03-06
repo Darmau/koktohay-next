@@ -23,7 +23,7 @@ export default function Home({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white pb-8 sm:pb-16 sm:pt-6">
+      <div className="isolate bg-white pb-8 sm:pb-16 sm:pt-6">
         <SectionCover article={cover} />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionArticle articles={articles} />
