@@ -54,7 +54,7 @@ const Header = ({ id, recent }: HeaderProps) => {
 
   return (
     <header
-      className={`w-full fixed top-0 z-10 bg-white/60 border-b transition-all duration-300 backdrop-blur-lg  ${
+      className={`w-full fixed top-0 z-10 bg-white/70 border-b transition-all duration-300 backdrop-blur-lg  ${
         visible ? "" : "transform -translate-y-full"
       }`}
       id={id}

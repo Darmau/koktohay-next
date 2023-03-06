@@ -1,4 +1,4 @@
-import useCustomReplace from "@/hooks/useCustomeReplace";
+import useCustomReplace from "@/components/useCustomeReplace";
 
 export default function Body({ html }: { html: string }) {
   const parsedHtml = useCustomReplace({ html });

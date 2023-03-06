@@ -44,7 +44,7 @@ export default function AllAlbums({
   return (
     <div className="bg-white py-8 sm:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl pt-4 pb-10 lg:mx-0">
+        <div className="pt-4 pb-10 lg:mx-0">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             {label.header}
           </h2>
@@ -60,8 +60,9 @@ export default function AllAlbums({
           padding={0}
           spacing={8}
           columns={(containerWidth) => {
-            if (containerWidth < 400) return 2;
-            if (containerWidth < 800) return 3;
+            if (containerWidth < 400) return 1;
+            if (containerWidth < 700) return 2;
+            if (containerWidth < 1000) return 3;
             return 4;
           }}
           defaultContainerWidth={960}

@@ -8,8 +8,6 @@ import parse, {
 } from "html-react-parser";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Children } from "react";
-
 function isTextNode(node: any): node is Text {
   return node.type === "text";
 }
@@ -39,7 +37,7 @@ const options: HTMLReactParserOptions = {
           <li className="flex items-center">
             <ChevronRightIcon className="h-4 w-4" />
             <Link
-              className="pl-2 text-sm hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
+              className="text-sm hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
               href={`#${generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
               )}`}
@@ -54,7 +52,7 @@ const options: HTMLReactParserOptions = {
           <li className="flex items-center">
             <ChevronDoubleRightIcon className="h-4 w-4" />
             <Link
-              className="pl-6 text-sm hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
+              className="pl-2 text-sm hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
               href={`#${generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
               )}`}
@@ -63,7 +61,7 @@ const options: HTMLReactParserOptions = {
             </Link>
           </li>
         );
-      } else return undefined;
+      } else return <></>;
     }
   },
 };
