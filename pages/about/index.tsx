@@ -3,7 +3,14 @@ import {
   BoltIcon, FingerPrintIcon,
   GlobeAsiaAustraliaIcon
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import Link from "next/link";
+import Cover from "@/public/img/about-cover.jpg";
+import Node from "@/public/img/node.svg";
+import Strapi from "@/public/img/strapi.svg";
+import Next from "@/public/img/next.svg";
+import Apollo from "@/public/img/apollo.svg";
+import Tailwind from "@/public/img/tailwind.svg";
 
 const features = [
   {
@@ -75,11 +82,11 @@ export default function Example() {
             </div>
             <div className="mt-16 flow-root sm:mt-24">
               <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                <img
-                  src="https://tailwindui.com/img/component-images/project-app-screenshot.png"
-                  alt="App screenshot"
+                <Image
+                  src={Cover}
+                  alt="Cover"
                   width={2432}
-                  height={1442}
+                  height={1379}
                   className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
                 />
               </div>
@@ -120,40 +127,40 @@ export default function Example() {
             本站采用的技术
           </h2>
           <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-            <img
+            <Image
               className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg"
-              alt="Transistor"
-              width={158}
-              height={48}
+              src={Next}
+              alt="next"
+              width={180}
+              height={60}
             />
-            <img
+            <Image
               className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg"
-              alt="Reform"
-              width={158}
-              height={48}
+              src={Strapi}
+              alt="Strapi"
+              width={180}
+              height={60}
             />
-            <img
+            <Image
               className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg"
-              alt="Tuple"
-              width={158}
-              height={48}
+              src={Apollo}
+              alt="Apollo"
+              width={180}
+              height={60}
             />
-            <img
+            <Image
               className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg"
-              alt="SavvyCal"
-              width={158}
-              height={48}
+              src={Node}
+              alt="Node.js"
+              width={180}
+              height={60}
             />
-            <img
+            <Image
               className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg"
-              alt="Statamic"
-              width={158}
-              height={48}
+              src={Tailwind}
+              alt="tailwind"
+              width={180}
+              height={60}
             />
           </div>
         </div>
