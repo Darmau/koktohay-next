@@ -8,22 +8,22 @@ function calculateDays() {
   const ONE_DAY = 1000 * 60 * 60 * 24; // 一天的毫秒数
   const startDate = new Date(2022, 9, 8); // 月份是从0开始的，所以要减去1
   const endDate = new Date();
-  
+
   const days = Math.floor((endDate.getTime() - startDate.getTime()) / ONE_DAY);
-  
+
   return days;
 }
+
+const plausibleUrl = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+const plausibleToken = process.env.NEXT_PUBLIC_PLAUSIBLE_TOKEN;
+const siteId = process.env.NEXT_PUBLIC_PLAUSIBLE_SITE_ID;
 
 const SectionStats = () => {
   const [realtimeVisitor, setRealtimeVisitor] = useState("");
   const [onemonthVisitor, setOnemonthVisitor] = useState(0);
   const [onemonthPageView, setOnemonthPageView] = useState(0);
-  const plausibleUrl = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
-  const plausibleToken = process.env.NEXT_PUBLIC_PLAUSIBLE_TOKEN;
-  const siteId = process.env.NEXT_PUBLIC_PLAUSIBLE_SITE_ID;
-
   const { locale } = useRouter();
-  const label = getLabel(labels, locale)
+  const label = getLabel(labels, locale);
 
   useEffect(() => {
     async function fetchData() {
@@ -66,7 +66,6 @@ const SectionStats = () => {
             </p>
           </div>
           <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
-
             <div className="flex flex-col bg-gray-400/5 p-8">
               <dt className="text-sm font-semibold leading-6 text-gray-600">
                 {label.realtime}
@@ -96,10 +95,10 @@ const SectionStats = () => {
                 {label.runtime}
               </dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900">
-               {calculateDays()}{label.day}
+                {calculateDays()}
+                {label.day}
               </dd>
             </div>
-
           </dl>
         </div>
       </div>
@@ -117,15 +116,15 @@ const labels: Labels = {
     onemonthVisitor: "本月总访客",
     onemonthPageView: "本月总浏览",
     runtime: "本站已运行",
-    day: "天"
+    day: "天",
   },
-  "en": {
+  en: {
     title: "Site Stats",
     slogan: "Keep updating",
     realtime: "Realtime",
     onemonthVisitor: "Current Month Visitors",
     onemonthPageView: "Current Month Page Views",
     runtime: "Runtime",
-    day: "Days"
-  }
-}
+    day: "Days",
+  },
+};

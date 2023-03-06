@@ -240,7 +240,7 @@ const GET_ALL_ALBUM = gql`
 
 // 获取相册详细数据
 const GET_ALBUM = gql`
-  query Albums($locale: I18NLocaleCode, $filters: AlbumFiltersInput) {
+  query Album($locale: I18NLocaleCode, $filters: AlbumFiltersInput) {
     albums(locale: $locale, filters: $filters) {
       data {
         attributes {

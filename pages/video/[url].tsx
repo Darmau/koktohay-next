@@ -2,7 +2,7 @@ import client from "@/apollo-client";
 import ConvertToDate from "@/function/ConvertDate";
 import { gql } from "@apollo/client";
 import { CalendarIcon } from "@heroicons/react/20/solid";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ContentList, ContentsProps } from "../../function/Types";
 import Image from "next/image";
 import xiguaIcon from "@/public/img/video-xigua.svg";
@@ -30,12 +30,11 @@ export default function Video({ video }: ContentsProps) {
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
-  let frameKey = 0;
+  const [frameKey, setFrameKey] = useState(0);
 
   useEffect(() => {
     const iframe = document.querySelector("#video-frame");
     iframe!.setAttribute("src", videoSources[activeIndex].value);
-    frameKey++;
   }, [activeIndex, videoSources]);
 
   return (
@@ -59,7 +58,7 @@ export default function Video({ video }: ContentsProps) {
                     <button
                       key={source.name}
                       className="border rounded-md px-2 py-1 border-gray-200 bg-white drop-shadow-sm transition-all hover:drop-shadow-md"
-                      onClick={() => setActiveIndex(index)}
+                      onClick={() => {setActiveIndex(index) ;setFrameKey(frameKey + 1)}}
                     >
                       {source.icon}
                     </button>
@@ -156,7 +155,7 @@ const GET_ALL_VIDEO = gql`
 `;
 
 const GET_VIDEO = gql`
-  query Attributes($filters: VideoFiltersInput, $locale: I18NLocaleCode) {
+  query Video($filters: VideoFiltersInput, $locale: I18NLocaleCode) {
     videos(filters: $filters, locale: $locale) {
       data {
         attributes {

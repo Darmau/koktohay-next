@@ -135,7 +135,7 @@ const GET_ALL_ARTICLE = gql`
 `;
 // 获取文章详细数据
 const GET_ARTICLE = gql`
-  query Attributes($filters: ArticleFiltersInput, $locale: I18NLocaleCode) {
+  query Article($filters: ArticleFiltersInput, $locale: I18NLocaleCode) {
     articles(filters: $filters, locale: $locale) {
       data {
         attributes {
@@ -150,9 +150,6 @@ const GET_ARTICLE = gql`
             }
           }
           publishDate
-          tag {
-            name
-          }
           article_category {
             data {
               attributes {
