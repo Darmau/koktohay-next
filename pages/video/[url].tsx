@@ -8,6 +8,7 @@ import Image from "next/image";
 import xiguaIcon from "@/public/img/video-xigua.svg";
 import bilibiliIcon from "@/public/img/video-bilibili.svg";
 import youtubeIcon from "@/public/img/video-youtube.svg";
+import { NextSeo } from "next-seo";
 
 export default function Video({ video }: ContentsProps) {
   const { xigua, bilibili, youtube } = video;
@@ -63,59 +64,87 @@ export default function Video({ video }: ContentsProps) {
   }, [activeIndex, videoSources]);
 
   return (
-    <main className="mx-auto max-w-7xl pt-8 mb-8 sm:px-6 sm:pt-16 lg:px-8">
-      <div className="mx-auto max-w-2xl lg:max-w-none">
-        <div className="lg:grid lg:grid-cols-3 lg:items-start lg:gap-x-8">
-          {/* 视频主体 */}
-          <div className="col-span-2 px-4">
-            <iframe
-              key={frameKey}
-              id="video-frame"
-              title={video.title}
-              className="w-full h-auto aspect-video"
-              src={videoSources[activeIndex].value}
-              allowFullScreen
-            ></iframe>
-            <div className="py-4 flex gap-4">
-              {videoSources.map(
-                (source, index) =>
-                  source.value && (
-                    <button
-                      key={source.name}
-                      className="border rounded-md px-2 py-1 border-gray-200 bg-white drop-shadow-sm transition-all hover:drop-shadow-md"
-                      onClick={() => {
-                        setActiveIndex(index);
-                      }}
-                    >
-                      {source.icon}
-                    </button>
-                  )
-              )}
+    <>
+      <NextSeo
+        title={video.title}
+        description={video.description}
+        canonical={`https://darmau.design/video/${video.url}`}
+        languageAlternates={[
+          {
+            hrefLang: "en",
+            href: `https://darmau.design/en/video/${video.url}`,
+          },
+        ]}
+        openGraph={{
+          url: `https://darmau.design/video/${video.url}`,
+          title: video.title,
+          description: video.description,
+          images: [
+            {
+              url: video.cover.data.attributes.url,
+              width: video.cover.data.attributes.width,
+              height: video.cover.data.attributes.height,
+              alt: video.cover.data.attributes.alternativeText,
+              type: "image/jpeg",
+            },
+          ],
+        }}
+      />
+
+      <main className="mx-auto max-w-7xl pt-8 mb-8 sm:px-6 sm:pt-16 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:max-w-none">
+          <div className="lg:grid lg:grid-cols-3 lg:items-start lg:gap-x-8">
+            {/* 视频主体 */}
+            <div className="col-span-2 px-4">
+              <iframe
+                key={frameKey}
+                id="video-frame"
+                title={video.title}
+                className="w-full h-auto aspect-video"
+                src={videoSources[activeIndex].value}
+                allowFullScreen
+              ></iframe>
+              <div className="py-4 flex gap-4">
+                {videoSources.map(
+                  (source, index) =>
+                    source.value && (
+                      <button
+                        key={source.name}
+                        className="border rounded-md px-2 py-1 border-gray-200 bg-white drop-shadow-sm transition-all hover:drop-shadow-md"
+                        onClick={() => {
+                          setActiveIndex(index);
+                        }}
+                      >
+                        {source.icon}
+                      </button>
+                    )
+                )}
+              </div>
             </div>
-          </div>
 
-          {/* 视频信息 */}
-          <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:col-span-1 lg:mt-0">
-            <h1 className="text-3xl mb-4 font-bold tracking-tight text-gray-900">
-              {video.title}
-            </h1>
+            {/* 视频信息 */}
+            <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:col-span-1 lg:mt-0">
+              <h1 className="text-3xl mb-4 font-bold tracking-tight text-gray-900">
+                {video.title}
+              </h1>
 
-            <div className="flex gap-1 items-center text-sm mb-4 text-gray-600">
-              <CalendarIcon className="h-4 w-4" />
-              {ConvertToDate(video.publishDate)}
-            </div>
+              <div className="flex gap-1 items-center text-sm mb-4 text-gray-600">
+                <CalendarIcon className="h-4 w-4" />
+                {ConvertToDate(video.publishDate)}
+              </div>
 
-            <div className="mt-3">
-              <div className="mt-6">
-                <div className="space-y-6 text-base text-gray-700">
-                  {video.description}
+              <div className="mt-3">
+                <div className="mt-6">
+                  <div className="space-y-6 text-base text-gray-700">
+                    {video.description}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
 
@@ -192,6 +221,15 @@ const GET_VIDEO = gql`
           xigua
           bilibili
           youtube
+          cover {
+            data {
+              attributes {
+                url
+                width
+                height
+              }
+            }
+          }
         }
       }
     }

@@ -10,6 +10,7 @@ import {
   ArrowsPointingOutIcon,
   CalendarIcon,
 } from "@heroicons/react/20/solid";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
@@ -40,6 +41,28 @@ export default function Album({ album }: ContentsProps) {
 
   return (
     <>
+      <NextSeo
+        title={album.title}
+        description={album.description}
+        canonical={`https://darmau.design/album/${album.url}`}
+        languageAlternates={[{
+          hrefLang: 'en',
+          href: `https://darmau.design/en/album/${album.url}`,
+        }]}
+        openGraph={{
+          url: `https://darmau.design/album/${album.url}`,
+          title: album.title,
+          description: album.description,
+          images: [{
+            url: album.gallery.data[0].attributes.url,
+            width: album.gallery.data[0].attributes.width,
+            height: album.gallery.data[0].attributes.height,
+            alt: album.gallery.data[0].attributes.alternativeText,
+            type: 'image/jpeg',
+          }]
+        }}
+      />
+
       <Lightbox
         open={open}
         close={() => setOpen(false)}
@@ -258,6 +281,7 @@ const GET_ALBUM = gql`
               }
             }
           }
+          url
         }
       }
     }
