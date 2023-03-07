@@ -1,14 +1,9 @@
-import ConvertToDate from "@/function/ConvertDate";
 import getLabel from "@/function/GetLabel";
-import { ContentList, Labels } from "@/function/Types";
+import { Labels } from "@/function/Types";
 import { Dialog, Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
-  Bars3Icon,
-  CodeBracketIcon,
-  LightBulbIcon,
-  PaintBrushIcon,
-  XMarkIcon
+  Bars3Icon, XMarkIcon
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,17 +19,9 @@ interface navItem {
 
 interface HeaderProps {
   id: string;
-  recent: ContentList[];
 }
 
-interface CategoryList {
-  name: string;
-  href: string;
-  description: string;
-  icon: React.ComponentType<React.HTMLProps<HTMLElement>>;
-}
-
-const Header = ({ id, recent }: HeaderProps) => {
+const Header = ({ id }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -79,85 +66,13 @@ const Header = ({ id, recent }: HeaderProps) => {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <Popover className="relative">
-            <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600">
-              <span>{label.article.title}</span>
-              <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
-            </Popover.Button>
 
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0 translate-y-1"
-              enterTo="opacity-100 translate-y-0"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-1"
-            >
-              <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
-                <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
-                  <div className="p-4">
-                    {label.article.category.map((item: CategoryList) => (
-                      <div
-                        key={item.name}
-                        className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50"
-                      >
-                        <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <item.icon
-                            className="h-6 w-6 text-gray-600 group-hover:text-blue-600"
-                            aria-hidden="true"
-                          />
-                        </div>
-                        <div>
-                          <Link
-                            href={item.href}
-                            className="font-semibold text-gray-900"
-                          >
-                            {item.name}
-                            <span className="absolute inset-0" />
-                          </Link>
-                          <p className="mt-1 text-gray-600">
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="bg-gray-50 p-8">
-                    <div className="flex justify-between">
-                      <h3 className="text-sm font-semibold leading-6 text-gray-500">
-                        {label.article.recent}
-                      </h3>
-                      <Link
-                        href="/articles/1"
-                        className="text-sm font-semibold leading-6 text-blue-600"
-                      >
-                        {label.article.all}{" "}
-                        <span aria-hidden="true">&rarr;</span>
-                      </Link>
-                    </div>
-                    <ul role="list" className="mt-6 space-y-6">
-                      {recent.map((post) => (
-                        <li key={post.id} className="relative">
-                          <span className="block text-xs leading-6 text-gray-600">
-                            {ConvertToDate(post.attributes.publishDate)}
-                          </span>
-                          <Link
-                            href={`/article/${post.attributes.url}`}
-                            className="block truncate text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
-                          >
-                            {post.attributes.title}
-                            <span className="absolute inset-0" />
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </Popover.Panel>
-            </Transition>
-          </Popover>
-
+          <Link
+            href="/articles/1"
+            className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
+          >
+            {label.article}
+          </Link>
           <Link
             href="/albums/1"
             className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
@@ -238,7 +153,7 @@ const Header = ({ id, recent }: HeaderProps) => {
                   href="/articles/1"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  {label.article.title}
+                  {label.article}
                 </Link>
 
                 <Link
@@ -285,31 +200,7 @@ export default Header;
 // 文案信息
 const labels: Labels = {
   "zh-CN": {
-    article: {
-      title: "文章",
-      category: [
-        {
-          name: "生活",
-          href: "/category/article/life/1",
-          description: "杂七杂八，乱七八糟，七上八下",
-          icon: LightBulbIcon,
-        },
-        {
-          name: "开发",
-          href: "/category/article/dev/1",
-          description: "前端开发相关文章，专注视觉表现和创意编码",
-          icon: CodeBracketIcon,
-        },
-        {
-          name: "设计",
-          href: "/category/article/design/1",
-          description: "一些关于设计的吐槽",
-          icon: PaintBrushIcon,
-        },
-      ],
-      recent: "最新文章",
-      all: "全部",
-    },
+    article: "文章",
     album: "摄影",
     video: "视频",
     about: {
@@ -321,32 +212,7 @@ const labels: Labels = {
     },
   },
   en: {
-    article: {
-      title: "Article",
-      category: [
-        {
-          name: "Life",
-          href: "/category/article/life/1",
-          description: "Just some thoughts",
-          icon: LightBulbIcon,
-        },
-        {
-          name: "Development",
-          href: "/category/article/dev/1",
-          description:
-            "Focusing on visual performance and creative development",
-          icon: CodeBracketIcon,
-        },
-        {
-          name: "Design",
-          href: "/category/article/design/1",
-          description: "Some complaints about the design",
-          icon: PaintBrushIcon,
-        },
-      ],
-      recent: "Recent Article",
-      all: "See All",
-    },
+    article: "Article",
     album: "Album",
     video: "Video",
     about: {
