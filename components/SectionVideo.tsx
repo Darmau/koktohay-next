@@ -21,7 +21,7 @@ const SectionVideo = ({ videos }: ContentsProps) => {
         </div>
         <div className="group mt-4 flex flex-col justify-between gap-6 cursor-pointer sm:mt-8 sm:flex-row-reverse sm:gap-8 lg:mt-4 lg:flex-col">
           <Link
-            className="flex items-center text-sm font-semibold leading-6 text-violet-600"
+            className="flex items-center text-sm font-semibold leading-6 text-blue-600"
             href="/videos/1"
           >
             MORE

@@ -81,7 +81,7 @@ const Pagination = ({
                 key={i}
                 href={`?page=${pageNumber}`}
                 className={`page-item ${pageNumber === currentPage ? 
-                  'relative z-10 inline-flex items-center border border-violet-500 bg-violet-50 px-4 py-2 text-sm font-medium text-violet-600 focus:z-20' : 
+                  'relative z-10 inline-flex items-center border border-blue-500 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600 focus:z-20' : 
                   'relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20'} ${typeof pageNumber === 'string' ? 'disabled' : ''
                   }`}>
                 {pageNumber}

@@ -119,7 +119,7 @@ export default function Album({ album }: ContentsProps) {
                             <span
                               className={classNames(
                                 selected
-                                  ? "ring-violet-500"
+                                  ? "ring-blue-500"
                                   : "ring-transparent",
                                 "pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2"
                               )}

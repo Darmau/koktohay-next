@@ -37,7 +37,7 @@ export default function BlogPostItem({ post }: ContentsProps) {
             </time>
           </div>
           <div className="relative max-w-xl">
-            <h3 className="mt-3 text-2xl font-semibold leading-8 text-gray-900 group-hover:text-violet-600">
+            <h3 className="mt-3 text-2xl font-semibold leading-8 text-gray-900 group-hover:text-blue-600">
               <span className="absolute inset-0" />
               {post.attributes.title}
             </h3>

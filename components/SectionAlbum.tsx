@@ -34,7 +34,7 @@ const SectionAlbum = ({ albums }: ContentsProps) => {
           <p className="mt-2 text-lg leading-8 text-gray-600">{label.slogan}</p>
         </div>
         <div className="group mt-4 flex flex-col justify-between gap-6 cursor-pointer sm:mt-8 sm:flex-row-reverse sm:gap-8 lg:mt-4 lg:flex-col">
-          <Link className="flex items-center text-sm font-semibold leading-6 text-violet-600"
+          <Link className="flex items-center text-sm font-semibold leading-6 text-blue-600"
           href="/albums/1">
             MORE
             <ArrowSmallRightIcon className="h-5 w-5 transition-all group-hover:translate-x-0.5" />

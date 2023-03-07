@@ -49,7 +49,7 @@ const ExifInfo: FC<Props> = ({ url }: Props) => {
   if (isLoading) {
     return (
       <div className="w-full h-24 flex items-center justify-center">
-        <ArrowPathIcon className="h-5 w-5 animate-spin text-violet-600" />
+        <ArrowPathIcon className="h-5 w-5 animate-spin text-blue-600" />
       </div>
     );
   }

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Wechat() {
   return (
-    <div className="rounded-lg bg-gray-50 p-8">
+    <div className="hidden lg:block rounded-lg bg-gray-50 p-8">
       <h3 className="text-base font-semibold leading-7 text-gray-900">
         关注公众号
       </h3>
