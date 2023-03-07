@@ -1,4 +1,5 @@
 import client from "@/apollo-client";
+import { Comments } from "@/components/Comment";
 import ExifInfo from "@/components/ExifInfo";
 import MapWithExif from "@/components/Map";
 import ConvertToDate from "@/function/ConvertDate";
@@ -8,9 +9,9 @@ import {
   ArrowSmallLeftIcon,
   ArrowSmallRightIcon,
   ArrowsPointingOutIcon,
-  CalendarIcon,
+  CalendarIcon
 } from "@heroicons/react/20/solid";
-import { NextSeo } from "next-seo";
+import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
@@ -62,6 +63,20 @@ export default function Album({ album }: ContentsProps) {
           }]
         }}
       />
+      {/* 结构化搜索数据 */}
+      <ArticleJsonLd
+        url={`https://darmau.design/album/${album.url}`}
+        title={album.title.title}
+        images={[
+          album.gallery.data[0].attributes.url
+        ]}
+        datePublished={album.publishDate}
+        authorName={[{name: '李大毛', url: 'https://darmau.design'}]}
+        publisherName="可可托海没有海"
+        publisherLogo="/img/logo.svg"
+        description={album.description}
+        isAccessibleForFree={true}
+      />
 
       <Lightbox
         open={open}
@@ -104,7 +119,7 @@ export default function Album({ album }: ContentsProps) {
                             <span
                               className={classNames(
                                 selected
-                                  ? "ring-indigo-500"
+                                  ? "ring-violet-500"
                                   : "ring-transparent",
                                 "pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2"
                               )}
@@ -191,6 +206,7 @@ export default function Album({ album }: ContentsProps) {
               </div>
               {/* 放置地图 */}
               <MapWithExif src={photoArray[0].src} />
+              <Comments location={""} />
             </div>
           </div>
         </div>

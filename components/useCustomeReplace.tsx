@@ -124,7 +124,7 @@ function useCustomReplace({ html }: { html: string }) {
 
         // 链接样式 对于内部链接使用next/link，对于外部链接使用a标签
         case "a": {
-          const domain = process.env.NEXT_LOCALHOST;
+          const domain = process.env.NEXT_HOSTNAME;
           const url = new URL(domNode.attribs.href);
           if (url.hostname === domain) {
             return (
@@ -208,7 +208,7 @@ function useCustomReplace({ html }: { html: string }) {
 
         case "blockquote":
           return (
-              <blockquote className="pl-8 border-l border-indigo-600 text-xl font-semibold leading-8 tracking-tight text-gray-900">
+              <blockquote className="pl-8 border-l border-violet-600 text-xl font-semibold leading-8 tracking-tight text-gray-900">
                 {domToReact(domNode.children, options)}
               </blockquote>
           );

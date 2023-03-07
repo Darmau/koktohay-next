@@ -47,7 +47,7 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
 
   if (loading) {
     return <div className="w-full h-80 bg-gray-200 flex items-center justify-center">
-      <ArrowPathIcon className="h-5 w-5 animate-spin text-indigo-600" />
+      <ArrowPathIcon className="h-5 w-5 animate-spin text-violet-600" />
     </div>;
   }
 
@@ -56,14 +56,14 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
       <NearestPlace latitude={location.lat} longitude={location.lng} />
       <Map
         {...viewport}
-        style={{ width: "100%", height: "320px" }}
+        style={{ width: "100%", height: "320px", marginBottom: "24px" }}
         mapStyle="mapbox://styles/mapbox/light-v10"
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         onMove={(evt) => setViewport(evt.viewState)}
         attributionControl={false}
       >
         <Marker latitude={location.lat} longitude={location.lng}>
-          <MapPinIcon className="h-5 w-5 text-indigo-500" />
+          <MapPinIcon className="h-5 w-5 text-violet-500" />
         </Marker>
         <NavigationControl />
         <AttributionControl customAttribution="可可托海没有海" />

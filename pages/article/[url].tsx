@@ -1,38 +1,60 @@
 import client from "@/apollo-client";
 import Body from "@/components/Body";
 import Catalog from "@/components/Catalog";
+import { Comments } from "@/components/Comment";
 import WordCount from "@/components/WordCount";
 import ConvertToDate from "@/function/ConvertDate";
 import { gql } from "@apollo/client";
 import { CalendarIcon } from "@heroicons/react/20/solid";
+import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ContentList } from "../../function/Types";
+import { ArticleJsonLd } from "next-seo";
 
 export default function Article({ article }: any) {
   return (
     <>
+      {/* SEO设置 */}
       <NextSeo
         title={article.title}
         description={article.description}
         canonical={`https://darmau.design/article/${article.url}`}
-        languageAlternates={[{
-          hrefLang: 'en',
-          href: `https://darmau.design/en/article/${article.url}`,
-        }]}
+        languageAlternates={[
+          {
+            hrefLang: "en",
+            href: `https://darmau.design/en/article/${article.url}`,
+          },
+        ]}
         openGraph={{
           url: `https://darmau.design/article/${article.url}`,
           title: article.title,
           description: article.description,
-          images: [{
-            url: article.cover.data.attributes.url,
-            width: article.cover.data.attributes.width,
-            height: article.cover.data.attributes.height,
-            alt: article.cover.data.attributes.alternativeText,
-            type: 'image/jpeg',
-          }]
+          images: [
+            {
+              url: article.cover.data.attributes.url,
+              width: article.cover.data.attributes.width,
+              height: article.cover.data.attributes.height,
+              alt: article.cover.data.attributes.alternativeText,
+              type: "image/jpeg",
+            },
+          ],
         }}
+      />
+      {/* 结构化搜索数据 */}
+      <ArticleJsonLd
+        url={`https://darmau.design/article/${article.url}`}
+        title={article.title}
+        images={[
+          article.cover.data.attributes.url
+        ]}
+        datePublished={article.publishDate}
+        authorName={[{name: '李大毛', url: 'https://darmau.design'}]}
+        publisherName="可可托海没有海"
+        publisherLogo="/img/logo.svg"
+        description={article.description}
+        isAccessibleForFree={true}
       />
 
       <div className="bg-white py-16 px-6 max-w-5xl mx-auto flex flex-col-reverse gap-8 lg:py-32 lg:grid lg:grid-cols-article lg:px-8 lg:gap-12">
@@ -40,7 +62,7 @@ export default function Article({ article }: any) {
           {/* 封面和标题 */}
           <header>
             <Link
-              className="mb-6 text-base font-semibold leading-7 text-indigo-600 hover:font-bold cursor-pointer"
+              className="mb-6 text-base font-semibold leading-7 text-violet-600 hover:font-bold cursor-pointer"
               href={article.article_category.data.attributes.url}
             >
               {article.article_category.data.attributes.title ?? "无分类"}
@@ -87,6 +109,25 @@ export default function Article({ article }: any) {
           <div className="text-base leading-7 text-gray-700">
             <Body html={article.main} />
           </div>
+
+          <div className="relative my-16">
+            <div
+              className="absolute inset-0 flex items-center"
+              aria-hidden="true"
+            >
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-white px-2 text-gray-500">
+                <ChatBubbleLeftRightIcon
+                  className="h-5 w-5 text-gray-500"
+                  aria-hidden="true"
+                />
+              </span>
+            </div>
+          </div>
+
+          <Comments location={""} />
         </main>
 
         {/* 目录 */}

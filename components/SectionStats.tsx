@@ -94,7 +94,7 @@ const SectionStats = () => {
             <dt className="text-sm font-semibold leading-6 text-gray-600">
               {label.realtime}
             </dt>
-            <dd className="order-first text-3xl font-semibold tracking-tight text-indigo-600">
+            <dd className="order-first text-3xl font-semibold tracking-tight text-violet-600">
               {realtimeVisitor}
             </dd>
           </div>

@@ -20,6 +20,16 @@ export default function Home({
     <>
     <NextSeo 
       title={locale === "zh-CN" ? "首页 | 可可托海没有海" : "Home | Nomadicoder"}
+      openGraph={{
+        url: "https://darmau.design",
+        title: locale === "zh-CN" ? "首页 | 可可托海没有海" : "Home | Nomadicoder",
+        images: [{
+          url: cover.cover.data.attributes.url,
+          width: cover.cover.data.attributes.width,
+          height: cover.cover.data.attributes.height,
+          type: "image/jpeg",
+        }]
+      }}
     />
       <div className="isolate bg-white pb-8 sm:pb-16 sm:pt-6">
         <SectionCover article={cover} />
@@ -61,6 +71,8 @@ const GET_HOMEPAGE = gql`
             data {
               attributes {
                 url
+                height
+                width
               }
             }
           }
