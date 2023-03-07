@@ -47,7 +47,7 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
 
   if (loading) {
     return <div className="w-full h-80 bg-gray-200 flex items-center justify-center">
-      <ArrowPathIcon className="h-5 w-5 animate-spin text-indigo-600" />
+      <ArrowPathIcon className="h-5 w-5 animate-spin text-violet-600" />
     </div>;
   }
 
@@ -63,7 +63,7 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
         attributionControl={false}
       >
         <Marker latitude={location.lat} longitude={location.lng}>
-          <MapPinIcon className="h-5 w-5 text-indigo-500" />
+          <MapPinIcon className="h-5 w-5 text-violet-500" />
         </Marker>
         <NavigationControl />
         <AttributionControl customAttribution="可可托海没有海" />

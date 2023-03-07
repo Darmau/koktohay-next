@@ -31,7 +31,7 @@ const NearestPlace: React.FC<Props> = ({ latitude, longitude }) => {
 
   return (
     <div className="text-sm text-gray-500 flex gap-1 items-center my-4">
-      <span><MapPinIcon className="h-4 w-4 text-indigo-600" /></span>
+      <span><MapPinIcon className="h-4 w-4 text-violet-600" /></span>
       {placeName}
     </div>
   );

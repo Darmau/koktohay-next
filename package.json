@@ -33,6 +33,7 @@
     "react-photo-album": "^2.0.2",
     "react-syntax-highlighter": "^15.5.0",
     "react-top-loading-bar": "^2.3.1",
+    "sharp": "^0.31.3",
     "typescript": "4.9.5",
     "words-count": "^2.0.2",
     "yet-another-react-lightbox": "^2.5.0"

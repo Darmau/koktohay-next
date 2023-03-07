@@ -40,7 +40,7 @@ export default function Article({ article }: any) {
           {/* 封面和标题 */}
           <header>
             <Link
-              className="mb-6 text-base font-semibold leading-7 text-indigo-600 hover:font-bold cursor-pointer"
+              className="mb-6 text-base font-semibold leading-7 text-violet-600 hover:font-bold cursor-pointer"
               href={article.article_category.data.attributes.url}
             >
               {article.article_category.data.attributes.title ?? "无分类"}
