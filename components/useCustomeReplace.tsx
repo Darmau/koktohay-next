@@ -70,6 +70,7 @@ function useCustomReplace({ html }: { html: string }) {
                 src={domNode.attribs.src}
                 width={1280}
                 height={720}
+                quality={70}
                 alt={domNode.attribs.src ?? "image"}
                 onClick={() => openLightbox(index)}
               />
@@ -124,7 +125,7 @@ function useCustomReplace({ html }: { html: string }) {
 
         // 链接样式 对于内部链接使用next/link，对于外部链接使用a标签
         case "a": {
-          const domain = process.env.NEXT_HOSTNAME;
+          const domain = "darmau.design";
           const url = new URL(domNode.attribs.href);
           if (url.hostname === domain) {
             return (

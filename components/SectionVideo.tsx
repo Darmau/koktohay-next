@@ -39,6 +39,7 @@ const SectionVideo = ({ videos }: ContentsProps) => {
             <Image
               src={item.attributes.cover.data.attributes.url}
               alt="cover"
+              quality={60}
               className="absolute inset-0 -z-10 h-full w-full object-cover transition-all duration-300 group-hover:scale-105"
               width={672}
               height={378}
