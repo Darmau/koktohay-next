@@ -55,10 +55,10 @@ export default function AllArticles({
           title: '文章 | 可可托海没有海',
           description: '全部文章',
           images: [{
-            url: theNewest[0].attributes.cover?.data?.attributes.url,
-            width: theNewest[0].attributes.cover?.data?.attributes.width,
-            height: theNewest[0].attributes.cover?.data?.attributes.height,
-            alt: theNewest[0].attributes.title,
+            url: articlePosts[0].attributes.cover?.data?.attributes.url,
+            width: articlePosts[0].attributes.cover?.data?.attributes.width,
+            height: articlePosts[0].attributes.cover?.data?.attributes.height,
+            alt: articlePosts[0].attributes.title,
             type: 'image/jpeg',
           }]
         }}
