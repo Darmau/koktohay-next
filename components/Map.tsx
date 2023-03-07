@@ -56,7 +56,7 @@ const MapWithExif: React.FC<Props> = ({ src }) => {
       <NearestPlace latitude={location.lat} longitude={location.lng} />
       <Map
         {...viewport}
-        style={{ width: "100%", height: "320px" }}
+        style={{ width: "100%", height: "320px", marginBottom: "24px" }}
         mapStyle="mapbox://styles/mapbox/light-v10"
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         onMove={(evt) => setViewport(evt.viewState)}
