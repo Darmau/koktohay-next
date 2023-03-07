@@ -37,7 +37,7 @@ export default function Article({ article }: any) {
               url: article.cover.data.attributes.url,
               width: article.cover.data.attributes.width,
               height: article.cover.data.attributes.height,
-              alt: article.cover.data.attributes.alternativeText,
+              alt: article.title,
               type: "image/jpeg",
             },
           ],

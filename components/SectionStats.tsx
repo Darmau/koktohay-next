@@ -175,6 +175,6 @@ const labels: Labels = {
     onemonthVisitor: "Current Month Visitors",
     onemonthPageView: "Current Month Page Views",
     runtime: "Runtime",
-    day: "Days",
+    day: " Days",
   },
 };
