@@ -25,18 +25,20 @@ const Contact = () => {
       formData: formData,
     };
 
-
-      fetch(submitUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_EZ_FORM_TOKEN}`,
-        },
-        body: JSON.stringify(submitData),
-      }).then((response) => {
+    fetch(submitUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_EZ_FORM_TOKEN}`,
+      },
+      body: JSON.stringify(submitData),
+    })
+      .then((response) => {
         // 推送通知到手机
-        if(response.ok) {
-          return fetch(`${process.env.NEXT_PUBLIC_BARK}${formData.name}/${formData.message}`)
+        if (response.ok) {
+          return fetch(
+            `${process.env.NEXT_PUBLIC_BARK}${formData.name}/${formData.message}`
+          );
         }
         throw new Error("Error:" + response.statusText);
       })
@@ -46,6 +48,7 @@ const Contact = () => {
       })
       .catch((err: Error) => {
         alert("Error:" + err.message);
+        console.log("Error:", err);
       });
   };
   const handleInputChange = (
