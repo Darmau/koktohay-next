@@ -72,7 +72,7 @@ export default function Catalog({ main }: { main: string }) {
   const catelogList = parse(main, options);
 
   return (
-    <nav className="flex w-full h-fit bg-white border border-gray-200 rounded-md lg:sticky lg:top-16">
+    <nav className="flex w-full h-fit bg-white border border-gray-200 rounded-md">
       <div className="px-4 py-5 w-full sm:p-6">
         <p className="text-sm font-bold tracking-widest text-gray-900 uppercase">
           {label.title}

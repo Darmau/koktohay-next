@@ -49,9 +49,9 @@ function useCustomReplace({ html }: { html: string }) {
       switch (domNode.name) {
         case "p":
           return (
-            <p className="text-base leading-8 text-gray-700 mt-4 mb-6">
+            <section className="text-base leading-8 text-gray-700 mt-4 mb-6">
               {domToReact(domNode.children, options)}
-            </p>
+            </section>
           );
 
         // 图片会将src传入lightbox组件，然后在lightbox组件中使用react-image-lightbox组件
