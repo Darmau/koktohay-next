@@ -1,4 +1,5 @@
 import client from "@/apollo-client";
+import { Comments } from "@/components/Comment";
 import ExifInfo from "@/components/ExifInfo";
 import MapWithExif from "@/components/Map";
 import ConvertToDate from "@/function/ConvertDate";
@@ -191,6 +192,7 @@ export default function Album({ album }: ContentsProps) {
               </div>
               {/* 放置地图 */}
               <MapWithExif src={photoArray[0].src} />
+              <Comments location={""} />
             </div>
           </div>
         </div>

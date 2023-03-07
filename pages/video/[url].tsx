@@ -1,14 +1,16 @@
 import client from "@/apollo-client";
+import { Comments } from "@/components/Comment";
 import ConvertToDate from "@/function/ConvertDate";
+import bilibiliIcon from "@/public/img/video-bilibili.svg";
+import xiguaIcon from "@/public/img/video-xigua.svg";
+import youtubeIcon from "@/public/img/video-youtube.svg";
 import { gql } from "@apollo/client";
 import { CalendarIcon } from "@heroicons/react/20/solid";
-import { useEffect, useRef, useState } from "react";
-import { ContentList, ContentsProps } from "../../function/Types";
-import Image from "next/image";
-import xiguaIcon from "@/public/img/video-xigua.svg";
-import bilibiliIcon from "@/public/img/video-bilibili.svg";
-import youtubeIcon from "@/public/img/video-youtube.svg";
 import { NextSeo } from "next-seo";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { ContentList, ContentsProps } from "../../function/Types";
+import { VideoJsonLd } from "next-seo";
 
 export default function Video({ video }: ContentsProps) {
   const { xigua, bilibili, youtube } = video;
@@ -65,6 +67,7 @@ export default function Video({ video }: ContentsProps) {
 
   return (
     <>
+    {/* SEO设置 */}
       <NextSeo
         title={video.title}
         description={video.description}
@@ -79,6 +82,7 @@ export default function Video({ video }: ContentsProps) {
           url: `https://darmau.design/video/${video.url}`,
           title: video.title,
           description: video.description,
+          type: "video.movie",
           images: [
             {
               url: video.cover.data.attributes.url,
@@ -89,6 +93,16 @@ export default function Video({ video }: ContentsProps) {
             },
           ],
         }}
+      />
+      {/* 结构化搜索数据 */}
+      <VideoJsonLd
+        name={video.title}
+        description={video.description}
+        embedUrl={video.youtube ?? video.xigua ?? video.bilibili}
+        uploadData={video.publishDate}
+        thumbnailUrls={[
+          video.cover.data.attributes.url
+        ]}
       />
 
       <main className="mx-auto max-w-7xl pt-8 mb-8 sm:px-6 sm:pt-16 lg:px-8">
@@ -133,13 +147,14 @@ export default function Video({ video }: ContentsProps) {
                 {ConvertToDate(video.publishDate)}
               </div>
 
-              <div className="mt-3">
+              <div className="mb-8">
                 <div className="mt-6">
                   <div className="space-y-6 text-base text-gray-700">
                     {video.description}
                   </div>
                 </div>
               </div>
+              <Comments location={""} />
             </div>
           </div>
         </div>
