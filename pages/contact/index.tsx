@@ -25,7 +25,7 @@ const Contact = () => {
       formData: formData,
     };
 
-    Promise.all([
+
       fetch(submitUrl, {
         method: "POST",
         headers: {
@@ -33,10 +33,13 @@ const Contact = () => {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_EZ_FORM_TOKEN}`,
         },
         body: JSON.stringify(submitData),
-      }),
-      // 推送通知到手机
-      fetch(`${process.env.NEXT_PUBLIC_BARK}${formData.name}/${formData.message}`),
-    ])
+      }).then((response) => {
+        // 推送通知到手机
+        if(response.ok) {
+          return fetch(`${process.env.NEXT_PUBLIC_BARK}${formData.name}/${formData.message}`)
+        }
+        throw new Error("Error:" + response.statusText);
+      })
       .then(() => {
         setFormData({ name: "", email: "", message: "", wechat: "" });
         setShowModal(true);
