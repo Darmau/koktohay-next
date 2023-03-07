@@ -80,7 +80,7 @@ const Header = ({ id, recent }: HeaderProps) => {
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
-            <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:text-violet-600">
+            <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600">
               <span>{label.article.title}</span>
               <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
             </Popover.Button>
@@ -104,7 +104,7 @@ const Header = ({ id, recent }: HeaderProps) => {
                       >
                         <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                           <item.icon
-                            className="h-6 w-6 text-gray-600 group-hover:text-violet-600"
+                            className="h-6 w-6 text-gray-600 group-hover:text-blue-600"
                             aria-hidden="true"
                           />
                         </div>
@@ -130,7 +130,7 @@ const Header = ({ id, recent }: HeaderProps) => {
                       </h3>
                       <Link
                         href="/articles/1"
-                        className="text-sm font-semibold leading-6 text-violet-600"
+                        className="text-sm font-semibold leading-6 text-blue-600"
                       >
                         {label.article.all}{" "}
                         <span aria-hidden="true">&rarr;</span>
@@ -144,7 +144,7 @@ const Header = ({ id, recent }: HeaderProps) => {
                           </span>
                           <Link
                             href={`/article/${post.attributes.url}`}
-                            className="block truncate text-sm font-semibold leading-6 text-gray-900 hover:text-violet-600"
+                            className="block truncate text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
                           >
                             {post.attributes.title}
                             <span className="absolute inset-0" />
@@ -160,20 +160,20 @@ const Header = ({ id, recent }: HeaderProps) => {
 
           <Link
             href="/albums/1"
-            className="text-sm font-semibold leading-6 text-gray-900 hover:text-violet-600"
+            className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
           >
             {label.album}
           </Link>
           <Link
             href="/videos/1"
-            className="text-sm font-semibold leading-6 text-gray-900 hover:text-violet-600"
+            className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
           >
             {label.video}
           </Link>
 
           {/* 关于 */}
           <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:text-violet-600">
+            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600">
               {label.about.name}
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400"

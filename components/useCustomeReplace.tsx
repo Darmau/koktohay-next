@@ -129,7 +129,7 @@ function useCustomReplace({ html }: { html: string }) {
           if (url.hostname === domain) {
             return (
               <Link
-                className="underline decoration-2 decoration-sky-500 underline-offset-4 hover:decoration-red-500"
+                className="underline decoration-2 decoration-blue-500 underline-offset-4 hover:decoration-red-500"
                 href={url.pathname}
               >
                 {domToReact(domNode.children, options)}
@@ -139,7 +139,7 @@ function useCustomReplace({ html }: { html: string }) {
           } else {
             return (
               <a
-                className="underline decoration-2 decoration-sky-500 underline-offset-4 hover:decoration-red-500"
+                className="underline decoration-2 decoration-blue-500 underline-offset-4 hover:decoration-red-500"
                 href={domNode.attribs.href}
                 target="_blank"
               >
@@ -208,7 +208,7 @@ function useCustomReplace({ html }: { html: string }) {
 
         case "blockquote":
           return (
-              <blockquote className="pl-8 border-l border-violet-600 text-xl font-semibold leading-8 tracking-tight text-gray-900">
+              <blockquote className="pl-8 border-l border-blue-600 text-xl font-semibold leading-8 tracking-tight text-gray-900">
                 {domToReact(domNode.children, options)}
               </blockquote>
           );

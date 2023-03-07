@@ -37,7 +37,7 @@ export default function BlogPostTop({ post }: ContentsProps) {
           </time>
           <h2
             id="featured-post"
-            className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl group-hover:text-violet-600"
+            className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl group-hover:text-blue-600"
           >
             {post.attributes.title}
           </h2>
@@ -45,7 +45,7 @@ export default function BlogPostTop({ post }: ContentsProps) {
             {post.attributes.description}
           </p>
           <div className="group/more mt-4 flex flex-col justify-between gap-6 sm:mt-8 sm:flex-row-reverse sm:gap-8 lg:mt-4 lg:flex-col">
-            <div className="flex items-center text-sm font-semibold leading-6 text-violet-600">
+            <div className="flex items-center text-sm font-semibold leading-6 text-blue-600">
               {label.button}
               <ArrowSmallRightIcon className="h-5 w-5 transition-all group-hover/more:translate-x-0.5" />
             </div>

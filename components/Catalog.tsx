@@ -22,7 +22,7 @@ const options: HTMLReactParserOptions = {
         return (
           <li>
             <Link
-              className="hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
+              className="hover:underline hover:decoration-2 hover:decoration-blue-500 hover:underline-offset-4"
               href={`#${generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
               )}`}
@@ -37,7 +37,7 @@ const options: HTMLReactParserOptions = {
           <li className="flex items-center">
             <ChevronRightIcon className="h-4 w-4" />
             <Link
-              className="text-sm hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
+              className="text-sm hover:underline hover:decoration-2 hover:decoration-blue-500 hover:underline-offset-4"
               href={`#${generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
               )}`}
@@ -52,7 +52,7 @@ const options: HTMLReactParserOptions = {
           <li className="flex items-center">
             <ChevronDoubleRightIcon className="h-4 w-4" />
             <Link
-              className="pl-2 text-sm hover:underline hover:decoration-2 hover:decoration-sky-500 hover:underline-offset-4"
+              className="pl-2 text-sm hover:underline hover:decoration-2 hover:decoration-blue-500 hover:underline-offset-4"
               href={`#${generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
               )}`}
