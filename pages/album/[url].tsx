@@ -9,9 +9,9 @@ import {
   ArrowSmallLeftIcon,
   ArrowSmallRightIcon,
   ArrowsPointingOutIcon,
-  CalendarIcon,
+  CalendarIcon
 } from "@heroicons/react/20/solid";
-import { NextSeo } from "next-seo";
+import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
@@ -62,6 +62,20 @@ export default function Album({ album }: ContentsProps) {
             type: 'image/jpeg',
           }]
         }}
+      />
+      {/* 结构化搜索数据 */}
+      <ArticleJsonLd
+        url={`https://darmau.design/album/${album.url}`}
+        title={album.title.title}
+        images={[
+          album.gallery.data[0].attributes.url
+        ]}
+        datePublished={album.publishDate}
+        authorName={[{name: '李大毛', url: 'https://darmau.design'}]}
+        publisherName="可可托海没有海"
+        publisherLogo="/img/logo.svg"
+        description={album.description}
+        isAccessibleForFree={true}
       />
 
       <Lightbox

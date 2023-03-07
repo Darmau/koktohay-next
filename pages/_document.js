@@ -10,6 +10,11 @@ export default function Document() {
           rel="stylesheet"
         />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="https://darmau.design/sitemap.xml"/>
+        <script
+          defer
+          data-domain="darmau.design"
+          src="https://analytics.darmau.design/js/script.js"
+        ></script>
       </Head>
       <body>
         <Main />
