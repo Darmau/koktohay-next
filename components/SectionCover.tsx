@@ -17,6 +17,7 @@ const SectionCover = ({article}: ContentsProps) => {
         width={1920}
         height={1080}
         alt="封面图"
+        quality={65}
         className="absolute inset-0 -z-10 h-full w-full object-cover brightness-50"
       />
 

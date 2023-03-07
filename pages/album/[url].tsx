@@ -113,6 +113,7 @@ export default function Album({ album }: ContentsProps) {
                                 width={240}
                                 height={240 * ratio}
                                 priority
+                                quality={60}
                                 className="h-full w-full object-cover object-center"
                               />
                             </span>
@@ -176,7 +177,6 @@ export default function Album({ album }: ContentsProps) {
                         alt={image.alt}
                         width={1280}
                         height={720}
-                        priority
                         className="w-full h-auto object-contain object-center sm:rounded-lg"
                       />
 
