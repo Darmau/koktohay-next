@@ -6,7 +6,7 @@ import SectionStats from "@/components/SectionStats";
 import SectionVideo from "@/components/SectionVideo";
 import { ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
-import { GetServerSidePropsContext } from "next";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 
 export default function Home({
@@ -118,7 +118,9 @@ const GET_HOMEPAGE = gql`
   }
 `;
 
-export const getStaticProps = async (context: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
+  context: GetServerSidePropsContext
+) => {
   const { locale } = context;
   const { data } = await client.query({
     query: GET_HOMEPAGE,
