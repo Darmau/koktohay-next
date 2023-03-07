@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContentList } from "../../function/Types";
 import { ArticleJsonLd } from "next-seo";
+import Wechat from "@/components/Wechat";
 
 export default function Article({ article }: any) {
   return (
@@ -46,11 +47,9 @@ export default function Article({ article }: any) {
       <ArticleJsonLd
         url={`https://darmau.design/article/${article.url}`}
         title={article.title}
-        images={[
-          article.cover.data.attributes.url
-        ]}
+        images={[article.cover.data.attributes.url]}
         datePublished={article.publishDate}
-        authorName={[{name: '李大毛', url: 'https://darmau.design'}]}
+        authorName={[{ name: "李大毛", url: "https://darmau.design" }]}
         publisherName="可可托海没有海"
         publisherLogo="/img/logo.svg"
         description={article.description}
@@ -132,7 +131,10 @@ export default function Article({ article }: any) {
 
         {/* 目录 */}
         <aside className="h-full lg:col-span-1">
-          <Catalog main={article.main} />
+          <div className="flex flex-col gap-6 lg:sticky lg:top-16">
+            <Catalog main={article.main} />
+            <Wechat />
+          </div>
         </aside>
       </div>
     </>

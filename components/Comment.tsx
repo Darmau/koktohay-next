@@ -65,17 +65,14 @@ type CommentsProps = {
   location: string;
 };
 
-// The location prop is {props.location.pathname} from the parent component.
-// I.e. invoke the component like this in the parent: <Comments location={props.location.pathname} />
 export function Comments({ location }: CommentsProps) {
-  // Insert the two useEffect hooks. Maybe you can combine them into one? Feel free if you want to.
+
   useEffect(manageScript, [location]);
   useEffect(recreateRemark42Instance, [location]);
 
   return (
     <Fragment>
       <h2 className="text-lg font-bold">评论</h2>
-      {/* This div is the target for actual comments insertion */}
       <div id="remark42" />
     </Fragment>
   );
