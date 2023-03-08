@@ -178,7 +178,7 @@ export async function getStaticProps({ params, locale }: any) {
     props: {
       video: data.videos.data[0].attributes,
     },
-    revalidate: 60,
+    revalidate: 60 * 60 * 24 * 7,
   };
 }
 
