@@ -104,6 +104,7 @@ const GET_HOMEPAGE = gql`
           title
           xigua
           publishDate
+          url
           cover {
             data {
               attributes {
