@@ -2,6 +2,7 @@ import { DefaultSeoProps } from 'next-seo';
 
 const config: DefaultSeoProps = {
   title: '可可托海没有海',
+  description: '李大毛没有猫的个人网站',
   openGraph: {
     type: 'website',
     locale: 'zh-CN',

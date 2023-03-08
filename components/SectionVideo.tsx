@@ -23,6 +23,7 @@ const SectionVideo = ({ videos }: ContentsProps) => {
           <Link
             className="flex items-center text-sm font-semibold leading-6 text-blue-600"
             href="/videos/1"
+            title="More"
           >
             MORE
             <ArrowSmallRightIcon className="h-5 w-5 transition-all group-hover:translate-x-0.5" />
