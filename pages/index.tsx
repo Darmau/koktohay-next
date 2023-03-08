@@ -1,13 +1,15 @@
 import client from "@/apollo-client";
-import SectionAlbum from "@/components/SectionAlbum";
 import SectionArticle from "@/components/SectionArticle";
 import SectionCover from "@/components/SectionCover";
-import SectionStats from "@/components/SectionStats";
-import SectionVideo from "@/components/SectionVideo";
 import { ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
+import dynamic from "next/dynamic";
+
+const Photo = dynamic(() => import("@/components/SectionAlbum"))
+const Video = dynamic(() => import("@/components/SectionVideo"))
+const Stats = dynamic(() => import("@/components/SectionStats"))
 
 export default function Home({
   cover,
@@ -35,9 +37,9 @@ export default function Home({
         <SectionCover article={cover} />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionArticle articles={articles} />
-          <SectionAlbum albums={albums} />
-          <SectionVideo videos={videos} />
-          <SectionStats />
+          <Photo albums={albums} />
+          <Video videos={videos} />
+          <Stats />
         </div>
       </div>
     </>

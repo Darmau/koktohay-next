@@ -44,12 +44,12 @@ const Pagination = ({
     <div className="flex items-center justify-between border-t border-gray-200 bg-white mt-8 py-8">
       {/* 移动端 */}
       <div className="flex flex-1 justify-between sm:hidden">
-        <div className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+        <div className={`page-item ${currentPage === 1 ? 'invisible pointer-events-none' : ''}`}>
           <Link className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href={`?page=${currentPage - 1}`}>
             前一页
           </Link>
         </div>
-        <div className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+        <div className={`page-item ${currentPage === totalPages ? 'invisible pointer-events-none' : ''}`}>
           <Link className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href={`?page=${currentPage + 1}`}>
             下一页
           </Link>

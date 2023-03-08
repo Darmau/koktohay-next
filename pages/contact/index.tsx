@@ -1,8 +1,12 @@
-import ModalSingleAction from "@/components/ModalSingleAction";
 import { Labels } from "@/function/Types";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import getLabel from "../../function/GetLabel";
+
+// 动态加载对话框
+const Success = dynamic(() => import("@/components/ModalSingleAction"))
+
 
 const Contact = () => {
   const { locale } = useRouter();
@@ -60,7 +64,7 @@ const Contact = () => {
 
   return (
     <>
-      {showModal && <ModalSingleAction />}
+      {showModal && <Success />}
       <div className="isolate bg-white py-24 px-6 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

@@ -157,7 +157,8 @@ export async function getStaticProps({ params, locale }: any) {
     props: {
       article: data.articles.data[0].attributes,
     },
-    revalidate: 60,
+    // 缓存过期时间设置为一周
+    revalidate: 60 * 60 *24 *7,
   };
 }
 
