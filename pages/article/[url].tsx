@@ -158,7 +158,7 @@ export async function getStaticProps({ params, locale }: any) {
       article: data.articles.data[0].attributes,
     },
     // 缓存过期时间设置为一周
-    revalidate: 60 * 60 *24 *7,
+    revalidate: 60,
   };
 }
 
