@@ -136,7 +136,7 @@ export default Footer;
 const social = [
   {
     name: 'RSS',
-    href: '/rss',
+    href: '/rss.xml',
     icon: (props: IconProps) => (
       <Image
         {...props}

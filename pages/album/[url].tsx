@@ -230,7 +230,6 @@ export async function getStaticProps({ params, locale }: any) {
     props: {
       album: data.albums.data[0].attributes,
     },
-    // 缓存过期时间设置为一周
     revalidate: 60,
   };
 }
