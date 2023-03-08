@@ -50,9 +50,9 @@ const Pagination = ({
           </Link>
         </div>
         <div className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-          <a className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href={`?page=${currentPage + 1}`}>
+          <Link className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href={`?page=${currentPage + 1}`}>
             下一页
-          </a>
+          </Link>
         </div>
       </div>
 
