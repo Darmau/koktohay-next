@@ -19,9 +19,9 @@ const plausibleToken = process.env.NEXT_PUBLIC_PLAUSIBLE_TOKEN;
 const siteId = process.env.NEXT_PUBLIC_PLAUSIBLE_SITE_ID;
 
 const SectionStats = () => {
-  const [realtimeVisitor, setRealtimeVisitor] = useState("");
-  const [onemonthVisitor, setOnemonthVisitor] = useState(0);
-  const [onemonthPageView, setOnemonthPageView] = useState(0);
+  const [realtimeVisitor, setRealtimeVisitor] = useState("∞");
+  const [onemonthVisitor, setOnemonthVisitor] = useState("∞");
+  const [onemonthPageView, setOnemonthPageView] = useState("∞");
   const { locale } = useRouter();
   const label = getLabel(labels, locale);
 
@@ -36,7 +36,11 @@ const SectionStats = () => {
         }
       );
       const realtimeData = await realtime.json();
-      setRealtimeVisitor(realtimeData);
+      if (!realtimeData) {
+        setRealtimeVisitor("limit exceeded");
+      } else {
+        setRealtimeVisitor(realtimeData);
+      }
 
       const onemonth = await fetch(
         `${plausibleUrl}/api/v1/stats/aggregate?site_id=${siteId}&period=6mo&metrics=visitors,pageviews`,
@@ -47,8 +51,13 @@ const SectionStats = () => {
         }
       );
       const onemonthData = await onemonth.json();
-      setOnemonthVisitor(onemonthData.results.visitors.value);
-      setOnemonthPageView(onemonthData.results.pageviews.value);
+      if (!onemonthData.result) {
+        setOnemonthVisitor("limit exceeded");
+        setOnemonthPageView("limit exceeded");
+      } else {
+        setOnemonthVisitor(onemonthData.results.visitors.value);
+        setOnemonthPageView(onemonthData.results.pageviews.value);
+      }
     }
     fetchData();
   }, []);
