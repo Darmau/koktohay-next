@@ -20,6 +20,7 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
 import { ContentList, ContentsProps, PhotoArray } from "../../function/Types";
+import Inline from "yet-another-react-lightbox/plugins/inline";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -27,7 +28,7 @@ function classNames(...classes: string[]) {
 
 export default function Album({ album }: ContentsProps) {
   // 根据返回的相册数据，生成一个更简洁结构的图片数组
-  const photoArray: PhotoArray = album.gallery.data.map(
+  const originalPhoto: PhotoArray = album.gallery.data.map(
     (photo: ContentList) => {
       return {
         src: photo.attributes.url,
@@ -37,6 +38,24 @@ export default function Album({ album }: ContentsProps) {
       };
     }
   );
+
+  const largePhoto: PhotoArray = album.gallery.data.map((photo: ContentList) => {
+    return {
+      src: photo.attributes.formats.large.url,
+      width: photo.attributes.formats.large.width,
+      height: photo.attributes.formats.large.height,
+      alt: album.title,
+    }
+  });
+
+  const smallPhoto: PhotoArray = album.gallery.data.map((photo: ContentList) => {
+    return {
+      src: photo.attributes.formats.thumbnail.url,
+      width: photo.attributes.formats.thumbnail.width,
+      height: photo.attributes.formats.thumbnail.height,
+      alt: album.title,
+    }
+  });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [open, setOpen] = useState(false);
@@ -82,23 +101,24 @@ export default function Album({ album }: ContentsProps) {
       <Lightbox
         open={open}
         close={() => setOpen(false)}
-        slides={photoArray}
+        slides={originalPhoto}
         plugins={[Thumbnails, Zoom]}
       />
 
       <main className="mx-auto max-w-7xl pt-8 mb-8 sm:px-6 sm:pt-16 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-none">
           <div className="lg:grid lg:grid-cols-3 lg:items-start lg:gap-x-8">
+
             <Tab.Group
               as="div"
               className="flex flex-col-reverse col-span-2 px-4"
               selectedIndex={selectedIndex}
               onChange={(index) => setSelectedIndex(index as number)}
             >
-              {/* Image selector */}
+
               <div className="mx-auto mt-6 block py-4 w-full max-w-2xl lg:max-w-none">
                 <Tab.List className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-4">
-                  {photoArray.map((image, index: number) => (
+                  {smallPhoto.map((image, index: number) => (
                     <Tab
                       key={index}
                       className="relative flex h-32 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
@@ -115,7 +135,7 @@ export default function Album({ album }: ContentsProps) {
                                 height={240 * ratio}
                                 priority
                                 quality={60}
-                                className="h-full w-full object-cover object-center"
+                                className="h-full w-full object-contain object-center"
                               />
                             </span>
                             <span
@@ -136,7 +156,7 @@ export default function Album({ album }: ContentsProps) {
               </div>
 
               <Tab.Panels className="w-full relative">
-                {photoArray.map((image, index: number) => {
+                {largePhoto.map((image, index: number) => {
                   return (
                     <Tab.Panel key={index}>
                       {index > 0 && (
@@ -151,7 +171,7 @@ export default function Album({ album }: ContentsProps) {
                           />
                         </button>
                       )}
-                      {index < photoArray.length - 1 && (
+                      {index < originalPhoto.length - 1 && (
                         <button
                           type="button"
                           className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2"
@@ -181,7 +201,7 @@ export default function Album({ album }: ContentsProps) {
                         className="w-full h-auto object-contain object-center sm:rounded-lg"
                       />
 
-                      <ExifInfo url={image.src} />
+                      <ExifInfo url={originalPhoto[index].src} />
                     </Tab.Panel>
                   );
                 })}
@@ -206,7 +226,7 @@ export default function Album({ album }: ContentsProps) {
                 </div>
               </div>
               {/* 放置地图 */}
-              <MapWithExif src={photoArray[0].src} />
+              <MapWithExif src={originalPhoto[0].src} />
               <Comments location={""} />
             </div>
           </div>
@@ -294,6 +314,7 @@ const GET_ALBUM = gql`
                 url
                 width
                 height
+                formats
               }
             }
           }

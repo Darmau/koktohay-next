@@ -30,11 +30,11 @@ export default function AllAlbums({
 
   const coverArray = albums.map((item: ContentList) => {
     const ratio =
-      item.attributes.cover?.data?.attributes.width /
-      item.attributes.cover?.data?.attributes.height;
+      item.attributes.cover.data.attributes.formats.large.width /
+      item.attributes.cover.data.attributes.formats.large.height;
 
     return {
-      src: item.attributes.cover?.data?.attributes.url,
+      src: item.attributes.cover.data.attributes.formats.large.url,
       width: 960,
       height: 960 / ratio,
       alt: item.attributes.title,
@@ -45,8 +45,10 @@ export default function AllAlbums({
   return (
     <>
       <NextSeo
-        title={locale === 'zh-CN' ? '摄影 | 可可托海没有海' : 'Albums | Nomadicoder' }
-        description={locale === 'zh-CN' ? '全部摄影' : 'All Photography' }
+        title={
+          locale === "zh-CN" ? "摄影 | 可可托海没有海" : "Albums | Nomadicoder"
+        }
+        description={locale === "zh-CN" ? "全部摄影" : "All Photography"}
         canonical="https://darmau.design/albums/1"
         languageAlternates={[
           {
@@ -56,15 +58,17 @@ export default function AllAlbums({
         ]}
         openGraph={{
           url: `https://darmau.design/albums/1`,
-          title: '摄影 | 可可托海没有海',
-          description: '全部摄影',
-          images: [{
-            url: coverArray[0].src,
-            width: coverArray[0].width,
-            height: coverArray[0].height,
-            alt: coverArray[0].alt,
-            type: 'image/jpeg',
-          }]
+          title: "摄影 | 可可托海没有海",
+          description: "全部摄影",
+          images: [
+            {
+              url: coverArray[0].src,
+              width: coverArray[0].width,
+              height: coverArray[0].height,
+              alt: coverArray[0].alt,
+              type: "image/jpeg",
+            },
+          ],
         }}
       />
 
@@ -86,9 +90,8 @@ export default function AllAlbums({
             padding={0}
             spacing={8}
             columns={(containerWidth) => {
-              if (containerWidth < 400) return 1;
-              if (containerWidth < 700) return 2;
-              if (containerWidth < 1000) return 3;
+              if (containerWidth < 400) return 2;
+              if (containerWidth < 700) return 3;
               return 4;
             }}
             defaultContainerWidth={960}
@@ -120,8 +123,7 @@ const GET_ALBUMS = gql`
             data {
               attributes {
                 url
-                width
-                height
+                formats
               }
             }
           }
