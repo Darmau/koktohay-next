@@ -11,6 +11,7 @@ specifiers:
   '@types/node': 18.14.6
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  '@types/react-google-recaptcha': ^2.1.5
   '@types/react-syntax-highlighter': ^15.5.6
   autoprefixer: ^10.4.13
   eslint: 8.35.0
@@ -28,6 +29,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.4
   react: 18.2.0
   react-dom: 18.2.0
+  react-google-recaptcha: ^2.1.0
   react-map-gl: ^7.0.21
   react-photo-album: ^2.0.2
   react-syntax-highlighter: ^15.5.0
@@ -59,6 +61,7 @@ dependencies:
   next-seo: 5.15.0_nvzgbose6yf6w7ijjprgspqefi
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-google-recaptcha: 2.1.0_react@18.2.0
   react-map-gl: 7.0.21_5wflejxe2geyle4qn254jrdyiy
   react-photo-album: 2.0.2_react@18.2.0
   react-syntax-highlighter: 15.5.0_react@18.2.0
@@ -71,6 +74,7 @@ dependencies:
 devDependencies:
   '@types/html-to-text': 9.0.0
   '@types/mapbox-gl': 2.7.10
+  '@types/react-google-recaptcha': 2.1.5
   '@types/react-syntax-highlighter': 15.5.6
   autoprefixer: 10.4.13_postcss@8.4.21
   postcss: 8.4.21
@@ -458,6 +462,12 @@ packages:
     dependencies:
       '@types/react': 18.0.28
     dev: false
+
+  /@types/react-google-recaptcha/2.1.5:
+    resolution: {integrity: sha512-iWTjmVttlNgp0teyh7eBXqNOQzVq2RWNiFROWjraOptRnb1OcHJehQnji0sjqIRAk9K0z8stjyhU+OLpPb0N6w==}
+    dependencies:
+      '@types/react': 18.0.28
+    dev: true
 
   /@types/react-syntax-highlighter/15.5.6:
     resolution: {integrity: sha512-i7wFuLbIAFlabTeD2I1cLjEOrG/xdMa/rpx2zwzAoGHuXJDhSqp9BSfDlMHSh9JSuNfxHk9eEmMX6D55GiyjGg==}
@@ -2739,6 +2749,16 @@ packages:
       strip-json-comments: 2.0.1
     dev: false
 
+  /react-async-script/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-bCpkbm9JiAuMGhkqoAiC0lLkb40DJ0HOEJIku+9JDjxX3Rcs+ztEOG13wbrOskt3n2DTrjshhaQ/iay+SnGg5Q==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
@@ -2747,6 +2767,16 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-google-recaptcha/2.1.0_react@18.2.0:
+    resolution: {integrity: sha512-K9jr7e0CWFigi8KxC3WPvNqZZ47df2RrMAta6KmRoE4RUi7Ys6NmNjytpXpg4HI/svmQJLKR+PncEPaNJ98DqQ==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-async-script: 1.2.0_react@18.2.0
     dev: false
 
   /react-is/16.13.1:
