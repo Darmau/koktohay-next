@@ -114,10 +114,10 @@ const SectionStats = () => {
           <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center">
             <div className="flex flex-col bg-gray-400/5 p-8">
               <dt className="text-sm font-semibold leading-6 text-gray-600">
-                预计1小时后恢复
+                {label.runtime}
               </dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-blue-600">
-                已达请求限额
+                {calculateDays()} {label.day}
               </dd>
             </div>
           </dl>
@@ -219,8 +219,7 @@ const SectionStats = () => {
               {label.runtime}
             </dt>
             <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900">
-              {calculateDays()}
-              {label.day}
+              {calculateDays()} {label.day}
             </dd>
           </div>
         </dl>
