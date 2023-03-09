@@ -1,6 +1,7 @@
 import client from "@/apollo-client";
 import SectionArticle from "@/components/SectionArticle";
 import SectionCover from "@/components/SectionCover";
+import SectionStats from "@/components/SectionStats";
 import { ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
@@ -38,7 +39,7 @@ export default function Home({
           <SectionArticle articles={articles} />
           <Photo albums={albums} />
           <Video videos={videos} />
-          {/* <SectionStats /> */}
+          <SectionStats />
         </div>
       </div>
     </>
