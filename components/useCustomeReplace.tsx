@@ -17,6 +17,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
 
@@ -314,7 +315,7 @@ function useCustomReplace({ html }: { html: string }) {
         slides={pictures}
         open={lightboxOpen}
         close={closeLightbox}
-        plugins={[Thumbnails]}
+        plugins={[Thumbnails, Zoom]}
         index={pictureIndex}
       />
       {parse(html, options)}

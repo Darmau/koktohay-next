@@ -16,6 +16,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
 import { ContentList, ContentsProps, PhotoArray } from "../../function/Types";
@@ -82,7 +83,7 @@ export default function Album({ album }: ContentsProps) {
         open={open}
         close={() => setOpen(false)}
         slides={photoArray}
-        plugins={[Thumbnails]}
+        plugins={[Thumbnails, Zoom]}
       />
 
       <main className="mx-auto max-w-7xl pt-8 mb-8 sm:px-6 sm:pt-16 lg:px-8">
