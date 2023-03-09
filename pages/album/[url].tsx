@@ -292,7 +292,6 @@ const GET_ALBUM = gql`
             data {
               attributes {
                 url
-                alternativeText
                 width
                 height
               }
