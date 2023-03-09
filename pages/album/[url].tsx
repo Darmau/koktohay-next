@@ -33,7 +33,7 @@ export default function Album({ album }: ContentsProps) {
         src: photo.attributes.url,
         width: photo.attributes.width,
         height: photo.attributes.height,
-        alt: photo.attributes.alternativeText,
+        alt: album.title,
       };
     }
   );
