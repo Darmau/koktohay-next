@@ -30,11 +30,15 @@ export interface ContentList {
   };
 }
 
-export type Photo = {
+export interface Photo {
   src: string;
-  width: number;
   height: number;
+  width: number;
   alt: string;
+  large: string;
+  original: string;
 }
 
-export type PhotoArray = Photo[];
+export interface Photos {
+  photos: Photo[];
+}
