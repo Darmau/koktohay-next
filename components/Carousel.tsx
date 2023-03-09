@@ -42,7 +42,7 @@ export default function Carousel({ photos }: Photos) {
               <ArrowSmallLeftIcon className="h-5 w-5" aria-hidden="true" />
             </button>
             <Image
-              className="object-cover h-[32rem] w-auto rounded-lg"
+              className="object-cover w-full aspect-4/3 sm:w-auto sm:h-96 lg:h-[32rem] rounded-lg"
               src={photos[activeIndex].large}
               height={photos[activeIndex].height}
               width={photos[activeIndex].width}
