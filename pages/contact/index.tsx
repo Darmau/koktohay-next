@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import getLabel from "../../function/GetLabel";
-import ReCAPTCHA from "react-google-recaptcha";
 
 // 动态加载对话框
 const Success = dynamic(() => import("@/components/ModalSingleAction"));
@@ -20,7 +19,6 @@ const Contact = () => {
   const [showModal, setShowModal] = useState(false);
   const [captchaToken, setCaptchaToken] = useState(null);
 
-  const siteKey: string = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!;
   const submitUrl =
     process.env.NEXT_PUBLIC_EZ_FORM_URL ?? "localhost:1337/api/ezforms/submit/";
 
@@ -57,11 +55,6 @@ const Contact = () => {
         alert("Error:" + err.message);
         console.log("Error:", err);
       });
-  };
-
-  // 处理 reCAPTCHA 验证通过之后的回调
-  const handleCaptchaToken = (token: any) => {
-    setCaptchaToken(token);
   };
 
   const handleInputChange = (
@@ -167,13 +160,13 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="mt-4 sm:col-span-2">
+          {/* <div className="mt-4 sm:col-span-2">
             <ReCAPTCHA
               sitekey={siteKey}
               onChange={handleCaptchaToken}
               onExpired={() => setCaptchaToken(null)}
             />
-          </div>
+          </div> */}
 
           <div className="mt-10">
             <button

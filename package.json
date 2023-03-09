@@ -29,7 +29,6 @@
     "next-seo": "^5.15.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-google-recaptcha": "^2.1.0",
     "react-map-gl": "^7.0.21",
     "react-photo-album": "^2.0.2",
     "react-syntax-highlighter": "^15.5.0",

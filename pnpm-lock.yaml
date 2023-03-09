@@ -29,7 +29,6 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.4
   react: 18.2.0
   react-dom: 18.2.0
-  react-google-recaptcha: ^2.1.0
   react-map-gl: ^7.0.21
   react-photo-album: ^2.0.2
   react-syntax-highlighter: ^15.5.0
@@ -61,7 +60,6 @@ dependencies:
   next-seo: 5.15.0_nvzgbose6yf6w7ijjprgspqefi
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-google-recaptcha: 2.1.0_react@18.2.0
   react-map-gl: 7.0.21_5wflejxe2geyle4qn254jrdyiy
   react-photo-album: 2.0.2_react@18.2.0
   react-syntax-highlighter: 15.5.0_react@18.2.0
@@ -2749,16 +2747,6 @@ packages:
       strip-json-comments: 2.0.1
     dev: false
 
-  /react-async-script/1.2.0_react@18.2.0:
-    resolution: {integrity: sha512-bCpkbm9JiAuMGhkqoAiC0lLkb40DJ0HOEJIku+9JDjxX3Rcs+ztEOG13wbrOskt3n2DTrjshhaQ/iay+SnGg5Q==}
-    peerDependencies:
-      react: '>=16.4.1'
-    dependencies:
-      hoist-non-react-statics: 3.3.2
-      prop-types: 15.8.1
-      react: 18.2.0
-    dev: false
-
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
@@ -2767,16 +2755,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: false
-
-  /react-google-recaptcha/2.1.0_react@18.2.0:
-    resolution: {integrity: sha512-K9jr7e0CWFigi8KxC3WPvNqZZ47df2RrMAta6KmRoE4RUi7Ys6NmNjytpXpg4HI/svmQJLKR+PncEPaNJ98DqQ==}
-    peerDependencies:
-      react: '>=16.4.1'
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-async-script: 1.2.0_react@18.2.0
     dev: false
 
   /react-is/16.13.1:
