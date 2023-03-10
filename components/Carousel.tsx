@@ -66,9 +66,8 @@ export default function Carousel({ photos }: Photos) {
             </button>
             <button
               type="button"
-              className={`${activeIndex === photos.length - 1 ? 'hidden' : ''}absolute top-8 right-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2`}
+              className="absolute top-8 right-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2"
               onClick={() => setOpen(true)}
-              disabled={activeIndex === photos.length - 1}
             >
               <ArrowsPointingOutIcon className="h-5 w-5" aria-hidden="true" />
             </button>
