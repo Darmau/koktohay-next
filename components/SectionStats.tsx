@@ -55,12 +55,12 @@ const SectionStats = () => {
         }
 
         const onemonthData = await onemonthResponse.json();
-        if (!onemonthData.result) {
+        if (!onemonthData.results) {
           setIsLimitExceeded(true);
           return;
         }
 
-        setRealtimeVisitor(realtimeData.visitors);
+        setRealtimeVisitor(realtimeData);
         setOnemonthVisitor(onemonthData.results.visitors.value);
         setOnemonthPageView(onemonthData.results.pageviews.value);
       } catch (error) {
@@ -112,6 +112,14 @@ const SectionStats = () => {
             </p>
           </div>
           <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center">
+            <div className="flex flex-col bg-gray-400/5 p-8">
+              <dt className="text-sm font-semibold leading-6 text-gray-600">
+                {label.realtime}
+              </dt>
+              <dd className="order-first text-3xl font-semibold tracking-tight text-blue-600">
+                {realtimeVisitor}
+              </dd>
+            </div>
             <div className="flex flex-col bg-gray-400/5 p-8">
               <dt className="text-sm font-semibold leading-6 text-gray-600">
                 {label.runtime}
