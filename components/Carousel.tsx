@@ -36,8 +36,11 @@ export default function Carousel({ photos }: Photos) {
           <div className="relative">
             <button
               type="button"
-              className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2"
+              className={`${
+                activeIndex === 0 ? 'hidden' : ''
+              } absolute top-1/2 left-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2`}
               onClick={() => setActiveIndex(activeIndex - 1)}
+              disabled={activeIndex === 0}
             >
               <ArrowSmallLeftIcon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -50,8 +53,14 @@ export default function Carousel({ photos }: Photos) {
             />
             <button
               type="button"
-              className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2"
-              onClick={() => setActiveIndex(activeIndex + 1)}
+              className={`${
+                activeIndex === photos.length - 1 ? 'hidden' : ''
+              } absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2`}
+              onClick={() => {
+                if (activeIndex !== photos.length - 1) {
+                  setActiveIndex(activeIndex + 1);
+                }
+              }}
             >
               <ArrowSmallRightIcon className="h-5 w-5" aria-hidden="true" />
             </button>
