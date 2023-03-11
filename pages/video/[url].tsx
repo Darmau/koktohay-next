@@ -99,7 +99,7 @@ export default function Video({ video }: ContentsProps) {
         name={video.title}
         description={video.description}
         embedUrl={video.youtube ?? video.xigua ?? video.bilibili}
-        uploadData={video.publishDate}
+        uploadDate={video.publishDate}
         thumbnailUrls={[
           video.cover.data.attributes.url
         ]}
