@@ -31,12 +31,15 @@ export interface ContentList {
 }
 
 export interface Photo {
-  src: string;
-  height: number;
-  width: number;
+  smallSrc: string;
+  smallHeight: number;
+  smallWidth: number;
   alt: string;
-  large: string;
   original: string;
+  largeWidth: number;
+  largeHeight: number;
+  width: number;
+  height: number;
 }
 
 export interface Photos {

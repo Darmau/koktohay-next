@@ -46,9 +46,9 @@ export default function Carousel({ photos }: Photos) {
             </button>
             <Image
               className="object-cover w-full aspect-4/3 sm:w-auto sm:h-96 lg:h-[32rem] rounded-lg"
-              src={photos[activeIndex].large}
-              height={photos[activeIndex].height}
-              width={photos[activeIndex].width}
+              src={photos[activeIndex].original}
+              height={photos[activeIndex].largeHeight}
+              width={photos[activeIndex].largeWidth}
               alt={photos[activeIndex].alt}
             />
             <button
@@ -83,9 +83,9 @@ export default function Carousel({ photos }: Photos) {
                   : "cursor-pointer border-4 border-transparent object-cover h-full w-auto rounded-lg"
               }
               key={index}
-              src={photo.src}
-              height={photo.height}
-              width={photo.width}
+              src={photo.smallSrc}
+              height={photo.smallHeight}
+              width={photo.smallWidth}
               alt={photo.alt}
               onClick={() => setActiveIndex(index)}
             />

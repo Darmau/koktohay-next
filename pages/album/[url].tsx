@@ -10,17 +10,18 @@ import {
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
-import { ContentList, ContentsProps, Photos } from "../../function/Types";
+import { ContentList, ContentsProps } from "../../function/Types";
 
 export default function Album({ album }: ContentsProps) {
 
   const previewPhoto = album.gallery.data.map((photo: ContentList) => {
     return {
-      src: photo.attributes.formats.small.url,
-      width: photo.attributes.formats.small.width,
-      height: photo.attributes.formats.small.height,
+      smallSrc: photo.attributes.formats.small.url,
+      smallWidth: photo.attributes.formats.small.width,
+      smallHeight: photo.attributes.formats.small.height,
       alt: album.title,
-      large: photo.attributes.formats.large.url,
+      largeWidth: photo.attributes.width / 2,
+      largeHeight: photo.attributes.height / 2,
       original: photo.attributes.url,
     }
   });
