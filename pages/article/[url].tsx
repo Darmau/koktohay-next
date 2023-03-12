@@ -157,7 +157,7 @@ export async function getStaticProps({ params, locale }: any) {
     props: {
       article: data.articles.data[0].attributes,
     },
-    revalidate: 60 * 60 * 24 * 7,
+    revalidate: 604800,
   };
 }
 
