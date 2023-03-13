@@ -23,6 +23,7 @@ export default function AllVideos({
   } = router;
 
   const label = getLabel(labels, locale);
+  const lang = locale === "zh-CN" ? "" : "en/";
 
   // 若页码超出范围，则返回404页面
   if (Number(page) > pagination!.pageCount) {
@@ -34,15 +35,9 @@ export default function AllVideos({
       <NextSeo
         title={locale === 'zh-CN' ? '视频 | 可可托海没有海' : 'Videos | Nomadicoder' }
         description={locale === 'zh-CN' ? '全部视频' : 'All Videos' }
-        canonical="https://darmau.design/videos/1"
-        languageAlternates={[
-          {
-            hrefLang: "en",
-            href: "https://darmau.design/en/videos/1",
-          },
-        ]}
+        canonical={`https://darmau.design/${lang}videos/1`}
         openGraph={{
-          url: `https://darmau.design/videos/1`,
+          url: `https://darmau.design/${lang}videos/1`,
           title: '视频 | 可可托海没有海',
           description: '全部视频',
           images: [{
@@ -105,6 +100,7 @@ export default function AllVideos({
             currentPage={Number(page)}
             totalEntries={pagination!.total}
             itemPerPage={pageSize}
+            path="/videos"
           />
         </div>
       </div>

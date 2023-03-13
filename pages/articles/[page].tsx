@@ -38,20 +38,16 @@ export default function AllArticles({
     articlePosts = articles.slice(1, articles.length);
   }
 
+  const lang = locale === 'zh-CN' ? '' : 'en/';
+
   return (
     <>
       <NextSeo
         title={locale === 'zh-CN' ? '文章 | 可可托海没有海' : 'Articles | Nomadicoder' }
         description={locale === 'zh-CN' ? '全部文章' : 'All Articles' }
-        canonical="https://darmau.design/articles/1"
-        languageAlternates={[
-          {
-            hrefLang: "en",
-            href: "https://darmau.design/en/articles/1",
-          },
-        ]}
+        canonical={`https://darmau.design/${lang}articles/1`}
         openGraph={{
-          url: `https://darmau.design/articles/1`,
+          url: `https://darmau.design/${lang}articles/1`,
           title: '文章 | 可可托海没有海',
           description: '全部文章',
           images: [{
@@ -88,6 +84,7 @@ export default function AllArticles({
                 currentPage={Number(page)}
                 totalEntries={pagination!.total}
                 itemPerPage={pageSize}
+                path="/articles"
               />
             </div>
             {/* 侧边栏 */}

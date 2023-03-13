@@ -42,6 +42,8 @@ export default function AllAlbums({
     };
   });
 
+  const lang = locale === "zh-CN" ? "" : "en/";
+
   return (
     <>
       <NextSeo
@@ -49,15 +51,9 @@ export default function AllAlbums({
           locale === "zh-CN" ? "摄影 | 可可托海没有海" : "Albums | Nomadicoder"
         }
         description={locale === "zh-CN" ? "全部摄影" : "All Photography"}
-        canonical="https://darmau.design/albums/1"
-        languageAlternates={[
-          {
-            hrefLang: "en",
-            href: "https://darmau.design/en/albums/1",
-          },
-        ]}
+        canonical={`https://darmau.design/${lang}albums/1`}
         openGraph={{
-          url: `https://darmau.design/albums/1`,
+          url: `https://darmau.design/${lang}albums/1`,
           title: "摄影 | 可可托海没有海",
           description: "全部摄影",
           images: [
@@ -101,6 +97,7 @@ export default function AllAlbums({
             currentPage={Number(page)}
             totalEntries={pagination!.total}
             itemPerPage={pageSize}
+            path="/albums"
           />
         </div>
       </div>

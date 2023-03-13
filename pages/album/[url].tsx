@@ -12,7 +12,7 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
 import { ContentList, ContentsProps } from "../../function/Types";
 
-export default function Album({ album }: ContentsProps) {
+export default function Album({ album, locale }: ContentsProps) {
 
   const previewPhoto = album.gallery.data.map((photo: ContentList) => {
     return {
@@ -26,19 +26,17 @@ export default function Album({ album }: ContentsProps) {
     }
   });
 
+  const lang = locale === 'zh-CN' ? '' : 'en/';
+
 
   return (
     <>
       <NextSeo
         title={album.title}
         description={album.description}
-        canonical={`https://darmau.design/album/${album.url}`}
-        languageAlternates={[{
-          hrefLang: 'en',
-          href: `https://darmau.design/en/album/${album.url}`,
-        }]}
+        canonical={`https://darmau.design/${lang}album/${album.url}`}
         openGraph={{
-          url: `https://darmau.design/album/${album.url}`,
+          url: `https://darmau.design/${lang}album/${album.url}`,
           title: album.title,
           description: album.description,
           images: [{
@@ -52,7 +50,7 @@ export default function Album({ album }: ContentsProps) {
       />
       {/* 结构化搜索数据 */}
       <ArticleJsonLd
-        url={`https://darmau.design/album/${album.url}`}
+        url={`https://darmau.design/${lang}album/${album.url}`}
         title={album.title.title}
         images={[
           album.gallery.data[0].attributes.url
@@ -113,6 +111,7 @@ export async function getStaticProps({ params, locale }: any) {
   return {
     props: {
       album: data.albums.data[0].attributes,
+      locale,
     },
     revalidate: 604800,
   };
