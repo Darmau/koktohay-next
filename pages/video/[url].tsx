@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { ContentList, ContentsProps } from "../../function/Types";
 import { VideoJsonLd } from "next-seo";
 
-export default function Video({ video }: ContentsProps) {
+export default function Video({ video, locale }: ContentsProps) {
   const { xigua, bilibili, youtube } = video;
   const videoSources = [
     {
@@ -65,21 +65,17 @@ export default function Video({ video }: ContentsProps) {
     frameKey++;
   }, [activeIndex, videoSources]);
 
+  const lang = locale === "zh-CN" ? "" : "en/";
+
   return (
     <>
     {/* SEO设置 */}
       <NextSeo
         title={video.title}
         description={video.description}
-        canonical={`https://darmau.design/video/${video.url}`}
-        languageAlternates={[
-          {
-            hrefLang: "en",
-            href: `https://darmau.design/en/video/${video.url}`,
-          },
-        ]}
+        canonical={`https://darmau.design/${lang}video/${video.url}`}
         openGraph={{
-          url: `https://darmau.design/video/${video.url}`,
+          url: `https://darmau.design/${lang}video/${video.url}`,
           title: video.title,
           description: video.description,
           type: "video.movie",
@@ -177,6 +173,7 @@ export async function getStaticProps({ params, locale }: any) {
   return {
     props: {
       video: data.videos.data[0].attributes,
+      locale,
     },
     revalidate: 604800,
   };
@@ -236,6 +233,7 @@ const GET_VIDEO = gql`
           xigua
           bilibili
           youtube
+          url
           cover {
             data {
               attributes {

@@ -14,22 +14,18 @@ import { ContentList } from "../../function/Types";
 import { ArticleJsonLd } from "next-seo";
 import Wechat from "@/components/Wechat";
 
-export default function Article({ article }: any) {
+export default function Article({ article, locale }: any) {
+  const lang = locale === "zh-CN" ? "" : "en/";
+
   return (
     <>
       {/* SEO设置 */}
       <NextSeo
         title={article.title}
         description={article.description}
-        canonical={`https://darmau.design/article/${article.url}`}
-        languageAlternates={[
-          {
-            hrefLang: "en",
-            href: `https://darmau.design/en/article/${article.url}`,
-          },
-        ]}
+        canonical={`https://darmau.design/${lang}article/${article.url}`}
         openGraph={{
-          url: `https://darmau.design/article/${article.url}`,
+          url: `https://darmau.design/${lang}article/${article.url}`,
           title: article.title,
           description: article.description,
           images: [
@@ -45,7 +41,7 @@ export default function Article({ article }: any) {
       />
       {/* 结构化搜索数据 */}
       <ArticleJsonLd
-        url={`https://darmau.design/article/${article.url}`}
+        url={`https://darmau.design/${lang}article/${article.url}`}
         title={article.title}
         images={[article.cover.data.attributes.url]}
         datePublished={article.publishDate}
@@ -156,6 +152,7 @@ export async function getStaticProps({ params, locale }: any) {
   return {
     props: {
       article: data.articles.data[0].attributes,
+      locale,
     },
     revalidate: 604800,
   };

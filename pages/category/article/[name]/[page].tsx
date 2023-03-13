@@ -14,7 +14,7 @@ export default function ArticlesByCategory({
   pageSize,
 }: ContentsProps) {
   const router = useRouter();
-  const { page } = router.query;
+  const { name, page } = router.query;
 
   return (
     <div className="bg-white py-8 sm:py-16">
@@ -51,6 +51,7 @@ export default function ArticlesByCategory({
               currentPage={Number(page)}
               totalEntries={pagination!.total}
               itemPerPage={pageSize}
+              path={`/category/article/${name}`}
             />
           </div>
         </div>
