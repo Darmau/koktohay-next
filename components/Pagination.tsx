@@ -6,12 +6,14 @@ interface PaginationProps {
   currentPage: number;
   totalEntries: number;
   itemPerPage?: number;
+  path?: string;
 }
 
 const Pagination = ({
   currentPage = 1,
   totalEntries = 1,
   itemPerPage = 10,
+  path = '',
 }: PaginationProps) => {
   const totalPages = Math.ceil(totalEntries / itemPerPage)
 
@@ -22,6 +24,8 @@ const Pagination = ({
   if (totalPages < 2) {
     return <div></div>; 
   }
+
+  const prefix = path
 
   // 根据总页数生成一个数组，数组中的每一个元素将被渲染成一个页码，链接到对应页面。
   if (totalPages >= 2 && totalPages <= 7) {
@@ -45,12 +49,12 @@ const Pagination = ({
       {/* 移动端 */}
       <div className="flex flex-1 justify-between sm:hidden">
         <div className={`page-item ${currentPage === 1 ? 'invisible pointer-events-none' : ''}`}>
-          <Link className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href={`?page=${currentPage - 1}`}>
+          <Link className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href={`${path}/${currentPage - 1}`}>
             前一页
           </Link>
         </div>
         <div className={`page-item ${currentPage === totalPages ? 'invisible pointer-events-none' : ''}`}>
-          <Link className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href={`?page=${currentPage + 1}`}>
+          <Link className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href={`${path}/${currentPage + 1}`}>
             下一页
           </Link>
         </div>
@@ -67,7 +71,7 @@ const Pagination = ({
 
         <div>
           <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-            <Link href={`?page=${currentPage - 1}`}
+            <Link href={`${path}/${currentPage - 1}`}
               className={currentPage === 1 
               ? `relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-300 pointer-events-none	` 
               : `relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20`}>
@@ -79,7 +83,7 @@ const Pagination = ({
               return typeof pageNumber === 'number' ? (
               <Link
                 key={i}
-                href={`?page=${pageNumber}`}
+                href={`${path}/${pageNumber}`}
                 className={`page-item ${pageNumber === currentPage ? 
                   'relative z-10 inline-flex items-center border border-blue-500 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600 focus:z-20' : 
                   'relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20'} ${typeof pageNumber === 'string' ? 'disabled' : ''
@@ -92,7 +96,7 @@ const Pagination = ({
               >...</div>
           }
             )}
-            <Link href={`?page=${currentPage + 1}`}
+            <Link href={`${path}/${currentPage + 1}`}
               className={currentPage === totalPages
               ? `relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-300 pointer-events-none`
               : `relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20`}>
