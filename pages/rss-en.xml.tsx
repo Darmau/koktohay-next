@@ -6,11 +6,11 @@ import { Feed } from "feed";
 import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 
 const feed = new Feed({
-  title: "可可托海没有海的RSS",
-  description: "李大毛没有猫的个人网站",
+  title: "Nomadicoder RSS",
+  description: "Darmau's Personal Website",
   id: "https://darmau.design/en",
   link: "https://darmau.design/en",
-  language: "zh-CN",
+  language: "en",
   image: "/img/default-cover.jpg",
   favicon: "/img/logo.svg",
   feedLinks: {
