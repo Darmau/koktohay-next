@@ -14,7 +14,7 @@ import { VideoJsonLd } from "next-seo";
 
 export default function Video({ video, locale }: ContentsProps) {
   const { xigua, bilibili, youtube } = video;
-  const videoSources = [
+  const videoTemplete = [
     {
       name: "西瓜视频",
       value: xigua,
@@ -55,6 +55,7 @@ export default function Video({ video, locale }: ContentsProps) {
       ),
     },
   ];
+  const videoSources = videoTemplete.filter((source) => source.value);
 
   const [activeIndex, setActiveIndex] = useState(0);
   let frameKey = 0;
