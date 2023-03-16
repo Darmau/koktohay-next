@@ -8,9 +8,7 @@ function calculateDays() {
   const ONE_DAY = 1000 * 60 * 60 * 24; // 一天的毫秒数
   const startDate = new Date(2022, 9, 8); // 月份是从0开始的，所以要减去1
   const endDate = new Date();
-
   const days = Math.floor((endDate.getTime() - startDate.getTime()) / ONE_DAY);
-
   return days;
 }
 
@@ -19,8 +17,8 @@ const plausibleToken = process.env.NEXT_PUBLIC_PLAUSIBLE_TOKEN;
 const siteId = process.env.NEXT_PUBLIC_PLAUSIBLE_SITE_ID;
 
 const SectionStats = () => {
-  const [realtimeVisitor, setRealtimeVisitor] = useState(null);
-  const [onemonthVisitor, setOnemonthVisitor] = useState(null);
+  const [realtimeVisitor, setRealtimeVisitor] = useState(0);
+  const [onemonthVisitor, setOnemonthVisitor] = useState(0);
   const [onemonthPageView, setOnemonthPageView] = useState(null);
   const [isLimitExceeded, setIsLimitExceeded] = useState(false);
   const { locale } = useRouter();
