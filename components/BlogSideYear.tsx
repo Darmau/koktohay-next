@@ -14,7 +14,7 @@ export default function BlogSideYear() {
       <div className="flex flex-wrap mt-5 gap-2.5">
         {years.map((item) => (
           <Link href={`/articles/year/${item}`} className="inline-block" key={item}>
-            <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-900 transition-all duration-200 bg-white border border-gray-200 rounded-md hover:bg-gray-50">
+            <span className="inline-flex items-center px-3 py-2 text-sm font-bold text-gray-900 transition-all duration-200 bg-white border border-gray-200 rounded-md hover:bg-gray-50">
               {item}
             </span>
           </Link>

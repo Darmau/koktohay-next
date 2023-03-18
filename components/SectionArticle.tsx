@@ -52,7 +52,7 @@ const SectionArticle = ({ articles }: ContentsProps) => {
                   >
                     {ConvertToDate(item.attributes.publishDate)}
                   </time>
-                  <h4 className="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600">
+                  <h4 className="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-bold text-gray-600">
                     {item.attributes.article_category.data.attributes.title}
                   </h4>
                 </div>

@@ -85,7 +85,7 @@ function useCustomReplace({ html }: { html: string }) {
               id={generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
               )}
-              className="text-2xl font-medium leading-8 text-gray-900 mt-12 mb-4 sm:text-3xl"
+              className="text-2xl font-bold leading-8 text-gray-900 mt-12 mb-4 sm:text-3xl"
             >
               {domToReact(domNode.children, options)}
             </h2>
@@ -96,7 +96,7 @@ function useCustomReplace({ html }: { html: string }) {
               id={generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
               )}
-              className="text-xl font-medium leading-7 text-gray-900 mt-10 mb-4 sm:text-2xl"
+              className="text-xl font-bold leading-7 text-gray-900 mt-10 mb-4 sm:text-2xl"
             >
               {domToReact(domNode.children, options)}
             </h3>
@@ -118,7 +118,7 @@ function useCustomReplace({ html }: { html: string }) {
               id={generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
               )}
-              className="text-base leading-7 font-medium my-4 text-gray-900"
+              className="text-base leading-7 font-bold my-4 text-gray-900"
             >
               {domToReact(domNode.children, options)}
             </h5>

@@ -24,7 +24,7 @@ export default function BlogPostItem({ post }: ContentsProps) {
         <div className="grow">
           <div className="flex items-center gap-x-4 text-xs">
             {post.attributes.article_category ? (
-              <span className="rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600 hover:bg-gray-100">
+              <span className="rounded-full bg-gray-50 py-1.5 px-3 font-bold text-gray-600 hover:bg-gray-100">
                 {post.attributes.article_category.data.attributes.title}
               </span>
             ) : (
