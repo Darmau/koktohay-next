@@ -5,14 +5,8 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import LoadingBar, { LoadingBarRef } from "react-top-loading-bar";
-import { Noto_Serif_SC } from "next/font/google";
 
 import SEO from "../next-seo.config";
-
-const noto = Noto_Serif_SC({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
 
 export default function App({ Component, pageProps }: AppProps) {
   const loadingBarRef = useRef<LoadingBarRef>(null);
@@ -39,17 +33,10 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   return (
-    <Layout>
-      <style jsx global>
-        {`
-          html {
-            font-family: ${noto.style.fontFamily};
-          }
-        `}
-      </style>
-      <DefaultSeo {...SEO} />
-      <LoadingBar color="#f11946" ref={loadingBarRef} />
-      <Component {...pageProps} />
-    </Layout>
+      <Layout>
+        <DefaultSeo {...SEO} />
+        <LoadingBar color="#f11946" ref={loadingBarRef} />
+        <Component {...pageProps} />
+      </Layout>
   );
 }

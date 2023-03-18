@@ -16,7 +16,7 @@ export default function BlogSideCategory({ category }: ContentsProps) {
         <li key={index}>
           <Link 
           href={`/category/article/${item.attributes.url}/1`}
-          className="text-base font-bold text-gray-500 transition-all duration-200 hover:text-gray-900"
+          className="text-base font-medium text-gray-500 transition-all duration-200 hover:text-gray-900"
           >
             {item.attributes.title}
           </Link>

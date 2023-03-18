@@ -49,12 +49,12 @@ const Pagination = ({
       {/* 移动端 */}
       <div className="flex flex-1 justify-between sm:hidden">
         <div className={`page-item ${currentPage === 1 ? 'invisible pointer-events-none' : ''}`}>
-          <Link className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-bold text-gray-700 hover:bg-gray-50" href={`${path}/${currentPage - 1}`}>
+          <Link className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href={`${path}/${currentPage - 1}`}>
             前一页
           </Link>
         </div>
         <div className={`page-item ${currentPage === totalPages ? 'invisible pointer-events-none' : ''}`}>
-          <Link className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-bold text-gray-700 hover:bg-gray-50" href={`${path}/${currentPage + 1}`}>
+          <Link className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href={`${path}/${currentPage + 1}`}>
             下一页
           </Link>
         </div>
@@ -64,8 +64,8 @@ const Pagination = ({
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
-            当前为 <span className="font-bold">{(currentPage - 1) * itemPerPage + 1}</span> 至 <span className="font-bold">{Math.min(currentPage * itemPerPage, totalEntries)}</span> 条，共计
-            <span className="font-bold">{totalEntries}</span>条
+            当前为 <span className="font-medium">{(currentPage - 1) * itemPerPage + 1}</span> 至 <span className="font-medium">{Math.min(currentPage * itemPerPage, totalEntries)}</span> 条，共计
+            <span className="font-medium">{totalEntries}</span>条
           </p>
         </div>
 
@@ -73,8 +73,8 @@ const Pagination = ({
           <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
             <Link href={`${path}/${currentPage - 1}`}
               className={currentPage === 1 
-              ? `relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-bold text-gray-300 pointer-events-none	` 
-              : `relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-bold text-gray-500 hover:bg-gray-50 focus:z-20`}>
+              ? `relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-300 pointer-events-none	` 
+              : `relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20`}>
               <span className="sr-only">上一页</span>
               <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
             </Link>
@@ -85,21 +85,21 @@ const Pagination = ({
                 key={i}
                 href={`${path}/${pageNumber}`}
                 className={`page-item ${pageNumber === currentPage ? 
-                  'relative z-10 inline-flex items-center border border-blue-500 bg-blue-50 px-4 py-2 text-sm font-bold text-blue-600 focus:z-20' : 
-                  'relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-bold text-gray-500 hover:bg-gray-50 focus:z-20'} ${typeof pageNumber === 'string' ? 'disabled' : ''
+                  'relative z-10 inline-flex items-center border border-blue-500 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600 focus:z-20' : 
+                  'relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20'} ${typeof pageNumber === 'string' ? 'disabled' : ''
                   }`}>
                 {pageNumber}
               </Link>
             ) : 
-              <div className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-bold text-gray-500"
+              <div className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500"
               key={i}
               >...</div>
           }
             )}
             <Link href={`${path}/${currentPage + 1}`}
               className={currentPage === totalPages
-              ? `relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-bold text-gray-300 pointer-events-none`
-              : `relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-bold text-gray-500 hover:bg-gray-50 focus:z-20`}>
+              ? `relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-300 pointer-events-none`
+              : `relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20`}>
               <span className="sr-only">下一页</span>
               <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
             </Link>

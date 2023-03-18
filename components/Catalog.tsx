@@ -79,7 +79,7 @@ export default function Catalog({ main }: { main: string }) {
         </p>
         <hr className="mt-5 border-gray-200" />
 
-        <ul className="mt-5 text-base text-gray-700 font-bold space-y-4">
+        <ul className="mt-5 text-base text-gray-700 font-medium space-y-4">
           {catalogs > 0 ? catelogList : <p>{label.noCatalog}</p>}
         </ul>
       </div>
