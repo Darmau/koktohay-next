@@ -19,8 +19,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "darmau-design.hks3.layerstackobjects.com",
+        hostname: "darmau-image-1256887306.cos.ap-hongkong.myqcloud.com",
       },
+      {
+        protocol: "https",
+        hostname: "darmau-image-1256887306.cos.accelerate.myqcloud.com",
+      }
     ],
   },
 };
