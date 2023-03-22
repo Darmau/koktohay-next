@@ -1,5 +1,7 @@
 const { hostname } = require("os");
 
+const isProd = process.env.NODE_ENV === "production";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -27,6 +29,8 @@ const nextConfig = {
       }
     ],
   },
+
+  assetPrefix: isProd ? process.env.IMG_CDN_URL : undefined,
 };
 
 module.exports = nextConfig;
