@@ -129,8 +129,8 @@ const Footer = ({ id }: { id: string }) => {
             </form>
           </div>
         </div>
-        <div className="mt-8 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
-          <div className="flex space-x-6 md:order-2">
+        <div className="mt-8 border-t border-gray-900/10 pt-8 lg:flex lg:items-center lg:justify-between">
+          <div className="flex space-x-6 md:order-3">
             {socialLinks.map((item) => (
               <a
                 target={"_blank"}
@@ -144,7 +144,29 @@ const Footer = ({ id }: { id: string }) => {
               </a>
             ))}
           </div>
-          <p className="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">
+          <div className="mt-8 text-xs leading-5 text-gray-500 lg:order-2 lg:mt-0 lg:flex lg:gap-2">
+            <p>
+              蜀ICP备
+              <a
+                href="https://beian.miit.gov.cn/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                2022024489
+              </a>
+              号
+            </p>
+            <p>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51015602000444"
+              >
+                川公网安备 51015602000444号
+              </a>
+            </p>
+          </div>
+          <p className="mt-8 text-xs leading-5 text-gray-500 lg:order-1 lg:mt-0">
             &copy; 2019 - {currentYear} All rights reserved.
           </p>
         </div>
