@@ -4,6 +4,7 @@ import Pagination from "@/components/Pagination";
 import ConvertToDate from "@/function/ConvertDate";
 import getLabel from "@/function/GetLabel";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
+import imageLoader from "@/loader";
 import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
@@ -74,6 +75,7 @@ export default function AllVideos({
                   className="absolute inset-0 -z-10 h-full w-full object-cover transition-all duration-300 group-hover:scale-105"
                   width={672}
                   height={378}
+                  loader={imageLoader}
                 />
                 {/* 黑色遮罩 */}
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40 transition-all duration-300 group-hover:backdrop-blur-sm" />

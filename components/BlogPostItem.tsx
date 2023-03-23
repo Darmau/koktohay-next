@@ -2,6 +2,7 @@ import ConvertToDate from "@/function/ConvertDate";
 import { ContentsProps } from "@/function/Types";
 import Image from "next/image";
 import Link from "next/link";
+import imageLoader from "@/loader"
 
 export default function BlogPostItem({ post }: ContentsProps) {
   return (
@@ -17,6 +18,7 @@ export default function BlogPostItem({ post }: ContentsProps) {
             width={300}
             height={200}
             quality={65}
+            loader={imageLoader}
             className="absolute inset-0 h-full w-full  bg-gray-50 object-cover transition-all duration-300 transform group-hover:scale-105"
           />
           <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />

@@ -18,6 +18,7 @@ const SectionCover = ({article}: ContentsProps) => {
         height={1080}
         alt="封面图"
         quality={65}
+        loader={imageLoader}
         className="absolute inset-0 -z-10 h-full w-full object-cover brightness-50"
       />
 

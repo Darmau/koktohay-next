@@ -13,6 +13,7 @@ import Link from "next/link";
 import { ContentList } from "../../function/Types";
 import { ArticleJsonLd } from "next-seo";
 import Wechat from "@/components/Wechat";
+import imageLoader from "@/loader";
 
 export default function Article({ article, locale }: any) {
   const lang = locale === "zh-CN" ? "" : "en/";
@@ -79,6 +80,7 @@ export default function Article({ article, locale }: any) {
                 alt={article.title}
                 width={1280}
                 height={720}
+                loader={imageLoader}
                 priority
                 className="rounded-lg bg-gray-50 object-cover my-6"
               />
