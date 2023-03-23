@@ -13,7 +13,7 @@ export default function imageLoader({ src, quality }: ImageLoaderProps): string 
     const url = new URL(src.replace(/^https?:\/\/darmau-image(.+)\.myqcloud\.com/, baseUrl));
     
     // 设置图片处理参数
-    const imageMogr2 = `imageMogr2/thumbnail/quality/${quality}`;
+    const imageMogr2 = `imageMogr2/quality/${quality}`;
     const params = url.search ? `${url.search}&${imageMogr2}` : `?${imageMogr2}`;
     url.search = params.replace(/^(\?|&)/, '?');
 
