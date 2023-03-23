@@ -17,7 +17,6 @@ const Contact = () => {
     wechat: "",
   });
   const [showModal, setShowModal] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState(null);
 
   const submitUrl =
     process.env.NEXT_PUBLIC_EZ_FORM_URL ?? "localhost:1337/api/ezforms/submit/";
@@ -27,7 +26,7 @@ const Contact = () => {
     event.preventDefault();
     const submitData = {
       formName: formData.name,
-      formData: { ...formData, captchaToken },
+      formData: { ...formData },
     };
 
     fetch(submitUrl, {
