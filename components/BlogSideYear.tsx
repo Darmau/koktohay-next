@@ -1,5 +1,5 @@
 import getLabel from "@/function/GetLabel";
-import { ContentList, ContentsProps, Labels } from "@/function/Types";
+import { Labels } from "@/function/Types";
 import Link from "next/link";
 import { useRouter } from "next/router";
 

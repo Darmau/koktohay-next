@@ -1,8 +1,8 @@
 import ConvertToDate from "@/function/ConvertDate";
 import { ContentsProps } from "@/function/Types";
+import imageLoader from "@/loader";
 import Image from "next/image";
 import Link from "next/link";
-import imageLoader from "@/loader"
 
 export default function BlogPostItem({ post }: ContentsProps) {
   return (

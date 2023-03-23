@@ -1,4 +1,4 @@
-import crypto from 'crypto'
+import crypto from 'crypto';
 
 function generateId(header: string) {
   const md5 = crypto.createHash('md5');

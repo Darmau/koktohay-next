@@ -1,11 +1,11 @@
+import ConvertToDate from "@/function/ConvertDate";
 import getLabel from "@/function/GetLabel";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
+import imageLoader from "@/loader";
 import { ArrowSmallRightIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "next/image";
-import ConvertToDate from "@/function/ConvertDate";
-import imageLoader from "@/loader";
 
 const SectionVideo = ({ videos }: ContentsProps) => {
   const { locale } = useRouter();

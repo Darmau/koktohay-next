@@ -1,6 +1,5 @@
 import { MapPinIcon } from "@heroicons/react/20/solid";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
-import exifr from "exifr";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useEffect, useState } from "react";
 import Map, {

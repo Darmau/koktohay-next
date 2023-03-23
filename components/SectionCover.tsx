@@ -1,6 +1,6 @@
 import getLabel from "@/function/GetLabel";
 import { ContentsProps, Labels } from "@/function/Types";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import imageLoader from "@/loader";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";

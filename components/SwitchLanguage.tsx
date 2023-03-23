@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { Labels } from "@/function/Types";
 import getLabel from "@/function/GetLabel";
+import { Labels } from "@/function/Types";
 import { LanguageIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const labels: Labels = {
   "zh-CN": {

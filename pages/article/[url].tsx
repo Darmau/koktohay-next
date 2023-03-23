@@ -2,18 +2,17 @@ import client from "@/apollo-client";
 import Body from "@/components/Body";
 import Catalog from "@/components/Catalog";
 import { Comments } from "@/components/Comment";
+import Wechat from "@/components/Wechat";
 import WordCount from "@/components/WordCount";
 import ConvertToDate from "@/function/ConvertDate";
+import imageLoader from "@/loader";
 import { gql } from "@apollo/client";
 import { CalendarIcon } from "@heroicons/react/20/solid";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
-import { NextSeo } from "next-seo";
+import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ContentList } from "../../function/Types";
-import { ArticleJsonLd } from "next-seo";
-import Wechat from "@/components/Wechat";
-import imageLoader from "@/loader";
 
 export default function Article({ article, locale }: any) {
   const lang = locale === "zh-CN" ? "" : "en/";

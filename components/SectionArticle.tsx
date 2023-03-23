@@ -1,6 +1,7 @@
 import ConvertToDate from "@/function/ConvertDate";
 import getLabel from "@/function/GetLabel";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
+import imageLoader from "@/loader";
 import { ArrowSmallRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
