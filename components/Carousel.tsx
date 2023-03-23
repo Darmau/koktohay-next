@@ -1,4 +1,5 @@
 import { Photos } from "@/function/Types";
+import imageLoader from "@/loader";
 import {
   ArrowSmallLeftIcon,
   ArrowSmallRightIcon,
@@ -50,6 +51,7 @@ export default function Carousel({ photos }: Photos) {
               height={photos[activeIndex].largeHeight}
               width={photos[activeIndex].largeWidth}
               alt={photos[activeIndex].alt}
+              loader={imageLoader}
             />
             <button
               type="button"
@@ -87,6 +89,7 @@ export default function Carousel({ photos }: Photos) {
               height={photo.smallHeight}
               width={photo.smallWidth}
               alt={photo.alt}
+              loader={imageLoader}
               onClick={() => setActiveIndex(index)}
             />
           ))}

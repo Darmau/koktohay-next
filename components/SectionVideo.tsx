@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import ConvertToDate from "@/function/ConvertDate";
+import imageLoader from "@/loader";
 
 const SectionVideo = ({ videos }: ContentsProps) => {
   const { locale } = useRouter();
@@ -44,6 +45,7 @@ const SectionVideo = ({ videos }: ContentsProps) => {
               className="absolute inset-0 -z-10 h-full w-full object-cover transition-all duration-300 group-hover:scale-105"
               width={672}
               height={378}
+              loader={imageLoader}
             />
             {/* 黑色遮罩 */}
             <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40 transition-all duration-300 group-hover:backdrop-blur-sm" />

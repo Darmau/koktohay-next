@@ -1,3 +1,4 @@
+import imageLoader from "@/loader";
 import Image from "next/image";
 import Link from "next/link";
 import type { RenderPhotoProps } from "react-photo-album";
@@ -19,6 +20,7 @@ const NextJsImage: React.FC<RenderPhotoProps> = ({
           alt={alt}
           title={alt}
           quality={60}
+          loader={imageLoader}
           sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"

@@ -2,6 +2,7 @@ import client from "@/apollo-client";
 import BlogPostItem from "@/components/BlogPostItem";
 import Pagination from "@/components/Pagination";
 import { ContentList, ContentsProps } from "@/function/Types";
+import imageLoader from "@/loader";
 import { gql } from "@apollo/client";
 import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
@@ -26,6 +27,7 @@ export default function ArticlesByCategory({
             width={1280}
             height={720}
             alt="cover image"
+            loader={imageLoader}
             className="absolute inset-0 -z-10 h-full w-full object-cover brightness-75 overflow-hidden transition duration-300 hover:scale-105"
           />
           <div className="mx-auto max-w-7xl px-6 lg:px-8">

@@ -20,6 +20,7 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
+import imageLoader from "@/loader";
 
 type Picture = {
   src: string;
@@ -72,6 +73,7 @@ function useCustomReplace({ html }: { html: string }) {
                 width={1280}
                 height={720}
                 quality={70}
+                loader={imageLoader}
                 alt={domNode.attribs.src ?? "image"}
                 onClick={() => openLightbox(index)}
               />
