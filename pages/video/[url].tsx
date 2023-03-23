@@ -6,11 +6,10 @@ import xiguaIcon from "@/public/img/video-xigua.svg";
 import youtubeIcon from "@/public/img/video-youtube.svg";
 import { gql } from "@apollo/client";
 import { CalendarIcon } from "@heroicons/react/20/solid";
-import { NextSeo } from "next-seo";
+import { NextSeo, VideoJsonLd } from "next-seo";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ContentList, ContentsProps } from "../../function/Types";
-import { VideoJsonLd } from "next-seo";
 
 export default function Video({ video, locale }: ContentsProps) {
   const { xigua, bilibili, youtube } = video;

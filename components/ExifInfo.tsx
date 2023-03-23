@@ -4,7 +4,6 @@ import iso from "@/public/img/iso.svg";
 import shutterSpeed from "@/public/img/shutter.svg";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
-import exifr from "exifr";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 

@@ -1,3 +1,9 @@
+import Cover from "@/public/img/about-cover.jpg";
+import Apollo from "@/public/img/apollo.svg";
+import Next from "@/public/img/next.svg";
+import Node from "@/public/img/node.svg";
+import Strapi from "@/public/img/strapi.svg";
+import Tailwind from "@/public/img/tailwind.svg";
 import {
   ArrowPathIcon,
   BoltIcon, FingerPrintIcon,
@@ -5,12 +11,6 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import Cover from "@/public/img/about-cover.jpg";
-import Node from "@/public/img/node.svg";
-import Strapi from "@/public/img/strapi.svg";
-import Next from "@/public/img/next.svg";
-import Apollo from "@/public/img/apollo.svg";
-import Tailwind from "@/public/img/tailwind.svg";
 
 const features = [
   {

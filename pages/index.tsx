@@ -1,7 +1,6 @@
 import client from "@/apollo-client";
 import SectionArticle from "@/components/SectionArticle";
 import SectionCover from "@/components/SectionCover";
-import SectionStats from "@/components/SectionStats";
 import { ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
