@@ -1,7 +1,6 @@
 import ConvertToDate from "@/function/ConvertDate";
 import getLabel from "@/function/GetLabel";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
-import imageLoader from "@/loader";
 import { ArrowSmallRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,7 +40,6 @@ const SectionArticle = ({ articles }: ContentsProps) => {
                   alt="封面图片"
                   width={600}
                   height={400}
-                  loader={imageLoader}
                   className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                 />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />

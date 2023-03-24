@@ -1,7 +1,6 @@
 import ConvertToDate from "@/function/ConvertDate";
 import getLabel from "@/function/GetLabel";
 import { ContentsProps, Labels } from "@/function/Types";
-import imageLoader from "@/loader";
 import { ArrowSmallRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,7 +23,6 @@ export default function BlogPostTop({ post }: ContentsProps) {
             alt="cover"
             width={600}
             height={400}
-            loader={imageLoader}
             className="absolute inset-0 h-full w-full rounded-lg bg-gray-50 object-cover"
           />
         </div>

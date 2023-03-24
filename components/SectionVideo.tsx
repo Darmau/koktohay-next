@@ -1,7 +1,6 @@
 import ConvertToDate from "@/function/ConvertDate";
 import getLabel from "@/function/GetLabel";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
-import imageLoader from "@/loader";
 import { ArrowSmallRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
@@ -45,7 +44,6 @@ const SectionVideo = ({ videos }: ContentsProps) => {
               className="absolute inset-0 -z-10 h-full w-full object-cover transition-all duration-300 group-hover:scale-105"
               width={672}
               height={378}
-              loader={imageLoader}
             />
             {/* 黑色遮罩 */}
             <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40 transition-all duration-300 group-hover:backdrop-blur-sm" />

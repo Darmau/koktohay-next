@@ -12,11 +12,11 @@ const SectionAlbum = ({ albums }: ContentsProps) => {
 
   const imgArray = albums.map((item: ContentList) => {
     const ratio =
-      item.attributes.cover?.data?.attributes.width /
-      item.attributes.cover?.data?.attributes.height;
+      item.attributes.cover.data.attributes.width /
+      item.attributes.cover.data?.attributes.height;
 
     return {
-      src: item.attributes.cover?.data?.attributes.url,
+      src: item.attributes.cover.data.attributes.formats.large.url,
       width: 960,
       height: 960 / ratio,
       alt: item.attributes.title,
