@@ -85,6 +85,12 @@ const Header = ({ id }: HeaderProps) => {
           >
             {label.video}
           </Link>
+          <Link
+            href="/memo"
+            className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
+          >
+            {label.memo}
+          </Link>
 
           {/* 关于 */}
           <Popover className="relative">
@@ -168,6 +174,12 @@ const Header = ({ id }: HeaderProps) => {
                 >
                   {label.video}
                 </Link>
+                <Link
+                  href="/memo"
+                  className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                  {label.memo}
+                </Link>
                 <div>
                   <div className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-400">
                     {label.about.name}
@@ -203,6 +215,7 @@ const labels: Labels = {
     article: "文章",
     album: "摄影",
     video: "视频",
+    memo: "碎片",
     about: {
       name: "关于",
       items: [
@@ -215,6 +228,7 @@ const labels: Labels = {
     article: "Article",
     album: "Album",
     video: "Video",
+    memo: "Memo",
     about: {
       name: "About",
       items: [
