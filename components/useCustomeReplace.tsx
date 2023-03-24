@@ -59,8 +59,9 @@ function useCustomReplace({ html }: { html: string }) {
         // 图片会将src传入lightbox组件，然后在lightbox组件中使用react-image-lightbox组件
         case "img":
           const index = pictures.length;
+          const url = domNode.attribs.src.replace(/^https?:\/\/darmau-image(.+)\.myqcloud\.com/, 'https://img.darmau.design')
           const newPicture: Picture = {
-            src: domNode.attribs.src,
+            src: url,
             alt: domNode.attribs.alt ?? "image",
           };
           pictures.push(newPicture)

@@ -90,6 +90,7 @@ const GET_HOMEPAGE = gql`
                 url
                 height
                 width
+                formats
               }
             }
           }
