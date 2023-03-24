@@ -39,7 +39,7 @@ const features = [
   },
 ];
 
-export default function Example() {
+export default function About() {
   return (
     <main className="isolate py-12 md:py-16">
       {/* Hero section */}
