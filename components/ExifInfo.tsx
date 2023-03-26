@@ -23,10 +23,11 @@ interface ExifData {
   longitude?: number;
 }
 
+const ExifApi = process.env.EXIF_API;
+
 const ExifInfo: FC<Props> = ({ url }: Props) => {
   const [exif, setExif] = useState<ExifData>({});
   const [isLoading, setIsLoading] = useState(true);
-  const ExifApi = process.env.EXIF_API;
 
   useEffect(() => {
     async function loadExif() {
