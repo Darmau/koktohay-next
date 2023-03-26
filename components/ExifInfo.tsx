@@ -23,17 +23,16 @@ interface ExifData {
   longitude?: number;
 }
 
-const ExifApi = process.env.EXIF_API || "localhost:1216";
-
 const ExifInfo: FC<Props> = ({ url }: Props) => {
   const [exif, setExif] = useState<ExifData>({});
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log("fetch exif")
   useEffect(() => {
     async function loadExif() {
       try {
         const exifRes = await fetch(
-          `${ExifApi}exif?url=${url}`
+          `https://exif.darmau.design/exif?url=${url}`
         );
         const exifData = await exifRes.json();
         setExif(exifData);
