@@ -26,12 +26,13 @@ interface ExifData {
 const ExifInfo: FC<Props> = ({ url }: Props) => {
   const [exif, setExif] = useState<ExifData>({});
   const [isLoading, setIsLoading] = useState(true);
+  const ExifApi = process.env.EXIF_API;
 
   useEffect(() => {
     async function loadExif() {
       try {
         const exifRes = await fetch(
-          `https://exif.darmau.design/exif?url=${url}`
+          `${ExifApi}exif?url=${url}`
         );
         const exifData = await exifRes.json();
         setExif(exifData);
