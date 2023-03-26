@@ -47,6 +47,9 @@ function generateSiteMap({ albums, articles, videos }: ContentsProps) {
      <url>
        <loc>https://darmau.design/about</loc>
      </url>
+     <url>
+       <loc>https://darmau.design/memo</loc>
+     </url>
 
      ${articleList.map((item) => {
         return item.localizations ? 
