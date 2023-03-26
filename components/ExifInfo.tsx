@@ -27,7 +27,6 @@ const ExifInfo: FC<Props> = ({ url }: Props) => {
   const [exif, setExif] = useState<ExifData>({});
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("fetch exif")
   useEffect(() => {
     async function loadExif() {
       try {
