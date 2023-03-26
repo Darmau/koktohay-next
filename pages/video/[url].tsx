@@ -11,6 +11,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ContentList, ContentsProps } from "../../function/Types";
 
+let frameKey = 0;
+
 export default function Video({ video, locale }: ContentsProps) {
   const { xigua, bilibili, youtube } = video;
   const videoTemplete = [
@@ -57,7 +59,6 @@ export default function Video({ video, locale }: ContentsProps) {
   const videoSources = videoTemplete.filter((source) => source.value);
 
   const [activeIndex, setActiveIndex] = useState(0);
-  let frameKey = 0;
 
   useEffect(() => {
     const iframe = document.querySelector("#video-frame");
