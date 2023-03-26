@@ -23,7 +23,7 @@ interface ExifData {
   longitude?: number;
 }
 
-const ExifApi = process.env.EXIF_API;
+const ExifApi = process.env.EXIF_API || "localhost:1216";
 
 const ExifInfo: FC<Props> = ({ url }: Props) => {
   const [exif, setExif] = useState<ExifData>({});
