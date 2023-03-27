@@ -177,7 +177,7 @@ function useCustomReplace({ html }: { html: string }) {
                 language={lang}
                 style={atomOneDark}
                 showLineNumbers
-                className="my-4 rounded-md max-w-4xl"
+                className="my-4 rounded-md max-w-2xl"
               >
                 {codeString}
               </SyntaxHighlighter>
