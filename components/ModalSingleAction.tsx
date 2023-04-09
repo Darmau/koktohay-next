@@ -60,7 +60,7 @@ const ModalSubmit = () => {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        {label.content}
+                        {label.description}
                       </p>
                     </div>
                   </div>

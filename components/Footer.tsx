@@ -86,9 +86,6 @@ const Footer = ({ id }: { id: string }) => {
                     </Link>
                   </li>
                 ))}
-                <li>
-                  <a href="https://darmau.dev" target="_blank" className="text-sm leading-6 text-gray-600 hover:text-gray-900">{label.about.portfolio}</a>
-                </li>
               </ul>
             </div>
           </div>
@@ -376,7 +373,6 @@ const labels: Labels = {
         { name: "网站", href: "/about" },
         { name: "联系我", href: "/contact" },
       ],
-      portfolio: "作品集",
     },
     subscription: {
       title: "订阅本站更新",
@@ -401,7 +397,6 @@ const labels: Labels = {
         { name: "This Site", href: "/about" },
         { name: "Contact Me", href: "/contact" },
       ],
-      portfolio: "Portfolio",
     },
     subscription: {
       title: "Subscribe to updates",
