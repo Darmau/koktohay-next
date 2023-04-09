@@ -31,7 +31,7 @@ export default function Album({ album, locale }: ContentsProps) {
 
   return (
     <>
-      <NextSeo
+      {/* <NextSeo
         title={album.title}
         description={album.description}
         canonical={`https://darmau.design/${lang}album/${album.url}`}
@@ -47,9 +47,9 @@ export default function Album({ album, locale }: ContentsProps) {
             type: 'image/jpeg',
           }]
         }}
-      />
+      /> */}
       {/* 结构化搜索数据 */}
-      <ArticleJsonLd
+      {/* <ArticleJsonLd
         url={`https://darmau.design/${lang}album/${album.url}`}
         title={album.title.title}
         images={[
@@ -61,7 +61,7 @@ export default function Album({ album, locale }: ContentsProps) {
         publisherLogo="/img/logo.svg"
         description={album.description}
         isAccessibleForFree={true}
-      />
+      /> */}
 
       <main className="mx-auto max-w-7xl pt-8 mb-8 sm:px-6 sm:pt-16 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-none">
@@ -168,7 +168,6 @@ const GET_ALBUM = gql`
         attributes {
           title
           description
-          location
           publishDate
           gallery {
             data {

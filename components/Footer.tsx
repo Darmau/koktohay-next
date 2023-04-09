@@ -369,6 +369,7 @@ const labels: Labels = {
         { name: "视频", href: "/videos/1" },
         { name: "碎片", href: "/memo" },
       ],
+      portfolio: "作品集",
     },
     about: {
       title: "关于",
@@ -376,7 +377,6 @@ const labels: Labels = {
         { name: "网站", href: "/about" },
         { name: "联系我", href: "/contact" },
       ],
-      portfolio: "作品集",
     },
     subscription: {
       title: "订阅本站更新",
