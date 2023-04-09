@@ -2,9 +2,7 @@ import getLabel from "@/function/GetLabel";
 import { Labels } from "@/function/Types";
 import { Dialog, Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import {
-  Bars3Icon, XMarkIcon
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -17,11 +15,7 @@ interface navItem {
   href: string;
 }
 
-interface HeaderProps {
-  id: string;
-}
-
-const Header = ({ id }: HeaderProps) => {
+const Header = ({ id }: { id: string }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -66,7 +60,6 @@ const Header = ({ id }: HeaderProps) => {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-
           <Link
             href="/articles/1"
             className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
@@ -121,6 +114,13 @@ const Header = ({ id }: HeaderProps) => {
                     {item.name}
                   </Link>
                 ))}
+                <a
+                  href="https://darmau.dev"
+                  target="_blank"
+                  className="block rounded-lg py-2 px-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+                >
+                  {label.about.portfolio}
+                </a>
               </Popover.Panel>
             </Transition>
           </Popover>
@@ -193,6 +193,13 @@ const Header = ({ id }: HeaderProps) => {
                         <Link href={item.href}>{item.name}</Link>
                       </li>
                     ))}
+                    <a
+                      href="https://darmau.dev"
+                      target="_blank"
+                      className="block rounded-lg py-2 pl-4 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      {label.about.portfolio}
+                    </a>
                   </ul>
                 </div>
               </div>
@@ -222,6 +229,7 @@ const labels: Labels = {
         { name: "本站", href: "/about" },
         { name: "联系我", href: "/contact" },
       ],
+      portfolio: "作品集",
     },
   },
   en: {
@@ -235,6 +243,7 @@ const labels: Labels = {
         { name: "This Site", href: "/about" },
         { name: "Contact Me", href: "/contact" },
       ],
+      portfolio: "Portfolio",
     },
   },
 };
