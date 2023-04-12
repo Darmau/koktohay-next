@@ -1,4 +1,3 @@
-import Cover from "@/public/img/about-cover.jpg";
 import Apollo from "@/public/img/apollo.svg";
 import Next from "@/public/img/next.svg";
 import Node from "@/public/img/node.svg";
@@ -6,8 +5,9 @@ import Strapi from "@/public/img/strapi.svg";
 import Tailwind from "@/public/img/tailwind.svg";
 import {
   ArrowPathIcon,
-  BoltIcon, FingerPrintIcon,
-  GlobeAsiaAustraliaIcon
+  BoltIcon,
+  FingerPrintIcon,
+  GlobeAsiaAustraliaIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,8 +27,7 @@ const features = [
   },
   {
     name: "持续迭代",
-    description:
-      "我将继续优化设计和功能，测试版将在beta.darmau.design发布",
+    description: "我将继续优化设计和功能，测试版将在beta.darmau.design发布",
     icon: ArrowPathIcon,
   },
   {
@@ -73,23 +72,20 @@ export default function About() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                不止是博客
+                关于本站
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                除了展示自己的“创作”以外，我更希望用写作这种方式逼自己整理思路，输出所学
+                我是李大毛，设计师和前端开发，伪全栈。现居成都。
               </p>
-
-            </div>
-            <div className="mt-16 flow-root sm:mt-24">
-              <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                <Image
-                  src={Cover}
-                  alt="Cover"
-                  width={2432}
-                  height={1379}
-                  className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                />
-              </div>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                曾经我有个基于Ghost的博客《城中村群租房》。因为我想找个地方展示我的摄影作品，加上离开了深圳，城中村名不副实。于是开发了这个网站。
+              </p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                我喜欢阅读历史和地理类的书，对新疆、伊斯兰颇有了解。还喜欢骑着摩托到处跑。
+              </p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                如果你喜欢我的博客，请一定在评论里留言。
+              </p>
             </div>
           </div>
           <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
