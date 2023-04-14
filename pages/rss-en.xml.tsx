@@ -1,4 +1,3 @@
-@@ -1,105 +0,0 @@
 // 本文件用于动态生成RSS文件
 import client from "@/apollo-client";
 import { ContentsProps } from "@/function/Types";
@@ -66,8 +65,8 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
     });
   });
 
-  const cacheMaxAgeUntilStaleSeconds = 60 * 60; // 1 minute
-  const cacheMaxAgeStaleDataReturnSeconds = 60 * 60 * 60; // 60 minutes
+  const cacheMaxAgeUntilStaleSeconds = 5; // 1 minute
+  const cacheMaxAgeStaleDataReturnSeconds = 30; // 60 minutes
   res.setHeader(
     "Cache-Control",
     `public, s-maxage=${cacheMaxAgeUntilStaleSeconds}, stale-while-revalidate=${cacheMaxAgeStaleDataReturnSeconds}`
