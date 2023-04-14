@@ -38,7 +38,6 @@ export default function Home({
           <SectionArticle articles={articles} />
           <Photo albums={albums} />
           <Video videos={videos} />
-          {/* <SectionStats /> */}
         </div>
       </div>
     </>

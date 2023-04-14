@@ -26,6 +26,7 @@ const feed = new Feed({
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext): Promise<GetServerSidePropsResult<any>> => {
   const { res } = context;
+  feed.items =[]
   const { data } = await client.query({
     query: GET_RSS,
     variables: {
@@ -63,8 +64,8 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
     });
   });
 
-  const cacheMaxAgeUntilStaleSeconds = 60 * 60; // 1 minute
-  const cacheMaxAgeStaleDataReturnSeconds = 60 * 60 * 60; // 60 minutes
+  const cacheMaxAgeUntilStaleSeconds = 5;
+  const cacheMaxAgeStaleDataReturnSeconds = 30;
   res.setHeader(
     "Cache-Control",
     `public, s-maxage=${cacheMaxAgeUntilStaleSeconds}, stale-while-revalidate=${cacheMaxAgeStaleDataReturnSeconds}`
