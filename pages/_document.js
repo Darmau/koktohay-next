@@ -11,7 +11,7 @@ export default function Document() {
         />
         <link rel="sitemap" type="application/xml" title="可可托海没有海的站点地图" href="https://darmau.design/sitemap.xml"/>
         <link rel="alternate" type="application/rss+xml" title="可可托海没有海的RSS" href="https://darmau.design/rss.xml"/>
-        <script async defer data-website-id="49076eec-4795-456a-a127-f163de3ea2b4" src="https://analytics.darmau.design/umami.js"></script>
+        <script async src="https://analytics.darmau.design/script.js" data-website-id="ee645858-14fa-4787-ab19-6a7902c0e75b"></script>
       </Head>
       <body>
         <Main />
