@@ -3,7 +3,11 @@ import client from "@/apollo-client";
 import { ContentsProps } from "@/function/Types";
 import { gql } from "@apollo/client";
 import { Feed } from "feed";
-import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  GetServerSidePropsResult,
+} from "next";
 
 const feed = new Feed({
   title: "可可托海没有海的RSS",
@@ -24,9 +28,11 @@ const feed = new Feed({
   },
 });
 
-export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext): Promise<GetServerSidePropsResult<any>> => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+): Promise<GetServerSidePropsResult<any>> => {
   const { res } = context;
-  feed.items =[]
+  feed.items = [];
   const { data } = await client.query({
     query: GET_RSS,
     variables: {

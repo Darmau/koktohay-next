@@ -70,8 +70,9 @@ export default function Carousel({ photos }: Photos) {
               <ArrowSmallRightIcon className="h-5 w-5" aria-hidden="true" />
             </button>
             <button
+              data-umami-event="full screen"
               type="button"
-              className="umami--click--full-screen absolute top-8 right-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2"
+              className="absolute top-8 right-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2"
               onClick={() => setOpen(true)}
             >
               <ArrowsPointingOutIcon className="h-5 w-5" aria-hidden="true" />

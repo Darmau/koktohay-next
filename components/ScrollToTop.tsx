@@ -25,8 +25,9 @@ function ScrollToTop() {
 
   return isVisible ? (
     <button
+      data-umami-event="scroll to top"
       type="button"
-      className="umami--click--totop fixed transition-all z-50 bottom-8 right-8 inline-flex items-center rounded-full border border-slate-50 bg-white/70 backdrop-blur-sm p-3 text-zinc-600e shadow-lg hover:shadow-md hover:boder-slate-100 hover:bg-white"
+      className="fixed transition-all z-50 bottom-8 right-8 inline-flex items-center rounded-full border border-slate-50 bg-white/70 backdrop-blur-sm p-3 text-zinc-600e shadow-lg hover:shadow-md hover:boder-slate-100 hover:bg-white"
       onClick={handleScrollToTop}
     >
       <ArrowLongUpIcon className="h-6 w-6" aria-hidden="true" />

@@ -69,7 +69,8 @@ function useCustomReplace({ html }: { html: string }) {
           return (
             <div className="relative group">
               <Image
-                className="umami--click--full-screen rounded-lg bg-gray-50 object-cover mb-4 cursor-pointer"
+                data-umami-event="full screen"
+                className="rounded-lg bg-gray-50 object-cover mb-4 cursor-pointer"
                 src={domNode.attribs.src}
                 width={1280}
                 height={720}
