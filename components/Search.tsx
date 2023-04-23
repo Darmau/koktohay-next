@@ -18,6 +18,7 @@ type Props = {
 const searchUrl = process.env.NEXT_PUBLIC_SEARCH_URL || "http://localhost:7700";
 const searchToken = process.env.NEXT_PUBLIC_SEARCH_KEY;
 
+// 生成搜索实例
 const searchClient = instantMeiliSearch(searchUrl, searchToken, {
   placeholderSearch: false,
   finitePagination: true,
@@ -26,6 +27,7 @@ const searchClient = instantMeiliSearch(searchUrl, searchToken, {
 const Search = ({ onClose }: Props) => {
   const { locale } = useRouter();
   const label = getLabel(labels, locale);
+  // 定义indexName，用于切换搜索对象
   const indexNames = [
     { id: "article", title: label.article },
     { id: "album", title: label.album },
@@ -33,20 +35,24 @@ const Search = ({ onClose }: Props) => {
   ];
   const [searchIndex, setSearchIndex] = useState(indexNames[0].id);
 
+  // 点击背景关闭搜索
   const handleBackgroundClick = (e: { target: any; currentTarget: any }) => {
     if (e.target === e.currentTarget) onClose();
   };
 
+  // 点击搜索结果进行页面跳转后关闭搜索
   const handleResultClick = () => {
     onClose();
   };
 
+  // 定义命中的搜索项
   const Hit = ({ hit }: any) => (
     <Link
       href={`/${searchIndex}/${hit.slug}`}
       key={hit.id}
       className="px-4 py-2"
       onClick={handleResultClick}
+      data-umami-event="Enter Search Result"
     >
       <div className="text-base">
         <Highlight attribute="title" hit={hit} />
@@ -70,7 +76,6 @@ const Search = ({ onClose }: Props) => {
                 id={indexName.id}
                 name="notification-method"
                 type="radio"
-                // defaultChecked={indexName.id === "article"}
                 checked={searchIndex === indexName.id}
                 onChange={() => setSearchIndex(indexName.id)}
                 className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"

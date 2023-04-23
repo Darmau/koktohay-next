@@ -125,6 +125,7 @@ export default function Video({ video, locale }: ContentsProps) {
                         onClick={() => {
                           setActiveIndex(index);
                         }}
+                        data-umami-event="Switch Video Source"
                       >
                         {source.icon}
                       </button>
