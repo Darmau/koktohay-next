@@ -227,6 +227,18 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
                 </div>
               </div>
               <div className="py-6">
+                <Link
+                  data-umami-event="Search"
+                  className="flex leading-7 lg:inline-flex items-center lg:rounded-md lg:border border-gray-300 bg-white px-3 py-2 text-sm font-medium lg:leading-4 text-gray-700 lg:shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  href="/search"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <MagnifyingGlassIcon
+                    className="-ml-1 mr-2 h-5 w-5"
+                    aria-hidden="true"
+                  />
+                  {label.search}
+                </Link>
                 <SwitchLanguage />
               </div>
             </div>
@@ -254,6 +266,7 @@ const labels: Labels = {
       ],
       portfolio: "作品集",
     },
+    search: "搜索",
   },
   en: {
     article: "Article",
@@ -268,5 +281,6 @@ const labels: Labels = {
       ],
       portfolio: "Portfolio",
     },
+    search: "Search",
   },
 };
