@@ -4,10 +4,12 @@ import Footer from "./Footer";
 import Header from "./Header";
 import ScrollToTop from "./ScrollToTop";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const Layout = ({ children }: Props) => {
   const [minHeight, setMinHeight] = useState(0);
   const [showSearch, setShowSearch] = useState(false);
+  const { locale } = useRouter();
 
   const Search = dynamic(() => import("@/components/Search"));
 
@@ -31,7 +33,7 @@ const Layout = ({ children }: Props) => {
 
   return (
     <>
-      {showSearch && (
+      {showSearch && locale === "zh-CN" && (
         <Search
           onClose={() => {
             setShowSearch(false);
