@@ -136,7 +136,7 @@ const Footer = ({ id }: { id: string }) => {
           <div className="flex space-x-6 md:order-3">
             {socialLinks.map((item) => (
               <a
-                data-umami-event="social link"
+                data-umami-event="Social Network"
                 target={"_blank"}
                 title={item.name}
                 key={item.name}

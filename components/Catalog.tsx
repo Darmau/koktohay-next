@@ -1,11 +1,11 @@
 import getLabel from "@/function/GetLabel";
 import generateId from "@/function/StringID";
 import { Labels } from "@/function/Types";
-import { ChevronDoubleRightIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import parse, {
-  Element,
-  HTMLReactParserOptions
-} from "html-react-parser";
+import {
+  ChevronDoubleRightIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/20/solid";
+import parse, { Element, HTMLReactParserOptions } from "html-react-parser";
 import Link from "next/link";
 import { useRouter } from "next/router";
 function isTextNode(node: any): node is Text {
@@ -22,6 +22,7 @@ const options: HTMLReactParserOptions = {
         return (
           <li>
             <Link
+              data-umami-event="Catelog"
               className="hover:underline hover:decoration-2 hover:decoration-blue-500 hover:underline-offset-4"
               href={`#${generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
@@ -37,6 +38,7 @@ const options: HTMLReactParserOptions = {
           <li className="flex items-center">
             <ChevronRightIcon className="h-4 w-4" />
             <Link
+              data-umami-event="Catelog"
               className="text-sm hover:underline hover:decoration-2 hover:decoration-blue-500 hover:underline-offset-4"
               href={`#${generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""
@@ -52,6 +54,7 @@ const options: HTMLReactParserOptions = {
           <li className="flex items-center">
             <ChevronDoubleRightIcon className="h-4 w-4" />
             <Link
+              data-umami-event="Catelog"
               className="pl-2 text-sm hover:underline hover:decoration-2 hover:decoration-blue-500 hover:underline-offset-4"
               href={`#${generateId(
                 isTextNode(domNode.children[0]) ? domNode.children[0].data : ""

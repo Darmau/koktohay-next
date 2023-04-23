@@ -139,6 +139,7 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
           <div
             className="cursor-pointer flex leading-7 lg:inline-flex items-center lg:rounded-full lg:border border-gray-300 bg-white p-2 text-sm font-medium lg:leading-4 text-gray-700 lg:shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             onClick={onSearchButtonClick}
+            data-umami-event="Search"
           >
             <MagnifyingGlassIcon className="w-5 h-5" />
           </div>
