@@ -9,12 +9,9 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import logo from "../public/img/logo.svg";
 import SwitchLanguage from "./SwitchLanguage";
-import dynamic from "next/dynamic";
-
-const SearchBox = dynamic(() => import("@/components/Search"));
 
 interface navItem {
   name: string;
@@ -175,6 +172,7 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
                 <Link
                   href="/articles/1"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {label.article}
                 </Link>
@@ -182,18 +180,21 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
                 <Link
                   href="/albums/1"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {label.album}
                 </Link>
                 <Link
                   href="/videos/1"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {label.video}
                 </Link>
                 <Link
                   href="/memo"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {label.memo}
                 </Link>
@@ -207,7 +208,12 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
                         key={item.name}
                         className="block rounded-lg py-2 pl-4 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                       >
-                        <Link href={item.href}>{item.name}</Link>
+                        <Link
+                          href={item.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
                       </li>
                     ))}
                     <a

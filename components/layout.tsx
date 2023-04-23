@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import ScrollToTop from "./ScrollToTop";
-import Search from "./Search";
+import dynamic from "next/dynamic";
 
 const Layout = ({ children }: Props) => {
   const [minHeight, setMinHeight] = useState(0);
   const [showSearch, setShowSearch] = useState(false);
+
+  const Search = dynamic(() => import("@/components/Search"));
 
   // 获取窗口高度
   useEffect(() => {
