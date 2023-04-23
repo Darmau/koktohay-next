@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import ScrollToTop from "./ScrollToTop";
+import Search from "./Search";
 
 const Layout = ({ children }: Props) => {
   const [minHeight, setMinHeight] = useState(0);
+  const [showSearch, setShowSearch] = useState(false);
 
   // 获取窗口高度
   useEffect(() => {
@@ -27,7 +29,19 @@ const Layout = ({ children }: Props) => {
 
   return (
     <>
-      <Header id="header" />
+      {showSearch && (
+        <Search
+          onClose={() => {
+            setShowSearch(false);
+          }}
+        />
+      )}
+      <Header
+        id="header"
+        onSearchButtonClick={() => {
+          setShowSearch(true);
+        }}
+      />
       <div style={{ minHeight: minHeight }} className="mt-20 sm:mt-16">
         <ScrollToTop />
         {children}

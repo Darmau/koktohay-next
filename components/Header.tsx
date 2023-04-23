@@ -1,24 +1,37 @@
 import getLabel from "@/function/GetLabel";
 import { Labels } from "@/function/Types";
 import { Dialog, Popover, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import {
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/20/solid";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import logo from "../public/img/logo.svg";
 import SwitchLanguage from "./SwitchLanguage";
+import dynamic from "next/dynamic";
+
+const SearchBox = dynamic(() => import("@/components/Search"));
 
 interface navItem {
   name: string;
   href: string;
 }
 
-const Header = ({ id }: { id: string }) => {
+interface HeaderProps {
+  id: string;
+  onSearchButtonClick: () => void;
+}
+
+const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const { locale } = useRouter();
+  const label = getLabel(labels, locale);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,9 +42,6 @@ const Header = ({ id }: { id: string }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
-
-  const { locale } = useRouter();
-  const label = getLabel(labels, locale);
 
   return (
     <header
@@ -126,6 +136,12 @@ const Header = ({ id }: { id: string }) => {
           </Popover>
         </Popover.Group>
         <div className="hidden lg:gap-4 lg:flex lg:flex-1 lg:justify-end">
+          <div
+            className="cursor-pointer flex leading-7 lg:inline-flex items-center lg:rounded-full lg:border border-gray-300 bg-white p-2 text-sm font-medium lg:leading-4 text-gray-700 lg:shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            onClick={onSearchButtonClick}
+          >
+            <MagnifyingGlassIcon className="w-5 h-5" />
+          </div>
           <SwitchLanguage />
         </div>
       </nav>

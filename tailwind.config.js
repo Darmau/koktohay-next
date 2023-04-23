@@ -14,6 +14,9 @@ module.exports = {
       gridTemplateColumns: {
         article: "auto 256px",
       },
+      maxHeight: {
+        '80p': '75vh',
+      }
     },
   },
   plugins: [
