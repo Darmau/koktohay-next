@@ -5,7 +5,6 @@ import { Comments } from "@/components/Comment";
 import Wechat from "@/components/Wechat";
 import WordCount from "@/components/WordCount";
 import ConvertToDate from "@/function/ConvertDate";
-import imageLoader from "@/loader";
 import { gql } from "@apollo/client";
 import { CalendarIcon } from "@heroicons/react/20/solid";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
@@ -79,7 +78,6 @@ export default function Article({ article, locale }: any) {
                 alt={article.title}
                 width={1280}
                 height={720}
-                loader={imageLoader}
                 priority
                 className="rounded-lg bg-gray-50 object-cover my-6"
               />
