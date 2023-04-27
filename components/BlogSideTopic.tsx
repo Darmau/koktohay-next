@@ -1,6 +1,5 @@
 import getLabel from "@/function/GetLabel";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
-import imageLoader from "@/loader";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -25,7 +24,6 @@ export default function BlogSideTopic({ topics }: ContentsProps) {
                 src={item.attributes.cover.data.attributes.url}
                 width={80}
                 height={80}
-                loader={imageLoader}
                 alt="cover"
               />
               <div className="ml-5">
