@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.12",
+    "@apollo/client": "^3.7.13",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@meilisearch/instant-meilisearch": "^0.12.0",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.4",
-    "@types/node": "18.16.1",
+    "@types/node": "18.16.2",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
     "eslint": "8.39.0",
@@ -34,7 +34,7 @@
     "react-photo-album": "^2.1.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-top-loading-bar": "^2.3.1",
-    "sharp": "^0.32.0",
+    "sharp": "^0.32.1",
     "typescript": "5.0.4",
     "words-count": "^2.0.2",
     "yet-another-react-lightbox": "^3.5.3"
