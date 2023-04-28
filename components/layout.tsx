@@ -33,7 +33,7 @@ const Layout = ({ children }: Props) => {
 
   return (
     <>
-      {showSearch && locale === "zh-CN" && (
+      {showSearch && (
         <Search
           onClose={() => {
             setShowSearch(false);

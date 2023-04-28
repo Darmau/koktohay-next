@@ -46,22 +46,25 @@ const Search = ({ onClose }: Props) => {
   };
 
   // 定义命中的搜索项
-  const Hit = ({ hit }: any) => (
-    <Link
-      href={`/${searchIndex}/${hit.slug}`}
-      key={hit.id}
-      className="px-4 py-2"
-      onClick={handleResultClick}
-      data-umami-event="Enter Search Result"
-    >
-      <div className="text-base">
-        <Highlight attribute="title" hit={hit} />
-      </div>
-      <div className="text-sm text-gray-600">
-        <Highlight attribute="description" hit={hit} />
-      </div>
-    </Link>
-  );
+  const Hit = ({ hit }: any) => {
+    const locale = hit.locale === "zh-CN" ? "" : "en/";
+    return (
+      <Link
+        href={`/${locale}${searchIndex}/${hit.url}`}
+        key={hit.id}
+        className="px-4 py-2"
+        onClick={handleResultClick}
+        data-umami-event="Enter Search Result"
+      >
+        <div className="text-base">
+          <Highlight attribute="title" hit={hit} />
+        </div>
+        <div className="text-sm text-gray-600">
+          <Highlight attribute="description" hit={hit} />
+        </div>
+      </Link>
+    )
+  };
 
   return (
     <div
