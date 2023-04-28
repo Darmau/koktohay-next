@@ -31,9 +31,9 @@ const features = [
     icon: ArrowPathIcon,
   },
   {
-    name: "隐私很重要",
+    name: "i18n",
     description:
-      "作为一个个人网站，没有必要因为用了一些第三方产品导致获取大量我自己看不到也用不到的数据。本站访问统计、评论全部为自部署，不会获取任何隐私信息。",
+      "支持英文版。内容逐步翻译中。",
     icon: GlobeAsiaAustraliaIcon,
   },
 ];
