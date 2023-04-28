@@ -16,14 +16,14 @@ const features = [
   {
     name: "速度第一",
     description:
-      "有了Next.js的图片处理，Vercel的CDN，以及SSG，不考虑大陆网络的情况下，本站加载速度可以说是飞快。",
+      "得益于Next.js自带和站长所做的大量性能优化，本站服务器尽管位于香港，但访问速度依然极快。",
     icon: BoltIcon,
   },
   {
-    name: "逆潮流开放",
+    name: "Self Host",
     description:
-      "尽管中国人对建墙这件事有着延续两千年的喜好，我依然歌颂自由和开放。本站拥有RSS输出和优秀的SEO支持。",
-    icon: GlobeAsiaAustraliaIcon,
+      "本站运行在腾讯云轻量应用服务器，其他相关服务如搜索、评论、推送、Umami统计、memos等都部署在另一台轻量应用服务器上。",
+    icon: FingerPrintIcon,
   },
   {
     name: "持续迭代",
@@ -34,7 +34,7 @@ const features = [
     name: "隐私很重要",
     description:
       "作为一个个人网站，没有必要因为用了一些第三方产品导致获取大量我自己看不到也用不到的数据。本站访问统计、评论全部为自部署，不会获取任何隐私信息。",
-    icon: FingerPrintIcon,
+    icon: GlobeAsiaAustraliaIcon,
   },
 ];
 
