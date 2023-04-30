@@ -12,6 +12,7 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import ExifInfo from "./ExifInfo";
+import imageLoader from "@/function/ImageLoader";
 
 export default function Carousel({ photos }: Photos) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -52,7 +53,8 @@ export default function Carousel({ photos }: Photos) {
               height={photos[activeIndex].largeHeight}
               width={photos[activeIndex].largeWidth}
               alt={photos[activeIndex].alt}
-              quality={85}
+              quality={75}
+              loader={imageLoader}
             />
             <button
               type="button"
