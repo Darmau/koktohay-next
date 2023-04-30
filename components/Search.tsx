@@ -47,10 +47,10 @@ const Search = ({ onClose }: Props) => {
 
   // 定义命中的搜索项
   const Hit = ({ hit }: any) => {
-    const locale = hit.locale === "zh-CN" ? "" : "en/";
+    const language = hit.locale === "zh-CN" ? "" : "en/";
     return (
       <Link
-        href={`/${locale}${searchIndex}/${hit.url}`}
+        href={`/${language}${searchIndex}/${hit.url}`}
         key={hit.id}
         className="px-4 py-2"
         onClick={handleResultClick}

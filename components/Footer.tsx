@@ -366,7 +366,7 @@ const labels: Labels = {
       title: "博客",
       items: [
         { name: "文章", href: "/articles/1" },
-        { name: "相册", href: "/albums/1" },
+        { name: "摄影", href: "/albums/1" },
         { name: "视频", href: "/videos/1" },
         { name: "碎片", href: "/memo" },
       ],
