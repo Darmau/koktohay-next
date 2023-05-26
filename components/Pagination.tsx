@@ -25,8 +25,6 @@ const Pagination = ({
     return <div></div>; 
   }
 
-  const prefix = path
-
   // 根据总页数生成一个数组，数组中的每一个元素将被渲染成一个页码，链接到对应页面。
   if (totalPages >= 2 && totalPages <= 7) {
     pagesToRender = pageNumbers;

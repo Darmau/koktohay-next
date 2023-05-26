@@ -37,6 +37,9 @@ export const getServerSideProps: GetServerSideProps = async (
     query: GET_RSS,
     variables: {
       sort: ["publishDate:desc"],
+      pagination: {
+        limit: 20,
+      },
     },
   });
   const articles = data.articles.data;
@@ -84,8 +87,8 @@ export const getServerSideProps: GetServerSideProps = async (
 export default function RSS() {}
 
 const GET_RSS = gql`
-  query Articles($sort: [String]) {
-    articles(sort: $sort) {
+  query Articles($sort: [String], $pagination: PaginationArg) {
+    articles(sort: $sort, pagination: $pagination) {
       data {
         attributes {
           title

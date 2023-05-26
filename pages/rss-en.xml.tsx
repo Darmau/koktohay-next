@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
     variables: {
       sort: ["publishDate:desc"],
       pagination: {
-        limit: 10,
+        limit: 20,
       },
       locale: "en",
     },
