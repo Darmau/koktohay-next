@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (
     variables: {
       sort: ["publishDate:desc"],
       pagination: {
-        limit: 20,
+        limit: 50,
       },
     },
   });
