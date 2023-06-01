@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.14",
+    "@apollo/client": "^3.7.15",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "@meilisearch/instant-meilisearch": "^0.13.1",
@@ -22,7 +22,7 @@
     "eslint-config-next": "13.4.4",
     "feed": "^4.2.2",
     "graphql": "^16.6.0",
-    "html-react-parser": "^3.0.16",
+    "html-react-parser": "^4.0.0",
     "html-to-text": "^9.0.5",
     "mapbox-gl": "^2.15.0",
     "next": "13.4.4",
@@ -46,7 +46,7 @@
     "@types/react-instantsearch-dom": "^6.12.3",
     "@types/react-syntax-highlighter": "^15.5.7",
     "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.23",
+    "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "tailwindcss": "^3.3.2"
