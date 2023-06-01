@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
-    "@headlessui/react": "^1.7.14",
+    "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@meilisearch/instant-meilisearch": "^0.13.1",
     "@tailwindcss/forms": "^0.5.3",
