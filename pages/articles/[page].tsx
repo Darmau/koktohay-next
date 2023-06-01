@@ -3,7 +3,6 @@ import PageNotFound from "@/components/404";
 import BlogPostItem from "@/components/BlogPostItem";
 import BlogPostTop from "@/components/BlogPostTop";
 import BlogSideCategory from "@/components/BlogSideCategory";
-import BlogSideTopic from "@/components/BlogSideTopic";
 import BlogSideYear from "@/components/BlogSideYear";
 import Pagination from "@/components/Pagination";
 import { ContentList, ContentsProps } from "@/function/Types";
@@ -15,7 +14,6 @@ import { useRouter } from "next/router";
 export default function AllArticles({
   articles,
   categories,
-  topics,
   pagination,
   pageSize,
   locale,
@@ -91,7 +89,6 @@ export default function AllArticles({
             <div className="space-y-12 lg:col-span-1 lg:space-y-20">
               <BlogSideCategory category={categories} />
               <BlogSideYear />
-              <BlogSideTopic topics={topics} />
             </div>
           </div>
         </div>
@@ -149,22 +146,6 @@ const GET_ARTICLES = gql`
         id
       }
     }
-    topics(locale: $locale) {
-      data {
-        attributes {
-          title
-          url
-          description
-          cover {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
   }
 `;
 
@@ -190,7 +171,6 @@ export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
     props: {
       articles: data.articles.data,
       categories: data.articleCategories.data,
-      topics: data.topics.data,
       pagination: data.articles.meta.pagination,
       pageSize: pagination.pageSize,
       locale,
