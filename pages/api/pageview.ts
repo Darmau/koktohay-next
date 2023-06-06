@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 const PAGEVIEW_API = process.env.PAGEVIEW_API;
+const TOKEN = process.env.PAGEVIEW_TOKEN;
 
 async function fetchPageView(url: string): Promise<number> {
   const apiUrl = `${PAGEVIEW_API}?link=${encodeURIComponent(url)}`;
@@ -8,6 +9,9 @@ async function fetchPageView(url: string): Promise<number> {
   try {
     const response = await fetch(apiUrl, {
       method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${TOKEN}`
+      }
     });
     const data = await response.json();
     return data.count;
@@ -23,6 +27,9 @@ async function addPageView(url: string): Promise<number> {
   try {
     const response = await fetch(apiUrl, {
       method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${TOKEN}`
+      }
     });
     const data = await response.json();
     return data.count;
