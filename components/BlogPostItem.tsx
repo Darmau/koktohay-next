@@ -1,14 +1,30 @@
 import ConvertToDate from "@/function/ConvertDate";
+import { addPageView, getPageView } from "@/function/Pageview";
 import { ContentsProps } from "@/function/Types";
+import { EyeIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function BlogPostItem({ post }: ContentsProps) {
+  const [pageview, setPageview] = useState(0)
+  
+  useEffect(() => {
+    const fetchPageViews = async () => {
+      const views = await getPageView(`https://darmau.design/article/${post.attributes.url}`);
+      setPageview(views);
+    };
+    fetchPageViews();
+  }, [post])
+
   return (
     <article key={post.id} className="relative isolate group">
       <Link
         className="flex flex-col gap-6 md:gap-8 md:flex-row"
         href={`/article/${post.attributes.url}`}
+        onClick={() =>
+          addPageView(`https://darmau.design/article/${post.attributes.url}`)
+        }
       >
         <div className="relative shrink-0 aspect-[16/9] overflow-hidden rounded-lg sm:aspect-[2/1] md:aspect-[4/3] md:w-64">
           <Image
@@ -45,6 +61,10 @@ export default function BlogPostItem({ post }: ContentsProps) {
             <p className="mt-5 text-sm leading-6 text-gray-600">
               {post.attributes.description}
             </p>
+            <div className="flex gap-1 items-center mt-4 text-sm text-gray-500">
+              <EyeIcon className="w-4 h-4" />
+              {pageview}
+            </div>
           </div>
         </div>
       </Link>

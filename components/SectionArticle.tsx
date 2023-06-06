@@ -1,5 +1,6 @@
 import ConvertToDate from "@/function/ConvertDate";
 import getLabel from "@/function/GetLabel";
+import { addPageView } from "@/function/Pageview";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
 import { ArrowSmallRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
@@ -32,7 +33,11 @@ const SectionArticle = ({ articles }: ContentsProps) => {
       </div>
       <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-y-12 gap-x-8 lg:mt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         {articles.map((item: ContentList) => (
-          <Link key={item.id} href={`/article/${item.attributes.url}`}>
+          <Link
+            key={item.id}
+            href={`/article/${item.attributes.url}`}
+            onClick={() => addPageView(`https://darmau.design/article/${item.attributes.url}`)}
+          >
             <article className="group flex flex-col gap-4">
               <div className="relative w-full">
                 <Image

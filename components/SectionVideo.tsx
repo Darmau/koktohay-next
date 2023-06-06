@@ -1,5 +1,6 @@
 import ConvertToDate from "@/function/ConvertDate";
 import getLabel from "@/function/GetLabel";
+import { addPageView } from "@/function/Pageview";
 import { ContentList, ContentsProps, Labels } from "@/function/Types";
 import { ArrowSmallRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";

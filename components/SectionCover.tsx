@@ -1,4 +1,5 @@
 import getLabel from "@/function/GetLabel";
+import { getPageView } from "@/function/Pageview";
 import { ContentsProps, Labels } from "@/function/Types";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,6 +34,7 @@ const SectionCover = ({article}: ContentsProps) => {
               <Link
                 href={`/article/${article.url}`}
                 className="rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+                onClick={() => getPageView(article.url)}
               >
                 {label.read}
               </Link>
