@@ -20,7 +20,7 @@ export default function Article({ article, locale }: any) {
 
   useEffect(() => {
     addPageView(`https://darmau.design/article/${article.url}`)
-  }, [])
+  }, [article.url])
 
   return (
     <>
