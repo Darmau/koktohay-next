@@ -12,9 +12,15 @@ import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ContentList } from "../../function/Types";
+import { useEffect } from "react";
+import { addPageView } from "@/function/Pageview";
 
 export default function Article({ article, locale }: any) {
   const lang = locale === "zh-CN" ? "" : "en/";
+
+  useEffect(() => {
+    addPageView(`https://darmau.design/article/${article.url}`)
+  }, [])
 
   return (
     <>
