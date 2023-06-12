@@ -28,6 +28,11 @@ export default function Document() {
           data-do-not-track="true"
           data-cache="true"
         ></script>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2439295902943960"
+          crossorigin="anonymous"
+        ></script>
       </Head>
       <body>
         <Main />
