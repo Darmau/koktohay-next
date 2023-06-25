@@ -48,7 +48,7 @@ export default function Topic({
   );
 }
 
-export const runtime = 'edge'
+export const runtime = 'experimental-edge'
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const {locale, query} = context;

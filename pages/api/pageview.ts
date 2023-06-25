@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 const PAGEVIEW_API = process.env.PAGEVIEW_API;
 const TOKEN = process.env.PAGEVIEW_TOKEN;
 
-export const runtime = 'edge'
+export const runtime = 'experimental-edge'
 
 async function fetchPageView(url: string): Promise<number> {
   const apiUrl = `${PAGEVIEW_API}?link=${encodeURIComponent(url)}`;

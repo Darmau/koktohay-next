@@ -120,7 +120,7 @@ const GET_HOMEPAGE = gql`
   }
 `;
 
-export const runtime = 'edge'
+export const runtime = 'experimental-edge'
 
 export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
   context: GetServerSidePropsContext
