@@ -60,8 +60,6 @@ export default function ArticlesByCategory({
   );
 }
 
-export const runtime = 'edge';
-
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
