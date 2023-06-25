@@ -143,7 +143,9 @@ const GET_VIDEOS = gql`
   }
 `;
 
-export const runtime = 'edge';
+export const config = {
+  runtime: 'edge',
+}
 
 export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
   context: GetServerSidePropsContext
