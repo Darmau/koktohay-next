@@ -79,7 +79,9 @@ function SiteMap() {
   // getServerSideProps will do the heavy lifting
 }
 
-export const runtime = 'experimental-edge'
+export const config = {
+  runtime: 'experimental-edge',
+}
 
 export async function getServerSideProps({ res }: any) {
   // We make an API call to gather the URLs for our site
