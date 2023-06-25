@@ -28,6 +28,10 @@ const feed = new Feed({
   },
 });
 
+export const config = {
+  runtime: 'experimental-edge',
+}
+
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<any>> => {

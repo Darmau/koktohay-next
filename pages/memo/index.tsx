@@ -46,6 +46,10 @@ export default function Memo({ memos }: { memos: Memo[] }) {
   );
 }
 
+export const config = {
+  runtime: 'experimental-edge',
+}
+
 export async function getServerSideProps() {
   const api = process.env.MEMO || "";
   const res = await fetch(api);

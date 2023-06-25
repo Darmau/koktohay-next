@@ -97,6 +97,10 @@ const GET_ARTICLES_BY_YEARS = gql`
   }
 `;
 
+export const config = {
+  runtime: 'experimental-edge',
+}
+
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
