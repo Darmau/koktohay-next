@@ -28,7 +28,7 @@ const feed = new Feed({
   },
 });
 
-export const runtime = 'experimental-edge';
+export const runtime = 'edge';
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
