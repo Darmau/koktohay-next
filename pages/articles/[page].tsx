@@ -149,9 +149,7 @@ const GET_ARTICLES = gql`
   }
 `;
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'experimental-edge'
 
 export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
   context: GetServerSidePropsContext
