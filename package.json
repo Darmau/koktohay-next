@@ -40,6 +40,7 @@
     "yet-another-react-lightbox": "^3.11.0"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.1.0",
     "@types/html-to-text": "^9.0.1",
     "@types/mapbox-gl": "^2.7.11",
     "@types/react-image-gallery": "^1.2.0",
