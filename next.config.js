@@ -30,7 +30,6 @@ const nextConfig = {
     ],
   },
 
-  assetPrefix: isProd ? process.env.STATIC_CDN_URL : undefined,
 };
 
 module.exports = nextConfig;
