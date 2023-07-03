@@ -1,6 +1,6 @@
 import { ImageLoaderProps } from "next/image";
 
-export default function imageLoader({ src, quality }: ImageLoaderProps): string {
+export default function imageLoader({ src }: ImageLoaderProps): string {
   const darmauImageBaseUrl = "https://darmau-image-1256887306.cos.ap-hongkong.myqcloud.com";
   const darmauImageAccelerateBaseUrl = "https://darmau-image-1256887306.cos.accelerate.myqcloud.com";
 
