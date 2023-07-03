@@ -159,7 +159,6 @@ export async function getStaticProps({ params, locale }: any) {
       article: data.articles.data[0].attributes,
       locale,
     },
-    revalidate: 604800,
   };
 }
 
@@ -184,7 +183,7 @@ export async function getStaticPaths() {
   });
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   };
 }
 

@@ -113,7 +113,6 @@ export async function getStaticProps({ params, locale }: any) {
       album: data.albums.data[0].attributes,
       locale,
     },
-    revalidate: 604800,
   };
 }
 
@@ -138,7 +137,7 @@ export async function getStaticPaths() {
   });
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   };
 }
 

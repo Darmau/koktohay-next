@@ -137,6 +137,8 @@ const GET_ALBUMS = gql`
   }
 `;
 
+export const runtime = 'experimental-edge';
+
 export const getServerSideProps: GetServerSideProps<ContentsProps> = async (
   context: GetServerSidePropsContext
 ) => {
