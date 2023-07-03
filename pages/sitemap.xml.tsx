@@ -109,8 +109,6 @@ function SiteMap() {
   // getServerSideProps will do the heavy lifting
 }
 
-export const runtime = 'experimental-edge';
-
 export async function getServerSideProps({ res }: any) {
   // We make an API call to gather the URLs for our site
   const { data } = await client.query({ query: GET_LINKS });
