@@ -2,42 +2,35 @@ import { Photos } from "@/function/Types";
 import {
   ArrowSmallLeftIcon,
   ArrowSmallRightIcon,
-  ArrowsPointingOutIcon
+  ArrowsPointingOutIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/styles.css";
 import ExifInfo from "./ExifInfo";
+import useLightbox from "@/hooks/useLightbox";
 
 export default function Carousel({ photos }: Photos) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [open, setOpen] = useState(false);
+  const { openLightbox, renderLightbox } = useLightbox();
 
-  const originalPhoto = photos.map((photo) => {
+  const slides = photos.map((photo) => {
     return {
       src: photo.original,
+      width: photo.largeWidth,
+      height: photo.largeHeight,
     };
   });
 
   return (
     <>
-      <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        slides={originalPhoto}
-        plugins={[Thumbnails, Zoom]}
-      />
+      {renderLightbox({ slides })}
       <div className="flex flex-col gap-4 col-span-2 px-4">
         <div className="w-full flex flex-col items-center">
           <div className="relative">
             <button
               type="button"
               className={`${
-                activeIndex === 0 ? 'hidden' : ''
+                activeIndex === 0 ? "hidden" : ""
               } absolute top-1/2 left-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2`}
               onClick={() => setActiveIndex(activeIndex - 1)}
               disabled={activeIndex === 0}
@@ -55,7 +48,7 @@ export default function Carousel({ photos }: Photos) {
             <button
               type="button"
               className={`${
-                activeIndex === photos.length - 1 ? 'hidden' : ''
+                activeIndex === photos.length - 1 ? "hidden" : ""
               } absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2`}
               onClick={() => {
                 if (activeIndex !== photos.length - 1) {
@@ -69,7 +62,7 @@ export default function Carousel({ photos }: Photos) {
               data-umami-event="Fullscreen"
               type="button"
               className="absolute top-8 right-4 transform -translate-y-1/2 text-white bg-gray-900/20 backdrop-blur hover:bg-gray-900/60 rounded-full p-2"
-              onClick={() => setOpen(true)}
+              onClick={openLightbox}
             >
               <ArrowsPointingOutIcon className="h-5 w-5" aria-hidden="true" />
             </button>
