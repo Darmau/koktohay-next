@@ -18,10 +18,8 @@ export default function Carousel({ photos }: Photos) {
   const [open, setOpen] = useState(false);
 
   const originalPhoto = photos.map((photo) => {
-    const baseUrl = "https://img.darmau.design";
-    const url = photo.original.replace(/^https?:\/\/darmau-image(.+)\.myqcloud\.com/, baseUrl);
     return {
-      src: url,
+      src: photo.original,
     };
   });
 
