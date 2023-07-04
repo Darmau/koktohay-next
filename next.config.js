@@ -7,10 +7,6 @@ const nextConfig = {
     defaultLocale: "zh-CN",
   },
 
-  env: {
-    BASE_URL: process.env.BASE_URL,
-  },
-
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 7,
