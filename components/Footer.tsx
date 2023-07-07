@@ -160,15 +160,6 @@ const Footer = ({ id }: { id: string }) => {
               </a>
               号
             </p>
-            <p>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51015602000444"
-              >
-                川公网安备 51015602000444号
-              </a>
-            </p>
           </div>
           <p className="mt-8 text-xs leading-5 text-gray-500 lg:order-1 lg:mt-0">
             &copy; 2019 - {currentYear} All rights reserved.

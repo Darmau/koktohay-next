@@ -34,7 +34,7 @@ const Search = () => {
   // 定义命中的搜索项
   const Hit = ({ hit }: any) => (
     <Link
-    href={`/${locale}${searchIndex}/${hit.url}`}
+    href={`/${locale}/${searchIndex}/${hit.url}`}
       key={hit.id}
       className="px-4 py-2"
       data-umami-event="Enter Search Result"
