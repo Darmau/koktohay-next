@@ -85,12 +85,12 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
           >
             {label.video}
           </Link>
-          <Link
+          {/* <Link
             href="/memo"
             className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
           >
             {label.memo}
-          </Link>
+          </Link> */}
 
           {/* 关于 */}
           <Popover className="relative">
@@ -121,13 +121,13 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
                     {item.name}
                   </Link>
                 ))}
-                <a
+                {/* <a
                   href="https://darmau.dev"
                   target="_blank"
                   className="block rounded-lg py-2 px-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
                 >
                   {label.about.portfolio}
-                </a>
+                </a> */}
               </Popover.Panel>
             </Transition>
           </Popover>
@@ -191,13 +191,13 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
                 >
                   {label.video}
                 </Link>
-                <Link
+                {/* <Link
                   href="/memo"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {label.memo}
-                </Link>
+                </Link> */}
                 <div>
                   <div className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-400">
                     {label.about.name}
@@ -216,13 +216,13 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
                         </Link>
                       </li>
                     ))}
-                    <a
+                    {/* <a
                       href="https://darmau.dev"
                       target="_blank"
                       className="block rounded-lg py-2 pl-4 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       {label.about.portfolio}
-                    </a>
+                    </a> */}
                   </ul>
                 </div>
               </div>
@@ -264,7 +264,7 @@ const labels: Labels = {
         { name: "本站", href: "/about" },
         { name: "联系我", href: "/contact" },
       ],
-      portfolio: "作品集",
+      // portfolio: "作品集",
     },
     search: "搜索",
   },
@@ -279,7 +279,7 @@ const labels: Labels = {
         { name: "This Site", href: "/about" },
         { name: "Contact Me", href: "/contact" },
       ],
-      portfolio: "Portfolio",
+      // portfolio: "Portfolio",
     },
     search: "Search",
   },

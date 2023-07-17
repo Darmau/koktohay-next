@@ -86,9 +86,9 @@ const Footer = ({ id }: { id: string }) => {
                     </Link>
                   </li>
                 ))}
-                <li>
+                {/* <li>
                   <a href="https://darmau.dev" target="_blank" className="text-sm leading-6 text-gray-600 hover:text-gray-900">{label.about.portfolio}</a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -148,7 +148,7 @@ const Footer = ({ id }: { id: string }) => {
               </a>
             ))}
           </div>
-          <div className="mt-8 text-xs leading-5 text-gray-500 lg:order-2 lg:mt-0 lg:flex lg:gap-2">
+          {/* <div className="mt-8 text-xs leading-5 text-gray-500 lg:order-2 lg:mt-0 lg:flex lg:gap-2">
             <p>
               蜀ICP备
               <a
@@ -160,7 +160,7 @@ const Footer = ({ id }: { id: string }) => {
               </a>
               号
             </p>
-          </div>
+          </div> */}
           <p className="mt-8 text-xs leading-5 text-gray-500 lg:order-1 lg:mt-0">
             &copy; 2019 - {currentYear} All rights reserved.
           </p>
@@ -368,7 +368,7 @@ const labels: Labels = {
         { name: "网站", href: "/about" },
         { name: "联系我", href: "/contact" },
       ],
-      portfolio: "作品集",
+      // portfolio: "作品集",
     },
     subscription: {
       title: "订阅本站更新",
@@ -393,7 +393,7 @@ const labels: Labels = {
         { name: "This Site", href: "/about" },
         { name: "Contact Me", href: "/contact" },
       ],
-      portfolio: "Portfolio",
+      // portfolio: "Portfolio",
     },
     subscription: {
       title: "Subscribe to updates",
