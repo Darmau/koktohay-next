@@ -257,7 +257,7 @@ const labels: Labels = {
     article: "文章",
     album: "摄影",
     video: "视频",
-    memo: "碎片",
+    // memo: "碎片",
     about: {
       name: "关于",
       items: [
@@ -272,7 +272,7 @@ const labels: Labels = {
     article: "Article",
     album: "Album",
     video: "Video",
-    memo: "Memo",
+    // memo: "Memo",
     about: {
       name: "About",
       items: [
