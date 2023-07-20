@@ -24,7 +24,7 @@ export default function Document() {
         <script
           async
           src="https://analytics.darmau.design/script.js"
-          data-website-id="ee645858-14fa-4787-ab19-6a7902c0e75b"
+          data-website-id="9908e2a4-cc74-4e62-9259-ff22cee228a0"
           data-do-not-track="true"
           data-cache="true"
         ></script>
