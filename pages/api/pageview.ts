@@ -8,10 +8,7 @@ async function fetchPageView(url: string): Promise<number> {
 
   try {
     const response = await fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${TOKEN}`
-      }
+      method: 'GET'
     });
     const data = await response.json();
     return data.count;
@@ -26,10 +23,7 @@ async function addPageView(url: string): Promise<number> {
 
   try {
     const response = await fetch(apiUrl, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${TOKEN}`
-      }
+      method: 'PUT'
     });
     const data = await response.json();
     return data.count;
