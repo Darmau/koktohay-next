@@ -22,18 +22,18 @@ const features = [
   {
     name: "Self Host",
     description:
-      "本站运行在腾讯云轻量应用服务器，其他相关服务如搜索、评论、推送、Umami统计、memos等都部署在另一台轻量应用服务器上。",
+      "本站运行在腾讯云轻量应用服务器上。",
     icon: FingerPrintIcon,
   },
   {
     name: "持续迭代",
-    description: "我将继续优化设计和功能，测试版将在beta.darmau.design发布",
+    description: "本站彻底的重构正在进行中",
     icon: ArrowPathIcon,
   },
   {
     name: "i18n",
     description:
-      "支持英文版。内容逐步翻译中。",
+      "支持英文版。但目前在开发前后端，暂时不维护英文内容。",
     icon: GlobeAsiaAustraliaIcon,
   },
 ];
@@ -70,25 +70,29 @@ export default function About() {
             </svg>
           </div>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mx-auto max-w-2xl text-center">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <div className = "mx-auto max-w-2xl text-center">
+              <h1 className = "text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                 关于本站
               </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
+              <p className = "mt-6 text-lg leading-8 text-gray-600">
                 我是李大毛，设计师和前端开发，伪全栈。现居成都。
               </p>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
+              <p className = "mt-6 text-lg leading-8 text-gray-600">
+                我也是<a className="underline decoration-blue-600 decoration-2 underline-offset-4" href="https://firewood.news" target="blank">积薪</a>的开发者和运营者。
+              </p>
+              <p className = "mt-6 text-lg leading-8 text-gray-600">
                 曾经我有个基于Ghost的博客《城中村群租房》。因为我想找个地方展示我的摄影作品，加上离开了深圳，城中村名不副实。于是开发了这个网站。
               </p>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
-                我喜欢阅读历史和地理类的书，对新疆、伊斯兰颇有了解。还喜欢骑着摩托到处跑。
+              <p className = "mt-6 text-lg leading-8 text-gray-600">
+                目前我正在重构我的博客，会自己实现一个完整的前后端，预计今年发布。
               </p>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
+              <p className = "mt-6 text-lg leading-8 text-gray-600">
                 如果你喜欢我的博客，请一定在评论里留言。
               </p>
             </div>
           </div>
-          <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+          <div
+              className = "absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
             <svg
               className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
               viewBox="0 0 1155 678"
