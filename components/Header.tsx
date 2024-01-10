@@ -85,52 +85,13 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
           >
             {label.video}
           </Link>
-          {/* <Link
-            href="/memo"
-            className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
+          <Link
+              href="/about"
+              className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600"
           >
-            {label.memo}
-          </Link> */}
+            {label.about}
+          </Link>
 
-          {/* 关于 */}
-          <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600">
-              {label.about.name}
-              <ChevronDownIcon
-                className="h-5 w-5 flex-none text-gray-400"
-                aria-hidden="true"
-              />
-            </Popover.Button>
-
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0 translate-y-1"
-              enterTo="opacity-100 translate-y-0"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-1"
-            >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-gray-900/5">
-                {label.about.items.map((item: navItem) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="block rounded-lg py-2 px-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                {/* <a
-                  href="https://darmau.dev"
-                  target="_blank"
-                  className="block rounded-lg py-2 px-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
-                >
-                  {label.about.portfolio}
-                </a> */}
-              </Popover.Panel>
-            </Transition>
-          </Popover>
         </Popover.Group>
         <div className="hidden lg:gap-4 lg:flex lg:flex-1 lg:justify-end">
           <div
@@ -191,40 +152,13 @@ const Header = ({ id, onSearchButtonClick }: HeaderProps) => {
                 >
                   {label.video}
                 </Link>
-                {/* <Link
-                  href="/memo"
-                  className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)}
+                <Link
+                    href="/about"
+                    className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={() => setMobileMenuOpen(false)}
                 >
-                  {label.memo}
-                </Link> */}
-                <div>
-                  <div className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-400">
-                    {label.about.name}
-                  </div>
-                  <ul>
-                    {label.about.items.map((item: navItem) => (
-                      <li
-                        key={item.name}
-                        className="block rounded-lg py-2 pl-4 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                      >
-                        <Link
-                          href={item.href}
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                    {/* <a
-                      href="https://darmau.dev"
-                      target="_blank"
-                      className="block rounded-lg py-2 pl-4 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >
-                      {label.about.portfolio}
-                    </a> */}
-                  </ul>
-                </div>
+                  {label.about}
+                </Link>
               </div>
               <div className="py-6">
                 <Link
@@ -257,15 +191,7 @@ const labels: Labels = {
     article: "文章",
     album: "摄影",
     video: "视频",
-    // memo: "碎片",
-    about: {
-      name: "关于",
-      items: [
-        { name: "本站", href: "/about" },
-        { name: "联系我", href: "/contact" },
-      ],
-      // portfolio: "作品集",
-    },
+    about: "关于",
     search: "搜索",
   },
   en: {
@@ -273,14 +199,7 @@ const labels: Labels = {
     album: "Album",
     video: "Video",
     // memo: "Memo",
-    about: {
-      name: "About",
-      items: [
-        { name: "This Site", href: "/about" },
-        { name: "Contact Me", href: "/contact" },
-      ],
-      // portfolio: "Portfolio",
-    },
+    about: "About",
     search: "Search",
   },
 };
