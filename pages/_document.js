@@ -22,16 +22,8 @@ export default function Document() {
           href="https://darmau.design/rss.xml"
         />
         <script
-          async
-          src="https://analytics.darmau.design/script.js"
-          data-website-id="9908e2a4-cc74-4e62-9259-ff22cee228a0"
-          data-do-not-track="true"
-          data-cache="true"
-        ></script>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2439295902943960"
-          crossOrigin="anonymous"
+            async src = "https://umami.darmau.dev/script.js"
+            data-website-id = "f3103357-3ac6-4559-b9f8-6f645ea99f11"
         ></script>
       </Head>
       <body>
