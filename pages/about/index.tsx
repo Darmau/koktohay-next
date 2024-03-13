@@ -12,32 +12,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-const features = [
-  {
-    name: "速度第一",
-    description:
-      "得益于Next.js自带和站长所做的大量性能优化，本站服务器尽管位于香港，但访问速度依然极快。",
-    icon: BoltIcon,
-  },
-  {
-    name: "Self Host",
-    description:
-      "本站运行在腾讯云轻量应用服务器上。",
-    icon: FingerPrintIcon,
-  },
-  {
-    name: "持续迭代",
-    description: "本站彻底的重构正在进行中",
-    icon: ArrowPathIcon,
-  },
-  {
-    name: "i18n",
-    description:
-      "支持英文版。但目前在开发前后端，暂时不维护英文内容。",
-    icon: GlobeAsiaAustraliaIcon,
-  },
-];
-
 export default function About() {
   return (
     <main className="isolate py-12 md:py-16">
@@ -163,41 +137,6 @@ export default function About() {
               height={60}
             />
           </div>
-        </div>
-      </div>
-
-      {/* Feature section */}
-      <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-24 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-blue-600">
-            Design and Develop
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Tech Matters
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            感谢科技的进步，AI让我比预期更快地实现复杂功能，本站开发中大量使用了AI提供的灵感和思路。
-          </p>
-        </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-          <dl className="grid max-w-xl grid-cols-1 gap-y-10 gap-x-8 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-            {features.map((feature) => (
-              <div key={feature.name} className="relative pl-16">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="absolute top-0 left-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                    <feature.icon
-                      className="h-6 w-6 text-white"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  {feature.name}
-                </dt>
-                <dd className="mt-2 text-base leading-7 text-gray-600">
-                  {feature.description}
-                </dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </div>
 
