@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import LoadingBar, { LoadingBarRef } from "react-top-loading-bar";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 import SEO from "../next-seo.config";
 
@@ -39,6 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <LoadingBar color="#f11946" ref={loadingBarRef} />
         <Component {...pageProps} />
         <SpeedInsights />
+        <Analytics />
       </Layout>
   );
 }
