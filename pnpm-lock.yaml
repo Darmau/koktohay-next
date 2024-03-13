@@ -32,6 +32,9 @@ dependencies:
   '@types/react-dom':
     specifier: 18.2.7
     version: 18.2.7
+  '@vercel/speed-insights':
+    specifier: ^1.0.10
+    version: 1.0.10(next@13.4.12)(react@18.2.0)
   eslint:
     specifier: 8.46.0
     version: 8.46.0
@@ -722,6 +725,34 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.62.0
       eslint-visitor-keys: 3.4.2
+    dev: false
+
+  /@vercel/speed-insights@1.0.10(next@13.4.12)(react@18.2.0):
+    resolution: {integrity: sha512-4uzdKB0RW6Ff2FkzshzjZ+RlJfLPxgm/00i0XXgxfMPhwnnsk92YgtqsxT9OcPLdJUyVU1DqFlSWWjIQMPkh0g==}
+    requiresBuild: true
+    peerDependencies:
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19
+      svelte: ^4
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
+    dependencies:
+      next: 13.4.12(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
     dev: false
 
   /@wry/context@0.7.3:
