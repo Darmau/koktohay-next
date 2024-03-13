@@ -176,12 +176,13 @@ export default function About() {
             技术交流、合作机会，或者其他事情，欢迎通过右下角各种渠道或者下方按钮和我联系
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Link
-              href="/contact"
+            <a
+              href="mailto:blog@darmau.co"
+              target="_blank"
               className="rounded-md bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
             >
               与我联系
-            </Link>
+            </a>
           </div>
         </div>
         <div className="absolute left-1/2 right-0 top-full -z-10 hidden -translate-y-1/2 transform-gpu overflow-hidden blur-3xl sm:block">
