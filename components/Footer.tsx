@@ -51,9 +51,9 @@ const Footer = ({ id }: { id: string }) => {
         Footer
       </h2>
       <div className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-        <div className="lg:my-16 lg:grid lg:gap-8">
+        <div className="lg:my-16">
           {/* 站内链接 */}
-          <div className="hidden sm:block md:flex md:gap-24 lg:justify-evenly">
+          <div className="sm:block md:flex md:gap-24 lg:justify-evenly">
             <div>
               <h3 className="text-sm font-semibold leading-6 text-gray-900">
                 {label.blog.title}
