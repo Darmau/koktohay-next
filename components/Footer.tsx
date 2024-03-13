@@ -51,9 +51,9 @@ const Footer = ({ id }: { id: string }) => {
         Footer
       </h2>
       <div className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-        <div className="lg:my-16 lg:grid lg:grid-cols-2 lg:gap-8">
+        <div className="lg:my-16">
           {/* 站内链接 */}
-          <div className="hidden sm:block md:flex md:gap-24 lg:justify-evenly">
+          <div className="sm:block md:flex md:gap-24 lg:justify-evenly">
             <div>
               <h3 className="text-sm font-semibold leading-6 text-gray-900">
                 {label.blog.title}
@@ -92,45 +92,6 @@ const Footer = ({ id }: { id: string }) => {
               </ul>
             </div>
           </div>
-
-          {/* 订阅 */}
-          <div className="mt-10 lg:mt-0">
-            <h3 className="text-sm font-semibold leading-6 text-gray-900">
-              {label.subscription.title}
-            </h3>
-            <p className="mt-2 text-sm leading-6 text-gray-600">
-              {label.subscription.description}
-            </p>
-            <form
-              className="mt-6 sm:flex sm:max-w-md"
-              action="https://tinyletter.com/darmau"
-              method="post"
-              onSubmit={handleSubmit}
-            >
-              <label htmlFor="tlemail" className="sr-only">
-                Email address
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="tlemail"
-                autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full min-w-0 appearance-none rounded-md border-0 bg-white px-3 py-1.5 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:w-64 sm:text-sm sm:leading-6 xl:w-full"
-                placeholder={label.subscription.placeholder}
-              />
-              <div className="mt-4 sm:mt-0 sm:ml-4 sm:flex-shrink-0">
-                <button
-                  type="submit"
-                  className="flex w-full items-center justify-center rounded-md bg-blue-600 py-2 px-4 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                >
-                  {label.subscription.button}
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
         <div className="mt-8 border-t border-gray-900/10 pt-8 lg:flex lg:items-center lg:justify-between">
           <div className="flex space-x-6 md:order-3">
@@ -148,19 +109,6 @@ const Footer = ({ id }: { id: string }) => {
               </a>
             ))}
           </div>
-          {/* <div className="mt-8 text-xs leading-5 text-gray-500 lg:order-2 lg:mt-0 lg:flex lg:gap-2">
-            <p>
-              蜀ICP备
-              <a
-                href="https://beian.miit.gov.cn/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                2022024489
-              </a>
-              号
-            </p>
-          </div> */}
           <p className="mt-8 text-xs leading-5 text-gray-500 lg:order-1 lg:mt-0">
             &copy; 2019 - {currentYear} All rights reserved.
           </p>
